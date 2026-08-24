@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+public/generated/*
+.playwright-cli/
+output/
+source-map-svg-svg-3d-ancient-scone.md
+source_map.svg
+BlankMap-World-Flattened.svg
