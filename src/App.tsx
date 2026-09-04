@@ -1,270 +1,244 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { AppShell, Inspector, PreviewDrawer } from './components/layout';
-import { loadSourceMap } from './core/assets/load-source-map';
-import { downloadPng } from './core/export/exportPng';
-import { downloadSvg } from './core/export/buildSvg';
-import { createDefaultMapDocument, type MapDocument } from './core/model/map-document';
-import { downloadProject } from './core/project/downloadProject';
-import { loadProject } from './core/project/loadProject';
-import { buildRenderPlan } from './core/render/build-render-plan';
-import type { RenderPlan } from './core/render/render-plan';
-import { autoProjectionCenter } from './core/projection';
-import { validateProjection } from './core/projection/validation';
-import { CalibrationHarness } from './dev/CalibrationHarness';
-import { ExportPanel } from './features/export/ExportPanel';
-import { ExtentControls } from './features/extent/ExtentControls';
-import { GlobeViewport } from './features/globe';
-import { ProjectionControls } from './features/projection/ProjectionControls';
-import { ProjectionPreview } from './features/projection/ProjectionPreview';
-import { StyleControls } from './features/style/StyleControls';
-import { useProjectStore } from './store/project-store';
-import { useUiStore } from './store/ui-store';
-import type { LoadedSourceMap } from './types/source-map';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Download, Layers, Loader2, Palette, Redo2, Share2, SlidersHorizontal, Undo2, Map as MapIcon } from 'lucide-react';
+import type { MapConfig, ViewState } from './types';
+import { CONFIG_VERSION, DEFAULT_VIEW, defaultConfig } from './lib/presets';
+import { describeKey } from './lib/data';
+import { clampView, panView, rotateViewTo, zoomViewAt } from './lib/view';
+import { useHistory } from './hooks/useHistory';
+import { useLayerData } from './hooks/useLayerData';
+import MapCanvas, { type InteractionMode } from './components/MapCanvas';
+import Toolbar from './components/Toolbar';
+import LayersPanel from './components/LayersPanel';
+import StylePanel from './components/StylePanel';
+import ViewPanel from './components/ViewPanel';
+import ExportPanel from './components/ExportPanel';
+import { cn } from './utils/cn';
 
-function basename(value: string): string {
-  return value.trim().replace(/\.(svg|png|json)$/i, '') || 'maptool-map';
+type Tab = 'layers' | 'style' | 'view' | 'export';
+const STORAGE_KEY = 'meridian-map-config';
+
+function loadInitial(): MapConfig {
+  const base = defaultConfig();
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return base;
+    const parsed = JSON.parse(raw) as Partial<MapConfig>;
+    if (parsed.version !== CONFIG_VERSION) return base;
+    return { ...base, ...parsed, layers: { ...base.layers, ...(parsed.layers ?? {}) }, title: { ...base.title, ...(parsed.title ?? {}) }, view: { ...base.view, ...(parsed.view ?? {}) } };
+  } catch {
+    return base;
+  }
 }
 
+const TABS: { id: Tab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
+  { id: 'layers', label: 'Layers', icon: Layers },
+  { id: 'style', label: 'Style', icon: Palette },
+  { id: 'view', label: 'View', icon: SlidersHorizontal },
+  { id: 'export', label: 'Export', icon: Download },
+];
+
 export default function App() {
-  const calibrationMode = new URLSearchParams(window.location.search).has('calibration');
-  const document = useProjectStore((state) => state.document);
-  const setDocument = useProjectStore((state) => state.setDocument);
-  const setExtent = useProjectStore((state) => state.setExtent);
-  const inspectorOpen = useUiStore((state) => state.inspectorOpen);
-  const previewOpen = useUiStore((state) => state.previewOpen);
-  const setInspectorOpen = useUiStore((state) => state.setInspectorOpen);
-  const setPreviewOpen = useUiStore((state) => state.setPreviewOpen);
+  const history = useHistory<MapConfig>(loadInitial);
+  const config = history.state;
+  const { data, loading, errors, retry } = useLayerData(config);
+  const [tab, setTab] = useState<Tab>('layers');
+  const [mode, setMode] = useState<InteractionMode>('pan');
+  const sizeRef = useRef({ w: 1920, h: 1080 });
+  const [toast, setToast] = useState<string | null>(null);
 
-  const [source, setSource] = useState<LoadedSourceMap | null>(null);
-  const [revision, setRevision] = useState(1);
-  const [latestPlan, setLatestPlan] = useState<RenderPlan | null>(null);
-  const [filename, setFilename] = useState('world-linework');
-  const [status, setStatus] = useState('正在载入规范线稿…');
-  const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [previewPending, setPreviewPending] = useState(false);
-  const [draftExtent, setDraftExtent] = useState<MapDocument['extent'] | null>(null);
+  const update = useCallback((fn: (c: MapConfig) => MapConfig, transient = false) => history.set(fn, transient), [history.set]);
+  const replace = useCallback((c: MapConfig) => history.set(c), [history.set]);
+  const commit = history.commit;
 
+  // Persist
   useEffect(() => {
-    if (calibrationMode) return;
-    let active = true;
-    void loadSourceMap('detail')
-      .then((loaded) => {
-        if (!active) return;
-        setSource(loaded);
-        const current = useProjectStore.getState().document;
-        if (!current || current.source.sha256 !== loaded.manifest.source.sha256) {
-          setDocument(
-            createDefaultMapDocument({
-              file: loaded.manifest.source.file,
-              sha256: loaded.manifest.source.sha256,
-              calibration: loaded.manifest.calibration,
-            }),
-          );
-        }
-        setStatus('源图已校验 · 可开始构图');
-      })
-      .catch((reason: unknown) => {
-        if (!active) return;
-        setError(reason instanceof Error ? reason.message : String(reason));
-        setStatus('源图载入失败');
-      });
-    return () => {
-      active = false;
-    };
-  }, [calibrationMode, setDocument]);
+    const t = window.setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+      } catch {
+        /* ignore quota */
+      }
+    }, 400);
+    return () => window.clearTimeout(t);
+  }, [config]);
 
-  const projectionValidation = useMemo(() => {
-    if (!document) return { status: 'pending' as const, message: '等待项目文档。' };
-    const id = document.projection.id as Parameters<typeof validateProjection>[0];
-    const result = validateProjection(id, document.extent, autoProjectionCenter(document.extent));
-    return result.valid
-      ? { status: 'valid' as const, message: '当前投影与地理范围有效。' }
-      : {
-          status: 'error' as const,
-          message: result.issues.map((issue) => issue.message).join(' '),
-        };
-  }, [document]);
-
-  const previewDocument = useMemo(
-    () => (document && draftExtent ? { ...document, extent: draftExtent } : document),
-    [document, draftExtent],
-  );
-
-  const handlePreviewError = useCallback((reason: Error | null) => {
-    setError(reason?.message ?? null);
+  const onView = useCallback((next: ViewState, transient: boolean) => history.set((c) => ({ ...c, view: next }), transient), [history.set]);
+  const onSize = useCallback((w: number, h: number) => {
+    sizeRef.current = { w, h };
   }, []);
 
-  const renderFallback = useCallback(
-    async ({
-      document: snapshot,
-      source: loaded,
-      revision: requestRevision,
-      signal,
-    }: {
-      document: MapDocument;
-      source: LoadedSourceMap;
-      revision: number;
-      signal: AbortSignal;
-    }) => {
-      if (signal.aborted) throw new DOMException('已取消', 'AbortError');
-      return buildRenderPlan(snapshot, loaded, {
-        revision: requestRevision,
-        precision: 'preview',
-      });
-    },
-    [],
-  );
+  const zoomBy = useCallback((f: number) => history.set((c) => ({ ...c, view: zoomViewAt(c.view, sizeRef.current.w, sizeRef.current.h, f) })), [history.set]);
+  const rotateBy = useCallback((d: number) => history.set((c) => ({ ...c, view: rotateViewTo(c.view, sizeRef.current.w, sizeRef.current.h, c.view.angle + d) })), [history.set]);
+  const straighten = useCallback(() => history.set((c) => ({ ...c, view: clampView({ ...c.view, angle: 0 }) })), [history.set]);
+  const resetView = useCallback(() => history.set((c) => ({ ...c, view: { ...DEFAULT_VIEW, projection: c.view.projection } })), [history.set]);
 
-  if (calibrationMode) return <CalibrationHarness />;
-  if (!document || !previewDocument) {
-    return (
-      <div className="boot-state" role="status">
-        {error ?? status}
-      </div>
-    );
-  }
-
-  const updateDocument = (next: MapDocument) => {
-    setDocument(next);
-    setRevision((value) => value + 1);
-  };
-
-  const ensureExportPlan = async () => {
-    if (!source) throw new Error('源图数据尚未载入。');
-    if (projectionValidation.status === 'error') throw new Error(projectionValidation.message);
-    return buildRenderPlan(document, source, { revision, precision: 'export' });
-  };
-
-  const runExport = async (action: (plan: RenderPlan) => void | Promise<void>) => {
-    setBusy(true);
-    setError(null);
-    try {
-      const plan = await ensureExportPlan();
-      await action(plan);
-      setStatus('导出已完成');
-    } catch (reason) {
-      setError(reason instanceof Error ? reason.message : String(reason));
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const inspector = (
-    <Inspector
-      title="地图检查器"
-      description="范围、投影与作品样式"
-      open={inspectorOpen}
-      onOpenChange={setInspectorOpen}
-      openLabel="打开检查器"
-      closeLabel="关闭检查器"
-    >
-      <ExtentControls
-        value={document.extent}
-        onChange={(extent) => updateDocument({ ...document, extent })}
-        onReset={() => setExtent(createDefaultMapDocument(document.source).extent)}
-      />
-      <ProjectionControls
-        value={document.projection}
-        canvas={document.canvas}
-        validation={projectionValidation}
-        onChange={(projection) => updateDocument({ ...document, projection })}
-        onCanvasChange={(canvas) => updateDocument({ ...document, canvas })}
-        onAutoCenter={() => setRevision((value) => value + 1)}
-        onReset={() => {
-          const defaults = createDefaultMapDocument(document.source);
-          updateDocument({ ...document, projection: defaults.projection, canvas: defaults.canvas });
-        }}
-      />
-      <StyleControls
-        value={document.style}
-        onChange={(style) => updateDocument({ ...document, style })}
-      />
-      <ExportPanel
-        filename={filename}
-        onFilenameChange={setFilename}
-        progress={{ active: busy, label: busy ? '正在生成高精度作品…' : undefined }}
-        error={error}
-        disabled={!source || projectionValidation.status === 'error'}
-        onExportSvg={() => runExport((plan) => downloadSvg(plan, `${basename(filename)}.svg`))}
-        onExportPng={() => runExport((plan) => downloadPng(plan, `${basename(filename)}.png`))}
-        onExportProject={() => downloadProject(document, `${basename(filename)}.maptool.json`)}
-        onImportProject={async (file) => {
-          try {
-            await loadProject(file, (next) => updateDocument(next));
-            setStatus('项目文件已载入');
-          } catch (reason) {
-            setError(reason instanceof Error ? reason.message : String(reason));
-          }
-        }}
-      />
-    </Inspector>
-  );
-
-  const preview = (
-    <PreviewDrawer
-      title="二维投影预览"
-      eyebrow={document.projection.id}
-      expanded={previewOpen}
-      onExpandedChange={setPreviewOpen}
-      isBusy={previewPending}
-      status={
-        previewPending && latestPlan
-          ? `实时更新中 · ${latestPlan.lineRuns.length.toLocaleString()} 条线段`
-          : latestPlan
-            ? `${latestPlan.lineRuns.length.toLocaleString()} 条线段`
-            : '等待渲染'
+  // Keyboard shortcuts
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
+      const meta = e.ctrlKey || e.metaKey;
+      if (meta && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        if (e.shiftKey) history.redo();
+        else history.undo();
+        return;
       }
-      error={error}
-    >
-      <ProjectionPreview
-        document={previewDocument}
-        source={source}
-        revision={revision}
-        renderFallback={renderFallback}
-        onLatestPlanChange={setLatestPlan}
-        onPendingChange={setPreviewPending}
-        onError={handlePreviewError}
-      />
-    </PreviewDrawer>
-  );
+      if (meta && e.key.toLowerCase() === 'y') {
+        e.preventDefault();
+        history.redo();
+        return;
+      }
+      const { w, h } = sizeRef.current;
+      const step = e.shiftKey ? 120 : 40;
+      const pan = (dx: number, dy: number) => history.set((c) => ({ ...c, view: panView(c.view, w, h, dx, dy) }));
+      switch (e.key) {
+        case 'ArrowLeft':
+          pan(step, 0);
+          break;
+        case 'ArrowRight':
+          pan(-step, 0);
+          break;
+        case 'ArrowUp':
+          pan(0, step);
+          break;
+        case 'ArrowDown':
+          pan(0, -step);
+          break;
+        case '+':
+        case '=':
+          zoomBy(1.25);
+          break;
+        case '-':
+        case '_':
+          zoomBy(1 / 1.25);
+          break;
+        case 'q':
+        case 'Q':
+          rotateBy(e.shiftKey ? -45 : -5);
+          break;
+        case 'e':
+        case 'E':
+          rotateBy(e.shiftKey ? 45 : 5);
+          break;
+        case '0':
+          straighten();
+          break;
+        case 'r':
+        case 'R':
+          resetView();
+          break;
+        case 'v':
+        case 'V':
+          setMode('pan');
+          break;
+        case 'c':
+        case 'C':
+          setMode('rotate');
+          break;
+        default:
+          return;
+      }
+      e.preventDefault();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [history, zoomBy, rotateBy, straighten, resetView]);
+
+  const share = async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(config));
+      setToast('Style JSON copied to clipboard');
+    } catch {
+      setToast('Clipboard unavailable');
+    }
+    setTimeout(() => setToast(null), 2200);
+  };
+
+  const errorKeys = Object.keys(errors);
 
   return (
-    <AppShell
-      header={
-        <div className="product-lockup">
-          <strong>MAPTOOL</strong>
-          <span>GLOBE / PROJECTION STUDIO</span>
+    <div className="flex h-screen w-screen flex-col overflow-hidden bg-zinc-950 text-zinc-100">
+      {/* Top bar */}
+      <header className="flex h-12 shrink-0 items-center justify-between border-b border-white/5 bg-zinc-950 px-3">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-300 to-orange-500 text-zinc-900 shadow-lg shadow-amber-500/20">
+            <MapIcon className="h-4 w-4" />
+          </div>
+          <div className="leading-tight">
+            <div className="text-sm font-semibold tracking-tight">Meridian</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">Map art studio</div>
+          </div>
         </div>
-      }
-      actions={
-        <a className="quiet-link" href="?calibration=1">
-          校准检查
-        </a>
-      }
-      inspector={inspector}
-      preview={preview}
-      status={status}
-      error={error}
-      workspaceLabel="三维地球选区"
-    >
-      <GlobeViewport
-        extent={draftExtent ?? document.extent}
-        onExtentChange={(extent) =>
-          setDraftExtent({ ...extent, wrapsAntimeridian: extent.west > extent.east })
-        }
-        onExtentCommit={(extent) => {
-          const committed = { ...extent, wrapsAntimeridian: extent.west > extent.east };
-          setDraftExtent(null);
-          setExtent(committed);
-          setRevision((value) => value + 1);
-        }}
-        onExtentCancel={() => setDraftExtent(null)}
-      />
-      <div className="workspace-caption" aria-hidden="true">
-        <span>拖动八个手柄定义构图范围</span>
-        <span>{document.extent.wrapsAntimeridian ? '跨越日期变更线' : '连续经度窗口'}</span>
+        <div className="flex items-center gap-1">
+          <button onClick={history.undo} disabled={!history.canUndo} title="Undo (Ctrl+Z)" className="rounded-md p-1.5 text-zinc-300 hover:bg-white/10 disabled:opacity-30">
+            <Undo2 className="h-4 w-4" />
+          </button>
+          <button onClick={history.redo} disabled={!history.canRedo} title="Redo (Ctrl+Shift+Z)" className="rounded-md p-1.5 text-zinc-300 hover:bg-white/10 disabled:opacity-30">
+            <Redo2 className="h-4 w-4" />
+          </button>
+          <span className="mx-1 h-5 w-px bg-white/10" />
+          <button onClick={share} title="Copy style JSON" className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs text-zinc-300 hover:bg-white/10">
+            <Share2 className="h-3.5 w-3.5" /> Copy style
+          </button>
+          <button onClick={() => setTab('export')} className="inline-flex items-center gap-1.5 rounded-md bg-amber-400 px-3 py-1.5 text-xs font-semibold text-zinc-900 hover:bg-amber-300">
+            <Download className="h-3.5 w-3.5" /> Export
+          </button>
+        </div>
+      </header>
+
+      <div className="flex min-h-0 flex-1">
+        {/* Sidebar */}
+        <aside className="flex w-[340px] shrink-0 flex-col border-r border-white/5 bg-zinc-950">
+          <nav className="grid grid-cols-4 border-b border-white/5">
+            {TABS.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                className={cn('flex flex-col items-center gap-1 py-2.5 text-[10px] font-medium uppercase tracking-wider transition-colors', tab === t.id ? 'border-b-2 border-amber-400 text-amber-300' : 'text-zinc-500 hover:text-zinc-200')}
+              >
+                <t.icon className="h-4 w-4" />
+                {t.label}
+              </button>
+            ))}
+          </nav>
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            {tab === 'layers' && <LayersPanel config={config} update={update} commit={commit} loading={loading} errors={errors} retry={retry} />}
+            {tab === 'style' && <StylePanel config={config} update={update} commit={commit} />}
+            {tab === 'view' && <ViewPanel config={config} update={update} />}
+            {tab === 'export' && <ExportPanel config={config} data={data} update={update} replace={replace} loadingCount={loading.length} />}
+          </div>
+        </aside>
+
+        {/* Canvas area */}
+        <main className="relative min-w-0 flex-1 bg-[radial-gradient(ellipse_at_center,#1c1c21_0%,#09090b_75%)]">
+          <MapCanvas config={config} data={data} mode={mode} onView={onView} onCommit={commit} onSize={onSize} />
+
+          {/* Status chips */}
+          <div className="pointer-events-none absolute left-4 top-4 flex flex-col gap-1.5">
+            {loading.map((k) => (
+              <div key={k} className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-zinc-950/80 px-3 py-1 text-[11px] text-zinc-200 backdrop-blur">
+                <Loader2 className="h-3 w-3 animate-spin text-amber-300" /> Loading {describeKey(k)}…
+              </div>
+            ))}
+            {errorKeys.map((k) => (
+              <button key={k} onClick={() => retry(k)} className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-red-400/30 bg-red-950/70 px-3 py-1 text-[11px] text-red-200 backdrop-blur hover:bg-red-900/70">
+                Failed to load {describeKey(k)} — retry
+              </button>
+            ))}
+          </div>
+
+          <div className="pointer-events-none absolute right-4 top-4 rounded-full border border-white/10 bg-zinc-950/70 px-3 py-1 text-[11px] tabular-nums text-zinc-400 backdrop-blur">
+            {config.width} × {config.height} · {Math.abs(config.view.lat).toFixed(1)}°{config.view.lat >= 0 ? 'N' : 'S'} {Math.abs(config.view.lon).toFixed(1)}°{config.view.lon >= 0 ? 'E' : 'W'}
+          </div>
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center">
+            <Toolbar view={config.view} mode={mode} onMode={setMode} onZoom={zoomBy} onRotate={rotateBy} onStraighten={straighten} onReset={resetView} />
+          </div>
+
+          {toast && <div className="absolute bottom-20 left-1/2 -translate-x-1/2 rounded-full bg-zinc-100 px-4 py-1.5 text-xs font-medium text-zinc-900 shadow-xl">{toast}</div>}
+        </main>
       </div>
-    </AppShell>
+    </div>
   );
 }
