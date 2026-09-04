@@ -91,6 +91,7 @@ export interface MapConfig {
   width: number;
   height: number;
   background: string;
+  transparentBackground: boolean;
   bgGradient: boolean;
   bgGradientColor: string;
   vignette: number;

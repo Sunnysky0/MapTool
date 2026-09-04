@@ -57,6 +57,9 @@ export default function StylePanel({ config, update, commit }: Props) {
         <Row label="Color">
           <ColorField value={config.background} onChange={(v) => update((c) => ({ ...c, background: v }))} />
         </Row>
+        <Row label="Transparent">
+          <Toggle checked={config.transparentBackground} onChange={(v) => update((c) => ({ ...c, transparentBackground: v }))} size="sm" />
+        </Row>
         <Row label="Gradient">
           <Toggle checked={config.bgGradient} onChange={(v) => update((c) => ({ ...c, bgGradient: v }))} size="sm" />
         </Row>

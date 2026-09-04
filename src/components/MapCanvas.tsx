@@ -180,7 +180,7 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
 
   return (
     <div ref={wrapRef} className="relative flex h-full w-full items-center justify-center overflow-hidden">
-      <div className="relative shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] ring-1 ring-white/10" style={{ width: box.w, height: box.h }}>
+      <div className="relative bg-[conic-gradient(#d4d4d8_25%,#fafafa_0_50%,#d4d4d8_0_75%,#fafafa_0)] bg-[length:16px_16px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] ring-1 ring-white/10" style={{ width: box.w, height: box.h }}>
         <canvas
           ref={canvasRef}
           style={{ width: box.w, height: box.h, cursor: mode === 'rotate' ? 'alias' : cursor, touchAction: 'none' }}

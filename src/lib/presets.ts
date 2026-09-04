@@ -1,6 +1,6 @@
 import type { LayerId, LayerStyle, MapConfig, ViewState } from '../types';
 
-export const CONFIG_VERSION = 3;
+export const CONFIG_VERSION = 4;
 
 const base = (over: Partial<LayerStyle> = {}): LayerStyle => ({
   visible: false,
@@ -41,6 +41,7 @@ export function defaultConfig(): MapConfig {
     width: 3840,
     height: 2160,
     background: '#000000',
+    transparentBackground: false,
     bgGradient: false,
     bgGradientColor: '#101418',
     vignette: 0,

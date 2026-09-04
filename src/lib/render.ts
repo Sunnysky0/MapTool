@@ -108,15 +108,17 @@ export function drawMap(ctx: CanvasRenderingContext2D, input: RenderInput): void
   // Background
   ctx.save();
   ctx.clearRect(0, 0, w, h);
-  if (config.bgGradient) {
-    const g = ctx.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, config.background);
-    g.addColorStop(1, config.bgGradientColor);
-    ctx.fillStyle = g;
-  } else {
-    ctx.fillStyle = config.background;
+  if (!config.transparentBackground) {
+    if (config.bgGradient) {
+      const g = ctx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, config.background);
+      g.addColorStop(1, config.bgGradientColor);
+      ctx.fillStyle = g;
+    } else {
+      ctx.fillStyle = config.background;
+    }
+    ctx.fillRect(0, 0, w, h);
   }
-  ctx.fillRect(0, 0, w, h);
   ctx.restore();
 
   ctx.lineCap = config.lineCap;
@@ -226,7 +228,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, input: RenderInput): void
   }
 
   // Vignette
-  if (config.vignette > 0) {
+  if (!config.transparentBackground && config.vignette > 0) {
     ctx.save();
     const r = Math.hypot(w, h) / 2;
     const g = ctx.createRadialGradient(w / 2, h / 2, r * 0.35, w / 2, h / 2, r);
@@ -238,7 +240,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, input: RenderInput): void
   }
 
   // Grain
-  if (config.grain > 0) {
+  if (!config.transparentBackground && config.grain > 0) {
     const pat = getGrainPattern(ctx);
     if (pat) {
       ctx.save();
@@ -304,14 +306,16 @@ export function renderSVG(input: RenderInput): string {
   const out: string[] = [];
   out.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`);
   out.push('<defs>');
-  if (config.bgGradient) {
+  if (!config.transparentBackground && config.bgGradient) {
     out.push(`<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${config.background}"/><stop offset="1" stop-color="${config.bgGradientColor}"/></linearGradient>`);
   }
-  if (config.vignette > 0) {
+  if (!config.transparentBackground && config.vignette > 0) {
     out.push(`<radialGradient id="vig" cx="0.5" cy="0.5" r="0.7"><stop offset="0.5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="${config.vignette}"/></radialGradient>`);
   }
   out.push('</defs>');
-  out.push(`<rect width="${w}" height="${h}" fill="${config.bgGradient ? 'url(#bg)' : config.background}"/>`);
+  if (!config.transparentBackground) {
+    out.push(`<rect width="${w}" height="${h}" fill="${config.bgGradient ? 'url(#bg)' : config.background}"/>`);
+  }
   out.push(`<g fill="none" stroke-linecap="${config.lineCap}" stroke-linejoin="round">`);
 
   const strokeAttrs = (style: LayerStyle, lw: number, rail = false) => {
@@ -367,7 +371,7 @@ export function renderSVG(input: RenderInput): string {
     }
   }
   out.push('</g>');
-  if (config.vignette > 0) out.push(`<rect width="${w}" height="${h}" fill="url(#vig)"/>`);
+  if (!config.transparentBackground && config.vignette > 0) out.push(`<rect width="${w}" height="${h}" fill="url(#vig)"/>`);
 
   if (config.title.text || config.title.subtitle) {
     const t = config.title;

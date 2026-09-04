@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react';
-import { Download, FileCode2, FileJson, Loader2, Upload } from 'lucide-react';
-import type { LayerData, MapConfig } from '../types';
+import { Download, FileCode2, FileJson, Layers, Loader2, Upload } from 'lucide-react';
+import type { LayerData, LayerId, MapConfig } from '../types';
 import { SIZE_PRESETS, defaultConfig } from '../lib/presets';
+import { LAYER_DEFS } from '../lib/data';
 import { drawMap, renderSVG } from '../lib/render';
-import { Button, NumberField, Row, Section, Select } from './ui';
+import { Button, NumberField, Row, Section, Select, Toggle } from './ui';
 
 interface Props {
   config: MapConfig;
@@ -25,12 +26,27 @@ function download(blob: Blob, name: string) {
 }
 
 const slug = (s: string) => s.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'map';
+const filename = (s: string, fallback: string) => s.trim().replace(/[<>:"/\\|?*\u0000-\u001f]/g, '-').replace(/[. ]+$/g, '') || fallback;
+const layerFilename = (s: string) => filename(s, 'layer').replace(/\s+/g, '-');
 
 export default function ExportPanel({ config, data, update, replace, loadingCount }: Props) {
   const [busy, setBusy] = useState<string | null>(null);
   const [scale, setScale] = useState(1);
+  const [fileName, setFileName] = useState(() => slug(config.title.text || 'map-art'));
+  const [perLayer, setPerLayer] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const presetIdx = SIZE_PRESETS.findIndex((p) => p.width === config.width && p.height === config.height);
+
+  const layerConfig = (id: LayerId): MapConfig => ({
+    ...config,
+    transparentBackground: true,
+    vignette: 0,
+    grain: 0,
+    title: { ...config.title, text: '', subtitle: '' },
+    layers: Object.fromEntries(LAYER_DEFS.map((def) => [def.id, { ...config.layers[def.id], visible: def.id === id }])) as MapConfig['layers'],
+  });
+
+  const visibleLayers = () => LAYER_DEFS.filter((def) => config.layers[def.id].visible);
 
   const exportPNG = async () => {
     setBusy('png');
@@ -38,19 +54,23 @@ export default function ExportPanel({ config, data, update, replace, loadingCoun
     try {
       const w = Math.round(config.width * scale);
       const h = Math.round(config.height * scale);
-      const canvas = document.createElement('canvas');
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) throw new Error('no canvas');
       try {
         await document.fonts.load(`500 40px "${config.title.font}"`);
       } catch {
         /* ignore */
       }
-      drawMap(ctx, { config, data, width: w, height: h });
-      const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/png'));
-      if (blob) download(blob, `${slug(config.title.text || 'map-art')}-${w}x${h}.png`);
+      const layers = perLayer ? visibleLayers() : [{ id: undefined, name: '' }];
+      for (const layer of layers) {
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) throw new Error('no canvas');
+        drawMap(ctx, { config: layer.id ? layerConfig(layer.id) : config, data, width: w, height: h });
+        const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/png'));
+        if (blob) download(blob, `${filename(fileName, 'map')}${layer.id ? `-${layerFilename(layer.name)}` : ''}-${w}x${h}.png`);
+        if (layers.length > 1) await new Promise((r) => setTimeout(r, 100));
+      }
     } finally {
       setBusy(null);
     }
@@ -60,14 +80,18 @@ export default function ExportPanel({ config, data, update, replace, loadingCoun
     setBusy('svg');
     await new Promise((r) => setTimeout(r, 30));
     try {
-      const svg = renderSVG({ config, data, width: config.width, height: config.height });
-      download(new Blob([svg], { type: 'image/svg+xml' }), `${slug(config.title.text || 'map-art')}.svg`);
+      const layers = perLayer ? visibleLayers() : [{ id: undefined, name: '' }];
+      for (const layer of layers) {
+        const svg = renderSVG({ config: layer.id ? layerConfig(layer.id) : config, data, width: config.width, height: config.height });
+        download(new Blob([svg], { type: 'image/svg+xml' }), `${filename(fileName, 'map')}${layer.id ? `-${layerFilename(layer.name)}` : ''}.svg`);
+        if (layers.length > 1) await new Promise((r) => setTimeout(r, 100));
+      }
     } finally {
       setBusy(null);
     }
   };
 
-  const exportJSON = () => download(new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' }), `${slug(config.title.text || 'map-art')}-style.json`);
+  const exportJSON = () => download(new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' }), `${filename(fileName, 'map')}-style.json`);
 
   const importJSON = (file: File) => {
     const reader = new FileReader();
@@ -121,15 +145,29 @@ export default function ExportPanel({ config, data, update, replace, loadingCoun
       </Section>
 
       <Section title="Export image">
+        <div>
+          <label htmlFor="export-filename" className="mb-1 block text-xs text-zinc-300">File name</label>
+          <input
+            id="export-filename"
+            value={fileName}
+            onChange={(e) => setFileName(e.target.value)}
+            placeholder="map-art"
+            className="w-full rounded-md border border-white/10 bg-white/5 px-2 py-1.5 text-xs text-zinc-200 outline-none focus:border-amber-400/60"
+          />
+          <p className="mt-1 text-[10px] text-zinc-500">The extension and image size are added automatically.</p>
+        </div>
         <Row label="PNG scale" hint={`${Math.round(config.width * scale)} × ${Math.round(config.height * scale)} px`}>
           <Select<number> value={scale} onChange={setScale} options={[0.5, 1, 1.5, 2].map((s) => ({ value: s, label: `${s}×` }))} />
         </Row>
+        <Row label="Export each visible layer" hint={perLayer ? `${visibleLayers().length} files per format` : 'One complete image'}>
+          <Toggle checked={perLayer} onChange={setPerLayer} />
+        </Row>
         {loadingCount > 0 && <div className="rounded-md border border-amber-400/30 bg-amber-400/10 px-2 py-1.5 text-[11px] text-amber-200">Still loading {loadingCount} layer{loadingCount > 1 ? 's' : ''} — wait for a complete export.</div>}
         <Button variant="primary" onClick={exportPNG} disabled={busy !== null} className="w-full py-2">
-          {busy === 'png' ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />} Download PNG
+          {busy === 'png' ? <Loader2 className="h-4 w-4 animate-spin" /> : perLayer ? <Layers className="h-4 w-4" /> : <Download className="h-4 w-4" />} {perLayer ? 'Export PNG layers' : 'Download PNG'}
         </Button>
         <Button onClick={exportSVG} disabled={busy !== null} className="w-full py-2">
-          {busy === 'svg' ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileCode2 className="h-4 w-4" />} Download SVG (vector)
+          {busy === 'svg' ? <Loader2 className="h-4 w-4 animate-spin" /> : perLayer ? <Layers className="h-4 w-4" /> : <FileCode2 className="h-4 w-4" />} {perLayer ? 'Export SVG layers' : 'Download SVG (vector)'}
         </Button>
       </Section>
 
