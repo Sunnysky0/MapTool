@@ -2,57 +2,15 @@ import { feature, mesh } from 'topojson-client';
 import { topology } from 'topojson-server';
 import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { FeatureCollection, Feature, Geometry, Point } from 'geojson';
+import land110 from 'world-atlas/land-110m.json';
+import countries110 from 'world-atlas/countries-110m.json';
+import { withPreviews, prepareVectorLayer } from './previewData';
 import land50 from 'world-atlas/land-50m.json';
 import countries50 from 'world-atlas/countries-50m.json';
-import type { AtlasLayer, Detail, LayerData, LayerId, LayerStyle, ScenarioLayer, ScenarioRef } from '../types';
+import type { LayerData } from '../types';
+import { scenarioKey } from './layers';
+export * from './layers';
 import { SCENARIO_1939 } from './presets';
-
-export interface LayerDef {
-  id: LayerId;
-  name: string;
-  description: string;
-  group: 'Base' | 'Boundaries' | 'Water' | 'Transport' | 'Historical' | 'Extras' | 'Scenario';
-  kind: 'line' | 'polygon' | 'point' | 'graticule' | 'outline';
-  canFill: boolean;
-  sizeHint?: string;
-}
-
-export const LAYER_DEFS: LayerDef[] = [
-  { id: 'territories', name: '政区底色与争议纹理', description: '实际管理及领土主张', group: 'Scenario', kind: 'polygon', canFill: false },
-  { id: 'sovereignBorders', name: '主权国界', description: '主权体系与海岸轮廓', group: 'Scenario', kind: 'line', canFill: false },
-  { id: 'adminBorders', name: '属地与自治边界', description: '同一主权体系内的政区', group: 'Scenario', kind: 'line', canFill: false },
-  { id: 'historicalLabels', name: '政区名称与地名', description: '政区、首府、租界与岛群', group: 'Scenario', kind: 'point', canFill: false },
-  { id: 'coast', name: 'Coastlines', description: 'Land outlines (Natural Earth)', group: 'Base', kind: 'polygon', canFill: true },
-  { id: 'outline', name: 'Map outline', description: 'Edge of the projected globe', group: 'Base', kind: 'outline', canFill: true },
-  { id: 'graticule', name: 'Graticule', description: 'Latitude / longitude grid', group: 'Base', kind: 'graticule', canFill: false },
-  { id: 'countries', name: 'Country borders', description: 'Present-day international borders', group: 'Boundaries', kind: 'line', canFill: false },
-  { id: 'provinces', name: 'Provinces & states', description: 'First-level admin boundaries', group: 'Boundaries', kind: 'line', canFill: false, sizeHint: '~2–7 MB' },
-  { id: 'histA', name: 'Historical borders', description: 'Political borders of a past year', group: 'Historical', kind: 'line', canFill: false, sizeHint: '~2 MB' },
-  { id: 'histB', name: 'Historical borders (2nd)', description: 'Compare a second year', group: 'Historical', kind: 'line', canFill: false, sizeHint: '~2 MB' },
-  { id: 'lakes', name: 'Lakes', description: 'Major lakes & reservoirs', group: 'Water', kind: 'polygon', canFill: true },
-  { id: 'rivers', name: 'Rivers', description: 'Rivers & lake centerlines', group: 'Water', kind: 'line', canFill: false },
-  { id: 'roads', name: 'Roads', description: 'Highways & major roads (10 m)', group: 'Transport', kind: 'line', canFill: false, sizeHint: '~9 MB' },
-  { id: 'railways', name: 'Railways', description: 'Railroad network (10 m)', group: 'Transport', kind: 'line', canFill: false, sizeHint: '~6 MB' },
-  { id: 'cities', name: 'Cities', description: 'Populated places with optional labels', group: 'Extras', kind: 'point', canFill: false },
-];
-
-export const LAYER_DEF_MAP = Object.fromEntries(LAYER_DEFS.map((d) => [d.id, d])) as Record<LayerId, LayerDef>;
-
-export const HISTORICAL_YEARS = [1800, 1815, 1880, 1900, 1914, 1920, 1930, 1938, 1945, 1960, 1994, 2010];
-export const HISTORICAL_LABELS: Record<number, string> = {
-  1800: '1800 · Napoleonic era',
-  1815: '1815 · Congress of Vienna',
-  1880: '1880 · Scramble for Africa',
-  1900: '1900 · Turn of the century',
-  1914: '1914 · Pre-WWI',
-  1920: '1920 · Post-Versailles',
-  1930: '1930 · Interwar',
-  1938: '1938 · Pre-WWII (≈1936)',
-  1945: '1945 · End of WWII',
-  1960: '1960 · Decolonisation',
-  1994: '1994 · Post-Cold War',
-  2010: '2010 · Recent',
-};
 
 const NE_BASES = [
   'https://cdn.jsdelivr.net/gh/martynafford/natural-earth-geojson@master/',
@@ -63,59 +21,6 @@ const HIST_BASES = [
   'https://raw.githubusercontent.com/aourednik/historical-basemaps/master/geojson/',
 ];
 const ATLAS_BASES = ['https://cdn.jsdelivr.net/npm/world-atlas@2/', 'https://unpkg.com/world-atlas@2/'];
-
-/** Return a cache key describing what data a layer needs, or null when no remote data is required. */
-export function isScenarioLayer(id: LayerId): id is ScenarioLayer {
-  return LAYER_DEF_MAP[id].group === 'Scenario';
-}
-export function scenarioKey(ref: ScenarioRef) { return `scenario:${ref.id}@${ref.revision}`; }
-export function atlasLayerFor(id:LayerId,ref:ScenarioRef|null|undefined):AtlasLayer|null {
-  if (isScenarioLayer(id)) return id;
-  if (ref?.revision===2 && (id==='rivers'||id==='lakes'||id==='cities'||id==='railways')) return id;
-  return null;
-}
-
-export function layerDataKey(id: LayerId, style: LayerStyle, coastDetail: Detail, waterDetail: Detail, scenario?: ScenarioRef | null): string | null {
-  if (atlasLayerFor(id,scenario)) return scenario ? scenarioKey(scenario) : null;
-  switch (id) {
-    case 'coast':
-    case 'countries':
-      return `${id}:${coastDetail}`;
-    case 'lakes':
-    case 'rivers':
-      return `${id}:${waterDetail}`;
-    case 'provinces':
-      return `provinces:${coastDetail === '10m' ? '10m' : '50m'}`;
-    case 'roads':
-      return 'roads';
-    case 'railways':
-      return 'railways';
-    case 'histA':
-    case 'histB':
-      return `hist:${style.year ?? 1914}`;
-    case 'cities':
-      return 'cities';
-    default:
-      return null;
-  }
-}
-
-export function describeKey(key: string): string {
-  const [kind, arg] = key.split(':');
-  const names: Record<string, string> = {
-    coast: 'coastlines',
-    countries: 'country borders',
-    lakes: 'lakes',
-    rivers: 'rivers',
-    provinces: 'provinces',
-    roads: 'roads',
-    railways: 'railways',
-    hist: 'historical borders',
-    cities: 'cities',
-    scenario: '1939 年政区',
-  };
-  return `${names[kind] ?? kind}${arg ? ` (${arg})` : ''}`;
-}
 
 async function fetchJSON<T>(urls: string[]): Promise<T> {
   let lastErr: unknown;
@@ -135,9 +40,22 @@ const ne = (path: string) => NE_BASES.map((b) => b + path);
 
 type AnyTopo = Topology<{ [k: string]: GeometryCollection }>;
 
-async function loadAtlas(name: 'land' | 'countries', detail: Detail): Promise<AnyTopo> {
-  if (detail === '50m') return (name === 'land' ? land50 : countries50) as unknown as AnyTopo;
-  return fetchJSON<AnyTopo>(ATLAS_BASES.map((b) => `${b}${name}-${detail}.json`));
+const localAtlas = { coast: { '110m': land110, '50m': land50 }, countries: { '110m': countries110, '50m': countries50 } };
+const builtInLayers = new Map<string, LayerData>();
+
+function atlasLayer(kind: 'coast' | 'countries', topo: AnyTopo): LayerData {
+  if (kind === 'countries') return {geo: mesh(topo, topo.objects.countries, (a,b) => a !== b)};
+  return {geo: mesh(topo, topo.objects.land), fillGeo: feature(topo, topo.objects.land) as FeatureCollection};
+}
+
+function builtIn(kind: 'coast' | 'countries', detail: '110m' | '50m') {
+  const key = kind + detail;
+  let data = builtInLayers.get(key);
+  if (!data) {
+    data = atlasLayer(kind, localAtlas[kind][detail] as unknown as AnyTopo);
+    builtInLayers.set(key, data);
+  }
+  return data;
 }
 
 const cache = new Map<string, Promise<LayerData>>();
@@ -145,7 +63,7 @@ const cache = new Map<string, Promise<LayerData>>();
 export function loadLayerData(key: string): Promise<LayerData> {
   const existing = cache.get(key);
   if (existing) return existing;
-  const p = loadUncached(key).catch((e) => {
+  const p = loadUncached(key).then(d => /^(coast:|countries:|scenario:)/.test(key) ? d : prepareVectorLayer(d)).catch((e) => {
     cache.delete(key);
     throw e;
   });
@@ -160,15 +78,17 @@ async function loadUncached(key: string): Promise<LayerData> {
       const revision=[1,SCENARIO_1939.revision].find(rev=>key===scenarioKey({...SCENARIO_1939,revision:rev}));
       if (!revision) throw new Error('Unknown scenario revision');
       const { loadScenario } = await import('../scenarios/load');
-      return { scenario: await loadScenario(revision) };
+      return loadScenario(revision);
     }
-    case 'coast': {
-      const topo = await loadAtlas('land', arg as Detail);
-      return { geo: mesh(topo, topo.objects.land), fillGeo: feature(topo, topo.objects.land) as FeatureCollection };
-    }
+    case 'coast':
     case 'countries': {
-      const topo = await loadAtlas('countries', arg as Detail);
-      return { geo: mesh(topo, topo.objects.countries, (a, b) => a !== b) };
+      const coarse = builtIn(kind, '110m');
+      if (arg === '110m') return coarse;
+      const medium = builtIn(kind, '50m');
+      const name = kind === 'coast' ? 'land' : 'countries';
+      const full = arg === '50m' ? medium : atlasLayer(kind, await fetchJSON<AnyTopo>(
+        ATLAS_BASES.map(base => base + name + '-10m.json')));
+      return withPreviews(full, coarse, medium);
     }
     case 'provinces': {
       const fc = await fetchJSON<FeatureCollection>(ne(`${arg}/cultural/ne_${arg}_admin_1_states_provinces_lines.json`));

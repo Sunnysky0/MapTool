@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { LayerData, MapConfig, ViewState } from '../types';
-import { drawMap } from '../lib/render';
+import { mapPainter } from '../lib/mapPainter';
 import { panView, rotateViewTo, zoomViewAt, keepPointUnderCursor, clampView } from '../lib/view';
 
 export type InteractionMode = 'pan' | 'rotate';
@@ -9,7 +9,7 @@ interface Props {
   config: MapConfig;
   data: Record<string, LayerData | undefined>;
   mode: InteractionMode;
-  onView: (next: ViewState, transient: boolean) => void;
+  onView: (next: ViewState, transient: boolean, refreshControls?: boolean) => void;
   onCommit: () => void;
   onSize?: (w: number, h: number) => void;
 }
@@ -24,7 +24,14 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const viewRef = useRef(config.view);
-  viewRef.current = config.view;
+  const published = useRef(config.view);
+  const notified = useRef(config.view);
+  const nextControlsUpdate = useRef(0);
+  const frame = useRef(0);
+  const wheelTimer = useRef(0);
+  const active = useRef(false);
+  const [interacting, setInteracting] = useState(false);
+  const painter = useRef<ReturnType<typeof mapPainter> | null>(null);
   const pointers = useRef(new Map<number, Ptr>());
   const gesture = useRef<{ dist: number; angle: number; mid: Ptr } | null>(null);
   const dragging = useRef(false);
@@ -56,25 +63,85 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
     if (box.w && box.h) onSize?.(box.w, box.h);
   }, [box, onSize]);
 
-  // Render
-  const renderInput = useMemo(() => ({ config, data, width: box.w, height: box.h }), [config, data, box]);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !box.w || !box.h) return;
-    let raf = 0;
-    raf = requestAnimationFrame(() => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-      if (canvas.width !== Math.round(box.w * dpr) || canvas.height !== Math.round(box.h * dpr)) {
-        canvas.width = Math.round(box.w * dpr);
-        canvas.height = Math.round(box.h * dpr);
-      }
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      drawMap(ctx, renderInput);
+  const renderInput = useMemo(() => ({config, data, width: box.w, height: box.h}), [config, data, box]);
+  const inputRef = useRef(renderInput);
+
+  useLayoutEffect(() => {
+    painter.current = mapPainter(canvasRef.current!);
+    return () => {
+      painter.current?.dispose();
+      painter.current = null;
+      cancelAnimationFrame(frame.current);
+      window.clearTimeout(wheelTimer.current);
+    };
+  }, []);
+
+  const publish = useCallback((renderControls: boolean) => {
+    if (viewRef.current !== published.current) {
+      published.current = viewRef.current;
+      if (renderControls) notified.current = viewRef.current;
+      onView(viewRef.current, true, renderControls);
+    }
+  }, [onView]);
+
+  const schedule = useCallback(() => {
+    if (frame.current) return;
+    frame.current = requestAnimationFrame(() => {
+      frame.current = 0;
+      const input = inputRef.current;
+      if (!input.width || !input.height) return;
+      painter.current?.preview({...input, config: {...input.config, view: viewRef.current}});
+      // Keep history current each frame; the coordinate readout and controls
+      // can repaint less frequently than the map.
+      const now = performance.now();
+      const refresh = now >= nextControlsUpdate.current;
+      if (refresh) nextControlsUpdate.current = now + 100;
+      publish(refresh);
     });
-    return () => cancelAnimationFrame(raf);
-  }, [renderInput, box]);
+  }, [publish]);
+
+  const move = useCallback((next: ViewState) => {
+    if (!active.current) {
+      painter.current?.invalidate();
+      active.current = true;
+      nextControlsUpdate.current = 0;
+      setInteracting(true);
+    }
+    viewRef.current = next;
+    schedule();
+  }, [schedule]);
+
+  const finish = useCallback(() => {
+    if (!active.current) return;
+    cancelAnimationFrame(frame.current);
+    frame.current = 0;
+    publish(true);
+    notified.current = viewRef.current;
+    onCommit();
+    active.current = false;
+    setInteracting(false);
+  }, [publish, onCommit]);
+
+  useLayoutEffect(() => {
+    const previous = inputRef.current;
+    inputRef.current = renderInput;
+    if (config.view !== previous.config.view && config.view !== notified.current) {
+      // An undo, import or external view control supersedes an in-flight gesture.
+      viewRef.current = published.current = notified.current = config.view;
+      cancelAnimationFrame(frame.current);
+      frame.current = 0;
+      window.clearTimeout(wheelTimer.current);
+      pointers.current.clear();
+      gesture.current = null;
+      dragging.current = active.current = false;
+      setCursor('grab');
+      setInteracting(false);
+    }
+    if (!box.w || !box.h) return;
+    if (!active.current) painter.current?.full(renderInput);
+    else if (previous.data !== data || previous.width !== box.w || previous.height !== box.h ||
+      (previous.config !== config && previous.config.view === config.view)) schedule();
+  }, [renderInput, interacting, box, data, config, schedule]);
 
   const local = (e: { clientX: number; clientY: number }): Ptr => {
     const r = canvasRef.current!.getBoundingClientRect();
@@ -83,6 +150,7 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
 
   const onPointerDown = (e: React.PointerEvent) => {
     if (e.button === 1) return;
+    window.clearTimeout(wheelTimer.current);
     (e.target as HTMLElement).setPointerCapture(e.pointerId);
     pointers.current.set(e.pointerId, local(e));
     dragging.current = true;
@@ -97,6 +165,7 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
     if (!pointers.current.has(e.pointerId)) return;
     const prev = pointers.current.get(e.pointerId)!;
     const cur = local(e);
+    if (prev.x === cur.x && prev.y === cur.y) return;
     pointers.current.set(e.pointerId, cur);
     const { w, h } = box;
     let v = viewRef.current;
@@ -113,30 +182,32 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
       v = keepPointUnderCursor(v, next, w, h, g.mid.x, g.mid.y);
       v = panView(v, w, h, mid.x - g.mid.x, mid.y - g.mid.y);
       gesture.current = { dist, angle: ang, mid };
-      onView(v, true);
+      move(v);
       return;
     }
 
-    const rotating = mode === 'rotate' || e.shiftKey || e.buttons === 2;
+    const rotating = mode === 'rotate' || e.shiftKey || e.buttons === 2 || (e.type === 'pointerup' && e.button === 2);
     if (rotating) {
       const cx = w / 2;
       const cy = h / 2;
       const a1 = Math.atan2(prev.y - cy, prev.x - cx);
       const a2 = Math.atan2(cur.y - cy, cur.x - cx);
       const d = ((a2 - a1) * 180) / Math.PI;
-      onView(rotateViewTo(v, w, h, v.angle + d), true);
+      move(rotateViewTo(v, w, h, v.angle + d));
     } else {
-      onView(panView(v, w, h, cur.x - prev.x, cur.y - prev.y), true);
+      move(panView(v, w, h, cur.x - prev.x, cur.y - prev.y));
     }
   };
 
   const endPointer = (e: React.PointerEvent) => {
+    if (!pointers.current.has(e.pointerId)) return;
+    if (e.type === 'pointerup') onPointerMove(e);
     pointers.current.delete(e.pointerId);
     if (pointers.current.size < 2) gesture.current = null;
     if (pointers.current.size === 0 && dragging.current) {
       dragging.current = false;
       setCursor('grab');
-      onCommit();
+      finish();
     }
   };
 
@@ -144,30 +215,29 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    let commitTimer: number | undefined;
     const handler = (e: WheelEvent) => {
       e.preventDefault();
       const r = canvas.getBoundingClientRect();
       const px = e.clientX - r.left;
       const py = e.clientY - r.top;
       const v = viewRef.current;
-      const { w, h } = box;
+      const {width: w, height: h} = inputRef.current;
       const delta = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY;
       if (e.altKey || e.ctrlKey) {
-        onView(rotateViewTo(v, w, h, v.angle + delta * 0.1, px, py), true);
+        move(rotateViewTo(v, w, h, v.angle + delta * 0.1, px, py));
       } else {
         const factor = Math.exp(-delta * 0.0018);
-        onView(zoomViewAt(v, w, h, factor, px, py), true);
+        move(zoomViewAt(v, w, h, factor, px, py));
       }
-      window.clearTimeout(commitTimer);
-      commitTimer = window.setTimeout(() => onCommit(), 350);
+      window.clearTimeout(wheelTimer.current);
+      wheelTimer.current = window.setTimeout(() => { if (!pointers.current.size) finish(); }, 350);
     };
     canvas.addEventListener('wheel', handler, { passive: false });
     return () => {
       canvas.removeEventListener('wheel', handler);
-      window.clearTimeout(commitTimer);
+      window.clearTimeout(wheelTimer.current);
     };
-  }, [box, onView, onCommit]);
+  }, [move, finish]);
 
   const onDoubleClick = useCallback(
     (e: React.MouseEvent) => {
@@ -179,7 +249,7 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
   );
 
   return (
-    <div ref={wrapRef} className="relative flex h-full w-full items-center justify-center overflow-hidden">
+    <div ref={wrapRef} data-map-interacting={interacting || undefined} className="relative flex h-full w-full items-center justify-center overflow-hidden">
       <div className="relative bg-[conic-gradient(#d4d4d8_25%,#fafafa_0_50%,#d4d4d8_0_75%,#fafafa_0)] bg-[length:16px_16px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] ring-1 ring-white/10" style={{ width: box.w, height: box.h }}>
         <canvas
           ref={canvasRef}
@@ -189,6 +259,7 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
           onPointerMove={onPointerMove}
           onPointerUp={endPointer}
           onPointerCancel={endPointer}
+          onLostPointerCapture={endPointer}
           onDoubleClick={onDoubleClick}
           onContextMenu={(e) => e.preventDefault()}
         />

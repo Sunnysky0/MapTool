@@ -54,3 +54,7 @@ html, body, #root {
 select option, select optgroup { background: #18181b; color: #e4e4e7; }
 
 input[type="number"]::-webkit-inner-spin-button { opacity: 0.4; }
+
+/* Keep floating controls off the live map's blur pass during a gesture. */
+main:has([data-map-interacting]) .backdrop-blur { backdrop-filter: none; }
+[data-map-interacting] canvas { will-change: transform; }

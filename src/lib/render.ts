@@ -1,8 +1,9 @@
 import { geoPath, geoGraticule, geoDistance, type GeoProjection } from 'd3-geo';
 import type { GeoJSON } from 'geojson';
 import type { LayerData, LayerId, LayerStyle, MapConfig } from '../types';
-import { buildProjection, getProjectionDef } from './projections';
-import { atlasLayerFor, layerDataKey } from './data';
+import { buildProjection, getProjectionDef, textureProjection, type TextureArea } from './projections';
+import { atlasLayerFor, layerDataKey } from './layers';
+import type { MapContext } from './canvas';
 import { paintScenario, scenarioSVG } from '../scenarios/render';
 
 export interface RenderInput {
@@ -10,6 +11,9 @@ export interface RenderInput {
   data: Record<string, LayerData | undefined>;
   width: number;
   height: number;
+  preview?: boolean;
+  texture?: TextureArea;
+  margin?: number;
 }
 
 const SPHERE = { type: 'Sphere' } as unknown as GeoJSON;
@@ -59,7 +63,7 @@ export function hexToRgba(hex: string, alpha: number): string {
 }
 
 let grainPattern: CanvasPattern | null = null;
-function getGrainPattern(ctx: CanvasRenderingContext2D): CanvasPattern | null {
+function getGrainPattern(ctx: MapContext): CanvasPattern | null {
   if (grainPattern) return grainPattern;
   const c = document.createElement('canvas');
   c.width = c.height = 256;
@@ -102,41 +106,47 @@ function visiblePoint(proj: GeoProjection, globe: boolean, lon: number, lat: num
 }
 
 /** Draw the map in CSS pixel units. The caller is responsible for DPR scaling. */
-export function drawMap(ctx: CanvasRenderingContext2D, input: RenderInput): void {
+export function drawMap(ctx: MapContext, input: RenderInput, pass: 'all' | 'base' | 'overlay' | 'background' | 'points' | 'decoration' = 'all'): void {
   const { config, data, width: w, height: h } = input;
   const k = w / 1920; // line widths are defined relative to a 1920px-wide artboard
-  const proj = buildProjection(config.view, w, h);
+  const proj = input.texture ? textureProjection(input.texture, w, h) : buildProjection(config.view, w, h);
   const def = getProjectionDef(config.view.projection);
   const path = geoPath(proj, ctx);
   const center: [number, number] = [config.view.lon, config.view.lat];
 
-  // Background
-  ctx.save();
-  ctx.clearRect(0, 0, w, h);
-  if (!config.transparentBackground) {
-    if (config.bgGradient) {
-      const g = ctx.createLinearGradient(0, 0, w, h);
-      g.addColorStop(0, config.background);
-      g.addColorStop(1, config.bgGradientColor);
-      ctx.fillStyle = g;
-    } else {
-      ctx.fillStyle = config.background;
+  if (pass !== 'overlay' && pass !== 'points' && pass !== 'decoration') {
+    // Background
+    ctx.save();
+    ctx.clearRect(0, 0, w, h);
+    if (!config.transparentBackground) {
+      if (config.bgGradient) {
+        const g = ctx.createLinearGradient(0, 0, w, h);
+        g.addColorStop(0, config.background);
+        g.addColorStop(1, config.bgGradientColor);
+        ctx.fillStyle = g;
+      } else {
+        ctx.fillStyle = config.background;
+      }
+      ctx.fillRect(0, 0, w, h);
     }
-    ctx.fillRect(0, 0, w, h);
+    ctx.restore();
   }
-  ctx.restore();
 
   ctx.lineCap = config.lineCap;
   ctx.lineJoin = 'round';
 
   for (const id of PAINT_ORDER) {
+    if (pass === 'decoration') break;
+    if (pass === 'background' && id !== 'outline') continue;
+    const overlay = id === 'cities' || id === 'historicalLabels';
+    if ((pass === 'base' && overlay) || ((pass === 'overlay' || pass === 'points') && !overlay)) continue;
     const style = config.layers[id];
     if (!style.visible) continue;
     const key = layerDataKey(id, style, config.coastDetail, config.waterDetail, config.scenario);
     const d = key ? data[key] : undefined;
     const atlasLayer=atlasLayerFor(id,config.scenario);
     if (atlasLayer) {
-      if (d?.scenario) paintScenario(ctx,atlasLayer,config,d.scenario,w);
+      if (d?.scenario) paintScenario(ctx,atlasLayer,config,d.scenario,w,input.preview,input.texture,input.margin);
       continue;
     }
     const lw = Math.max(0.05, style.width * k);
@@ -236,6 +246,8 @@ export function drawMap(ctx: CanvasRenderingContext2D, input: RenderInput): void
     }
     ctx.restore();
   }
+
+  if (pass === 'base' || pass === 'background' || pass === 'points') return;
 
   // Vignette
   if (!config.transparentBackground && config.vignette > 0) {

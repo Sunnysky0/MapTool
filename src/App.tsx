@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Download, Layers, Loader2, Palette, Redo2, Share2, SlidersHorizontal, Undo2, Map as MapIcon } from 'lucide-react';
 import type { MapConfig, ViewState } from './types';
 import { ATLAS_SHEETS, DEFAULT_VIEW, SCENARIO_VIEW, defaultConfig, hydrateConfig } from './lib/presets';
@@ -54,7 +54,7 @@ export default function App() {
   useEffect(() => {
     const persist = () => {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history.stateRef.current));
       } catch {
         /* ignore quota */
       }
@@ -62,9 +62,9 @@ export default function App() {
     const t = window.setTimeout(persist,400);
     window.addEventListener('pagehide',persist);
     return () => { window.clearTimeout(t);window.removeEventListener('pagehide',persist); };
-  }, [config]);
+  }, [config, history.stateRef]);
 
-  const onView = useCallback((next: ViewState, transient: boolean) => history.set((c) => ({ ...c, view: next }), transient), [history.set]);
+  const onView = useCallback((next: ViewState, transient: boolean, refresh = true) => history.set((c) => ({ ...c, view: next }), transient, refresh), [history.set]);
   const onSize = useCallback((w: number, h: number) => {
     sizeRef.current = { w, h };
   }, []);
@@ -157,6 +157,15 @@ export default function App() {
     setTimeout(() => setToast(null), 2200);
   };
 
+  // The layer controls depend on artwork settings and loaded data, not the live camera.
+  const layerControls = useMemo(() => (
+    <>
+      <ScenarioPanel config={config} update={update} replace={replace} data={data} commit={commit} />
+      <LayersPanel config={config} update={update} commit={commit} loading={loading} errors={errors} retry={retry} />
+    </>
+  ), [config.scenario, config.atlasSheet, config.atlasTheme, config.coastDetail, config.waterDetail,
+    config.layers, config.territoryColors, config.labelEdits, data, loading, errors, retry, update, replace, commit]);
+
   const errorKeys = Object.keys(errors);
 
   return (
@@ -205,7 +214,7 @@ export default function App() {
             ))}
           </nav>
           <div className="min-h-0 flex-1 overflow-y-auto">
-            {tab === 'layers' && <><ScenarioPanel config={config} update={update} replace={replace} data={data} commit={commit} /><LayersPanel config={config} update={update} commit={commit} loading={loading} errors={errors} retry={retry} /></>}
+            {tab === 'layers' && layerControls}
             {tab === 'style' && <StylePanel config={config} update={update} commit={commit} />}
             {tab === 'view' && <ViewPanel config={config} update={update} />}
             {tab === 'export' && <ExportPanel config={config} data={data} update={update} replace={replace} loadingCount={loading.length} />}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { LayerData, MapConfig } from '../types';
 import { LAYER_DEFS, layerDataKey, loadLayerData, scenarioKey } from '../lib/data';
 
@@ -13,13 +13,17 @@ export function useLayerData(config: MapConfig) {
   const inflight = useRef(new Set<string>());
 
   // Keys required by currently visible layers
-  const needed: string[] = config.scenario ? [scenarioKey(config.scenario)] : [];
-  for (const def of LAYER_DEFS) {
-    const style = config.layers[def.id];
-    if (!style.visible) continue;
-    const key = layerDataKey(def.id, style, config.coastDetail, config.waterDetail, config.scenario);
-    if (key && !needed.includes(key)) needed.push(key);
-  }
+  const {layers, coastDetail, waterDetail, scenario} = config;
+  const needed = useMemo(() => {
+    const keys: string[] = scenario ? [scenarioKey(scenario)] : [];
+    for (const def of LAYER_DEFS) {
+      const style = layers[def.id];
+      if (!style.visible) continue;
+      const key = layerDataKey(def.id, style, coastDetail, waterDetail, scenario);
+      if (key && !keys.includes(key)) keys.push(key);
+    }
+    return keys;
+  }, [layers, coastDetail, waterDetail, scenario]);
   const neededKey = needed.join('|');
 
   useEffect(() => {
@@ -40,13 +44,13 @@ export function useLayerData(config: MapConfig) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [neededKey, store.errors]);
 
-  const retry = (key: string) =>
+  const retry = useCallback((key: string) =>
     setStore((s) => {
       const errors = { ...s.errors };
       delete errors[key];
       return { ...s, errors };
-    });
+    }), []);
 
-  return { data: store.data, loading: needed.filter((key) => !store.data[key] && !store.errors[key]),
-    errors: Object.fromEntries(Object.entries(store.errors).filter(([key]) => needed.includes(key))), retry };
+  return useMemo(() => ({ data: store.data, loading: needed.filter((key) => !store.data[key] && !store.errors[key]),
+    errors: Object.fromEntries(Object.entries(store.errors).filter(([key]) => needed.includes(key))), retry }), [store, needed, retry]);
 }

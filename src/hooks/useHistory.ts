@@ -10,14 +10,14 @@ export function useHistory<T>(initial: () => T, limit = 80) {
   const pendingBase = useRef<T | null>(null);
   const [, bump] = useState(0);
 
-  const apply = useCallback((next: T) => {
+  const apply = useCallback((next: T, notify = true) => {
     stateRef.current = next;
-    setStateRaw(next);
+    if (notify) setStateRaw(next);
   }, []);
 
   /** Update state. Transient updates (drags) are grouped until commit(). */
   const set = useCallback(
-    (updater: Updater<T>, transient = false) => {
+    (updater: Updater<T>, transient = false, notify = true) => {
       const prev = stateRef.current;
       const next = typeof updater === 'function' ? (updater as (p: T) => T)(prev) : updater;
       if (next === prev) return;
@@ -30,7 +30,7 @@ export function useHistory<T>(initial: () => T, limit = 80) {
         if (past.current.length > limit) past.current.shift();
         future.current = [];
       }
-      apply(next);
+      apply(next, notify);
     },
     [apply, limit],
   );
@@ -41,6 +41,7 @@ export function useHistory<T>(initial: () => T, limit = 80) {
     if (past.current.length > limit) past.current.shift();
     future.current = [];
     pendingBase.current = null;
+    setStateRaw(stateRef.current);
     bump((n) => n + 1);
   }, [limit]);
 

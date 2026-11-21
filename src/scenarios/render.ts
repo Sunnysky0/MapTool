@@ -1,67 +1,97 @@
 import { geoPath } from 'd3-geo';
+import type { GeoJSON } from 'geojson';
 import type { AtlasLayer, MapConfig, ScenarioData, HistoricalLabel, ReferenceLabel } from '../types';
 import { ATLAS_STYLES } from '../lib/presets';
-import { buildProjection } from '../lib/projections';
+import { buildProjection, textureProjection, type TextureArea } from '../lib/projections';
+import { tileCanvas, MapPath, type MapContext } from '../lib/canvas';
 import { territoryColor } from './colors';
 
 const W = 1920;
 const FAMILY = '"Microsoft YaHei","Noto Sans CJK SC",sans-serif';
 const LETTERING = '"FZBeiWeiKaiShu-S19","方正北魏楷书_GBK","KaiTi","DFKai-SB","Noto Serif CJK SC",serif';
 const escape = (text:string) => text.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]!));
-interface Face { unit:string; d:string }
-interface Projected {
-  faces: Face[];
-  sovereignBorders:string; adminBorders:string; coastline:string; claims:string; cityRivers:string;
-  rivers:string[]; lakes:string[]; rails:string;
-  towns: {x:number;y:number;rank:number;name:string}[];
-  islandLocators:{x:number;y:number;owner:string}[];
-  points: { label:HistoricalLabel; x:number; y:number; reference?:ReferenceLabel; leader?:string }[];
+interface ProjectedPath {
+  svg: () => string;
+  canvas: () => Path2D;
 }
-let cached: {atlas:ScenarioData; key:string; result:Projected} | undefined;
-function project(atlas:ScenarioData, config:MapConfig): Projected {
-  const h=W*config.height/config.width;
-  const european=config.atlasSheet==='europe' && config.view.zoom>=2.4;
-  const key=JSON.stringify([config.view,h,config.atlasSheet]);
-  if (cached?.atlas===atlas && cached.key===key) return cached.result;
-  const inset=config.atlasSheet==='europe'?W*7.2/583.56:config.atlasSheet==='africa'?W*.008:0;
-  const proj=buildProjection(config.view,W,h).clipExtent([[inset,inset],[W-inset,h-inset]]);
-  const path=geoPath(proj);
-  const faces=atlas.faces.map(f=>({unit:f.properties.unit,d:path(f)??''})).filter(f=>f.d);
-  const points:Projected['points']=[];
-  // The projection stream uses exactly the same hemisphere, antimeridian and
-  // rectangular clipping rules for point symbols as for the polygon paths.
-  let projected:[number,number]|undefined;
-  const sink=proj.stream({point(x,y){projected=[x,y];}, lineStart(){},lineEnd(){},polygonStart(){},polygonEnd(){},sphere(){}});
-  const projectPoint=(at:[number,number])=>{
-    projected=undefined;sink.point(...at);return projected as [number,number]|undefined;
-  };
-  for (const label of atlas.labels) {
-    const reference=european && label.kind==='name'?atlas.europeanNames?.[label.unit]:undefined;
-    const capitalSymbol=!!atlas.geography && label.kind==='capital' && config.view.zoom>=1.9;
-    if (!reference && !capitalSymbol && label.zoom>config.view.zoom) continue;
-    const at=projectPoint(reference?.at??label.at);
-    if(at) points.push({label,x:at[0],y:at[1],reference,
-      leader:reference?.leader?path({type:'LineString',coordinates:reference.leader})??undefined:undefined});
-  }
-  const towns:Projected['towns']=[];
-  for(const [lon,lat,rank,name] of atlas.geography?.towns??[]) {
-    const point=projectPoint([lon,lat]);if(point) towns.push({x:point[0],y:point[1],rank,name});
-  }
-  const tiers=config.view.zoom<1.9?1:config.view.zoom<2.4?2:3;
-  const islandLocators:Projected['islandLocators']=[];
-  if(config.atlasSheet==='africa' && config.view.zoom<12) for(const [lon,lat,owner] of atlas.geography?.africanIslands??[]) {
-    const at=projectPoint([lon,lat]);if(at)islandLocators.push({x:at[0],y:at[1],owner});
-  }
-  const result={faces,sovereignBorders:path(atlas.sovereignBorders)??'',adminBorders:path(atlas.adminBorders)??'',
-    coastline:atlas.coastline?path(atlas.coastline)??'':'',claims:path(atlas.claims)??'',
-    cityRivers:config.view.zoom>=80?path(atlas.cityRivers)??'':'',points,towns,islandLocators,
-    rivers:atlas.geography?.rivers.slice(0,tiers).map(g=>path(g)??'')??[],lakes:atlas.geography?.lakes.slice(0,tiers).map(g=>path(g)??'')??[],
-    rails:atlas.geography&&config.view.zoom>=2.4?path(atlas.geography.rails)??'':''};
-  cached={atlas,key,result}; return result;
+type LabelPoint = { label: HistoricalLabel; x: number; y: number; reference?: ReferenceLabel; leader?: string };
+
+function once<T>(build: () => T) {
+  let value: T | undefined;
+  return () => value ??= build();
 }
 
-type Mark = {type:'fill';d:string;color:string;id?:string;hatch?:boolean;alpha?:number}
-  | {type:'line';d:string;color:string;width:number;dash:number[];alpha?:number}
+function project(atlas: ScenarioData, config: MapConfig, preview: boolean, texture?: TextureArea, margin=0) {
+  const h = W * config.height / config.width;
+  const inset = margin ? -margin : config.atlasSheet === 'europe' ? W * 7.2 / 583.56 : config.atlasSheet === 'africa' ? W * .008 : 0;
+  const proj = texture ? textureProjection(texture, W, h) : buildProjection(config.view, W, h).clipExtent([[inset, inset], [W - inset, h - inset]]);
+  if (preview) proj.precision(2);
+  const path = geoPath(proj);
+  function shape(geometry?: GeoJSON): ProjectedPath {
+    const svg = once(() => geometry ? path(geometry) ?? '' : '');
+    return { svg, canvas: once(() => {
+      if (!preview) return new Path2D(svg());
+      const native = new MapPath();
+      if (geometry) geoPath(proj, native)(geometry);
+      return native;
+    }) };
+  }
+
+  let point: [number,number] | undefined;
+  const sink = proj.stream({point(x,y){point=[x,y];}, lineStart(){},lineEnd(){},polygonStart(){},polygonEnd(){},sphere(){}});
+  function projectPoint(lon: number, lat: number): [number, number] | undefined {
+    point = undefined;
+    sink.point(lon, lat);
+    return point;
+  }
+  const tiers = config.view.zoom < 1.9 ? 1 : config.view.zoom < 2.4 ? 2 : 3;
+  return {
+    faces: once(() => atlas.faces.map(f => ({unit: f.properties.unit, d: shape(f)}))),
+    sovereignBorders: shape(atlas.sovereignBorders), adminBorders: shape(atlas.adminBorders),
+    coastline: shape(atlas.coastline), claims: shape(atlas.claims),
+    cityRivers: config.view.zoom >= 80 ? shape(atlas.cityRivers) : undefined,
+    rivers: once(() => atlas.geography?.rivers.slice(0,tiers).map(shape) ?? []),
+    lakes: once(() => atlas.geography?.lakes.slice(0,tiers).map(shape) ?? []),
+    rails: atlas.geography && config.view.zoom >= 2.4 ? shape(atlas.geography.rails) : undefined,
+    points: once(() => {
+      const points: LabelPoint[] = [];
+      const european = config.atlasSheet === 'europe' && config.view.zoom >= 2.4;
+      for (const label of atlas.labels) {
+        const reference = european && label.kind === 'name' ? atlas.europeanNames?.[label.unit] : undefined;
+        const capitalSymbol = atlas.geography && label.kind === 'capital' && config.view.zoom >= 1.9;
+        if (!reference && !capitalSymbol && label.zoom > config.view.zoom) continue;
+        const at = projectPoint(...(reference?.at ?? label.at));
+        if (at) points.push({label, x:at[0], y:at[1], reference,
+          leader: reference?.leader ? path({type:'LineString', coordinates:reference.leader}) ?? undefined : undefined});
+      }
+      return points;
+    }),
+    towns: once(() => (atlas.geography?.towns ?? []).flatMap(([lon, lat, rank]) => {
+      const at = projectPoint(lon, lat);
+      return at ? [{x: at[0], y: at[1], rank}] : [];
+    })),
+    islandLocators: once(() => {
+      if (config.atlasSheet !== 'africa' || config.view.zoom >= 12) return [];
+      return (atlas.geography?.africanIslands ?? []).flatMap(([lon, lat, owner]) => {
+        const at = projectPoint(lon, lat);
+        return at ? [{x: at[0], y: at[1], owner}] : [];
+      });
+    }),
+  };
+}
+
+const projections = new WeakMap<ScenarioData, {key: string; result: ReturnType<typeof project>}>();
+function projected(atlas: ScenarioData, config: MapConfig, preview: boolean, texture?: TextureArea, margin=0) {
+  const key = JSON.stringify([config.view, config.height / config.width, config.atlasSheet, preview, texture, margin]);
+  const last = projections.get(atlas);
+  if (last?.key === key) return last.result;
+  const result = project(atlas, config, preview, texture, margin);
+  projections.set(atlas, {key, result});
+  return result;
+}
+
+type Mark = {type:'fill';d:ProjectedPath;color:string;id?:string;hatch?:boolean;alpha?:number}
+  | {type:'line';d:ProjectedPath;color:string;width:number;dash:number[];alpha?:number}
   | {type:'symbol';x:number;y:number;r:number;color:string;outline:string;star?:boolean}
   | {type:'text';x:number;y:number;size:number;text:string;color:string;leader?:[number,number];leaderPath?:string;id:string;reference?:ReferenceLabel};
 
@@ -86,7 +116,7 @@ function glyphs(m:TextMark) {
   });
 }
 
-function labelMarks(config:MapConfig,atlas:ScenarioData,points:Projected['points']): Mark[] {
+function labelMarks(config:MapConfig,atlas:ScenarioData,points:LabelPoint[],margin:number): Mark[] {
   const h=W*config.height/config.width, style=config.layers.historicalLabels;
   const placed: {x:number;y:number;w:number;h:number}[]=[];
   const symbols:Mark[]=[], words:Mark[]=[];
@@ -117,7 +147,7 @@ function labelMarks(config:MapConfig,atlas:ScenarioData,points:Projected['points
       [[0,0],[0,-size-3],[0,size+3]];
     for (const [dx,dy] of offsets) {
       const tx=x+dx,ty=y+dy, box={x:tx-w/2-2,y:ty-th*.6-1,w:w+4,h:th*1.2+2};
-      if (box.x<0 || box.y<0 || box.x+box.w>W || box.y+box.h>h) continue;
+      if (box.x < -margin || box.y < -margin || box.x+box.w>W+margin || box.y+box.h>h+margin) continue;
       if (!manual && !reference && placed.some(b=>box.x<b.x+b.w && box.x+box.w>b.x && box.y<b.y+b.h && box.y+box.h>b.y)) continue;
       placed.push(box);
       words.push({type:'text',x:tx,y:ty,size,text,color:style.color,id:label.id,reference,
@@ -128,15 +158,15 @@ function labelMarks(config:MapConfig,atlas:ScenarioData,points:Projected['points
   return symbols.concat(words);
 }
 
-function marks(layer:AtlasLayer,config:MapConfig,atlas:ScenarioData): Mark[] {
-  const geo=project(atlas,config), style=config.layers[layer];
+function marks(layer:AtlasLayer,config:MapConfig,atlas:ScenarioData,preview=false,texture?:TextureArea,margin=0): Mark[] {
+  const geo=projected(atlas,config,preview,texture,margin), style=config.layers[layer];
   const theme=ATLAS_STYLES[config.atlasTheme??'reference'];
-  const line=(d:string,color:string,width:number,alpha=1,dash:number[]=[]):Mark=>({type:'line',d,color,width,dash,alpha});
-  if(layer==='lakes') return geo.lakes.flatMap(d=>[
+  const line=(d:ProjectedPath,color:string,width:number,alpha=1,dash:number[]=[]):Mark=>({type:'line',d,color,width,dash,alpha});
+  if(layer==='lakes') return geo.lakes().flatMap(d=>[
     ...(style.fill?[{type:'fill' as const,d,color:style.fillColor,alpha:style.fillOpacity}]:[]),line(d,style.color,style.width,.74)]);
   if(layer==='rivers') {
     const widths=config.atlasSheet==='europe'?[2.95,1.98,1.25]:config.atlasSheet==='africa'?[1.74,1.15,.72]:[1.55,1.02,.65];
-    return geo.rivers.map((d,i)=>line(d,i===0&&style.color===theme.river&&config.atlasTheme!=='paper'?'#557793':style.color,
+    return geo.rivers().map((d,i)=>line(d,i===0&&style.color===theme.river&&config.atlasTheme!=='paper'?'#557793':style.color,
       style.width*widths[i]*(config.view.zoom<1.9?.63:1)));
   }
   if(layer==='railways') return geo.rails?[line(geo.rails,style.color,style.width)]:[];
@@ -145,7 +175,7 @@ function marks(layer:AtlasLayer,config:MapConfig,atlas:ScenarioData): Mark[] {
     const r=(style.dotSize??2.1)*(config.atlasSheet==='europe'?1.55:config.atlasSheet==='africa'?1.12:1);
     const maxRank=Math.min(style.minRank??5,config.view.zoom<1.9?1:8);
     const occupied:{x:number;y:number}[]=[];
-    for(const {label,x,y} of geo.points) {
+    for(const {label,x,y} of geo.points()) {
       const unit=atlas.units[label.unit];
       if(label.kind!=='capital' || (unit.parent && !['BOH','IND','BAA','GEO','ARM','AZE'].includes(unit.id)) || config.view.zoom<1.9) continue;
       const key=Math.round(x)+','+Math.round(y); if(seen.has(key)) continue;seen.add(key);
@@ -153,16 +183,16 @@ function marks(layer:AtlasLayer,config:MapConfig,atlas:ScenarioData): Mark[] {
       markers.push({type:'symbol',x,y,r:useStar?r*2.45:r*1.1,star:useStar,color:useStar?(config.atlasTheme==='paper'?theme.ink:'#ffd9f4'):style.color,outline:useStar?theme.ocean:'none'});
       occupied.push({x,y});
     }
-    for(const town of geo.towns) {
+    for(const town of geo.towns()) {
       if(town.rank>maxRank || occupied.some(p=>Math.hypot(p.x-town.x,p.y-town.y)<8))continue;
       markers.push({type:'symbol',x:town.x,y:town.y,r,color:style.color,outline:'none'});
     }
     return markers;
   }
-  if (layer==='historicalLabels') return labelMarks(config,atlas,geo.points);
+  if (layer==='historicalLabels') return labelMarks(config,atlas,geo.points(),margin);
   if (layer==='territories') {
-    const fills:Mark[]=geo.faces.map(({unit:id,d})=>({type:'fill',id,d,color:territoryColor(id,config,atlas.units),hatch:!!atlas.units[id].claims?.length}));
-    for(const {x,y,owner} of geo.islandLocators) {
+    const fills:Mark[]=geo.faces().map(({unit:id,d})=>({type:'fill',id,d,color:territoryColor(id,config,atlas.units),hatch:!!atlas.units[id].claims?.length}));
+    for(const {x,y,owner} of geo.islandLocators()) {
       fills.push({type:'symbol',x,y,r:3.7,color:'none',outline:config.layers.sovereignBorders.color},
         {type:'symbol',x,y,r:2.1,color:territoryColor(owner,config,atlas.units),outline:theme.ink});
     }
@@ -173,7 +203,7 @@ function marks(layer:AtlasLayer,config:MapConfig,atlas:ScenarioData): Mark[] {
   const width=style.width, dash=style.dash==='dashed'?[4*width,3*width]:style.dash==='dotted'?[.1*width,3*width]:[];
   if(config.scenario?.revision===2) {
     const thin=width*(config.view.zoom<1.9?.56:1);
-    const strokes=(d:string,coast:boolean):Mark[]=>[
+    const strokes=(d:ProjectedPath,coast:boolean):Mark[]=>[
       ...(config.atlasTheme!=='paper'?[line(d,theme.glow,thin*(coast?5.2:3.6),coast?.10:.14,dash),
         line(d,theme.glow,thin*(coast?2.8:1.8),coast?.22:.28,dash)]:[]),
       line(d,style.color,thin,1,dash)];
@@ -182,10 +212,10 @@ function marks(layer:AtlasLayer,config:MapConfig,atlas:ScenarioData): Mark[] {
   return [{type:'line',d:geo[layer],color:style.color,width,dash}];
 }
 
-let tile: HTMLCanvasElement | undefined;
-function hatch(ctx:CanvasRenderingContext2D) {
+let tile: HTMLCanvasElement | OffscreenCanvas | undefined;
+function hatch(ctx:MapContext) {
   if (!tile) {
-    tile=document.createElement('canvas');tile.width=tile.height=24;
+    tile=tileCanvas(24,24);
     const g=tile.getContext('2d')!;
     g.strokeStyle='#695747';g.lineWidth=2;
     g.beginPath();g.moveTo(-1,1);g.lineTo(1,-1);g.moveTo(0,24);g.lineTo(24,0);g.moveTo(23,25);g.lineTo(25,23);g.stroke();
@@ -202,18 +232,18 @@ function leader(mark: Extract<Mark,{type:'text'}>) {
   const edge=Math.min(Math.abs(halfWidth/(dx||.001)),Math.abs(mark.size*.55/(dy||.001)),1);
   return `M${x},${y}L${mark.x-dx*edge},${mark.y-dy*edge}`;
 }
-export function paintScenario(ctx:CanvasRenderingContext2D,layer:AtlasLayer,config:MapConfig,atlas:ScenarioData,width:number) {
+export function paintScenario(ctx:MapContext,layer:AtlasLayer,config:MapConfig,atlas:ScenarioData,width:number,preview=false,texture?:TextureArea,margin=0) {
   ctx.save();ctx.scale(width/W,width/W);
   const modern=config.scenario?.revision===2;
   const halo=modern?ATLAS_STYLES[config.atlasTheme??'reference'].halo:'#f1f0e9';
-  for (const m of marks(layer,config,atlas)) {
+  for (const m of marks(layer,config,atlas,preview,texture,margin*W/width)) {
     ctx.globalAlpha=config.layers[layer].opacity*('alpha' in m?m.alpha??1:1);
     if (m.type==='fill') {
-      const p=new Path2D(m.d);ctx.fillStyle=m.color;ctx.fill(p);
+      const p=m.d.canvas();ctx.fillStyle=m.color;ctx.fill(p);
       if (m.hatch) {const pattern=hatch(ctx);if (pattern) {ctx.fillStyle=pattern;ctx.fill(p);}}
     } else if (m.type==='line') {
       if (!m.width) continue;
-      ctx.strokeStyle=m.color;ctx.lineWidth=m.width;ctx.setLineDash(m.dash);ctx.stroke(new Path2D(m.d));
+      ctx.strokeStyle=m.color;ctx.lineWidth=m.width;ctx.setLineDash(m.dash);ctx.stroke(m.d.canvas());
     } else if (m.type==='symbol') {
       ctx.fillStyle=m.color;ctx.lineWidth=m.star?1.05:.7;
       const p=m.star?new Path2D(star(m.x,m.y,m.r)):new Path2D();
@@ -240,12 +270,15 @@ export function scenarioSVG(layer:AtlasLayer,config:MapConfig,atlas:ScenarioData
   for (const m of marks(layer,config,atlas)) {
     const opacity=config.layers[layer].opacity*('alpha' in m?m.alpha??1:1);
     if(m.type==='fill'){
-      out.push(`<path${m.id?` data-unit="${m.id}"`:''} fill="${m.color}" opacity="${opacity}" d="${m.d}"/>`);
-      if(m.hatch) out.push(`<path fill="url(#claim-hatch)" d="${m.d}"/>`);
+      const d=m.d.svg();
+      if(m.id && !d) continue;
+      out.push(`<path${m.id?` data-unit="${m.id}"`:''} fill="${m.color}" opacity="${opacity}" d="${d}"/>`);
+      if(m.hatch) out.push(`<path fill="url(#claim-hatch)" d="${d}"/>`);
     } else if(m.type==='line') {
-      if(!m.d || !m.width) continue;
-      let id=paths.get(m.d);
-      if(!id) {id=layer+'-path-'+paths.size;paths.set(m.d,id);out.push(`<defs><path id="${id}" d="${m.d}"/></defs>`);}
+      const d=m.d.svg();
+      if(!d || !m.width) continue;
+      let id=paths.get(d);
+      if(!id) {id=layer+'-path-'+paths.size;paths.set(d,id);out.push(`<defs><path id="${id}" d="${d}"/></defs>`);}
       out.push(`<use href="#${id}" fill="none" stroke="${m.color}" opacity="${opacity}" stroke-width="${m.width}" stroke-dasharray="${m.dash.join(' ')||'none'}"/>`);
     }
     else if(m.type==='symbol') {

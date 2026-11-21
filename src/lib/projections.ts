@@ -88,3 +88,10 @@ export function buildProjection(view: ViewState, w: number, h: number): GeoProje
   p.scale(baseScale(def, w, h) * view.zoom);
   return p;
 }
+
+/** Geographic bounds of a disposable equirectangular editing texture, in degrees. */
+export interface TextureArea { lon: number; lat: number; span: number }
+export function textureProjection(area: TextureArea, w: number, h: number) {
+  return geoEquirectangular().rotate([-area.lon, 0]).center([0, area.lat]).translate([w / 2, h / 2])
+    .scale(w * 180 / (area.span * Math.PI)).clipExtent([[0,0],[w,h]]);
+}
