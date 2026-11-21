@@ -1,0 +1,8216 @@
+{
+ "ROC": {
+  "id": "ROC",
+  "name": "中华共和国",
+  "capital": "南京",
+  "status": "主权国家",
+  "sovereign": "ROC",
+  "parent": null,
+  "manager": "ROC",
+  "seat": [
+   118.8,
+   32.06
+  ],
+  "color": "#dbc28f",
+  "basis": [
+   "CHN"
+  ]
+ },
+ "QING": {
+  "id": "QING",
+  "name": "中华帝国",
+  "capital": "盛京",
+  "status": "主权国家",
+  "sovereign": "QING",
+  "parent": null,
+  "manager": "QING",
+  "seat": [
+   123.43,
+   41.8
+  ],
+  "color": "#baa5b6",
+  "basis": []
+ },
+ "JPN": {
+  "id": "JPN",
+  "name": "日本帝国",
+  "capital": "东京",
+  "status": "主权国家",
+  "sovereign": "JPN",
+  "parent": null,
+  "manager": "JPN",
+  "seat": [
+   139.75,
+   35.68
+  ],
+  "color": "#ccaea0",
+  "basis": [
+   "JPN",
+   "岛链重分"
+  ]
+ },
+ "VNM": {
+  "id": "VNM",
+  "name": "越南王国",
+  "capital": "顺化",
+  "status": "主权国家",
+  "sovereign": "VNM",
+  "parent": null,
+  "manager": "VNM",
+  "seat": [
+   107.59,
+   16.46
+  ],
+  "note": "与中华共和国结盟。",
+  "color": "#c9b9d0",
+  "basis": [
+   "VNM"
+  ]
+ },
+ "PHL": {
+  "id": "PHL",
+  "name": "吕宋共和国",
+  "capital": "马尼拉",
+  "status": "主权国家",
+  "sovereign": "PHL",
+  "parent": null,
+  "manager": "PHL",
+  "seat": [
+   120.98,
+   14.59
+  ],
+  "note": "由中华共和国扶植建立的独立共和国。",
+  "color": "#c6cbab",
+  "basis": [
+   "PHL"
+  ]
+ },
+ "THA": {
+  "id": "THA",
+  "name": "暹罗王国",
+  "capital": "曼谷",
+  "status": "主权国家",
+  "sovereign": "THA",
+  "parent": null,
+  "manager": "THA",
+  "seat": [
+   100.5,
+   13.75
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "THA"
+  ]
+ },
+ "NPL": {
+  "id": "NPL",
+  "name": "尼泊尔王国",
+  "capital": "加德满都",
+  "status": "主权国家",
+  "sovereign": "NPL",
+  "parent": null,
+  "manager": "NPL",
+  "seat": [
+   85.32,
+   27.72
+  ],
+  "color": "#a3c1cb",
+  "basis": [
+   "NPL"
+  ]
+ },
+ "AFG": {
+  "id": "AFG",
+  "name": "阿富汗王国",
+  "capital": "喀布尔",
+  "status": "主权国家",
+  "sovereign": "AFG",
+  "parent": null,
+  "manager": "AFG",
+  "seat": [
+   69.17,
+   34.53
+  ],
+  "color": "#d4b6bd",
+  "basis": [
+   "AFG"
+  ]
+ },
+ "GBR": {
+  "id": "GBR",
+  "name": "大不列颠及爱尔兰联合王国",
+  "capital": "伦敦",
+  "status": "主权国家",
+  "sovereign": "GBR",
+  "parent": null,
+  "manager": "GBR",
+  "seat": [
+   -0.13,
+   51.51
+  ],
+  "color": "#caa3a1",
+  "basis": [
+   "ENG",
+   "IRL",
+   "NIR",
+   "SCT",
+   "WLS"
+  ]
+ },
+ "FRA": {
+  "id": "FRA",
+  "name": "法兰西共和国",
+  "capital": "巴黎",
+  "status": "主权国家",
+  "sovereign": "FRA",
+  "parent": null,
+  "manager": "FRA",
+  "seat": [
+   2.35,
+   48.86
+  ],
+  "color": "#96b9ce",
+  "basis": [
+   "FXX"
+  ]
+ },
+ "DEU": {
+  "id": "DEU",
+  "name": "德意志帝国",
+  "capital": "柏林",
+  "status": "主权国家",
+  "sovereign": "DEU",
+  "parent": null,
+  "manager": "DEU",
+  "seat": [
+   13.4,
+   52.52
+  ],
+  "color": "#a8b8a2",
+  "basis": [
+   "DEU",
+   "RU-KGD",
+   "情景定界"
+  ]
+ },
+ "RUS": {
+  "id": "RUS",
+  "name": "俄罗斯联邦共和国",
+  "capital": "莫斯科",
+  "status": "主权国家",
+  "sovereign": "RUS",
+  "parent": null,
+  "manager": "RUS",
+  "seat": [
+   37.62,
+   55.75
+  ],
+  "color": "#acadc6",
+  "basis": [
+   "RUS"
+  ]
+ },
+ "USA": {
+  "id": "USA",
+  "name": "美利坚合众国",
+  "capital": "华盛顿",
+  "status": "主权国家",
+  "sovereign": "USA",
+  "parent": null,
+  "manager": "USA",
+  "seat": [
+   -77.04,
+   38.9
+  ],
+  "color": "#9cb9b4",
+  "basis": [
+   "USA"
+  ]
+ },
+ "QUE": {
+  "id": "QUE",
+  "name": "魁北克共和国",
+  "capital": "魁北克城",
+  "status": "主权国家",
+  "sovereign": "QUE",
+  "parent": null,
+  "manager": "QUE",
+  "seat": [
+   -71.21,
+   46.81
+  ],
+  "color": "#c2b1c8",
+  "basis": [
+   "CA-NB",
+   "CA-NL",
+   "CA-NS",
+   "CA-ON",
+   "CA-PE",
+   "CA-QC",
+   "US-MI",
+   "岛链重分"
+  ]
+ },
+ "MEX": {
+  "id": "MEX",
+  "name": "墨西哥",
+  "capital": "墨西哥城",
+  "status": "主权国家",
+  "sovereign": "MEX",
+  "parent": null,
+  "manager": "MEX",
+  "seat": [
+   -99.13,
+   19.43
+  ],
+  "color": "#c6cbab",
+  "basis": [
+   "MEX"
+  ]
+ },
+ "GTM": {
+  "id": "GTM",
+  "name": "危地马拉共和国",
+  "capital": "危地马拉城",
+  "status": "主权国家",
+  "sovereign": "GTM",
+  "parent": null,
+  "manager": "GTM",
+  "seat": [
+   -90.51,
+   14.63
+  ],
+  "color": "#a3c1cb",
+  "basis": [
+   "GTM"
+  ]
+ },
+ "HND": {
+  "id": "HND",
+  "name": "洪都拉斯共和国",
+  "capital": "特古西加尔巴",
+  "status": "主权国家",
+  "sovereign": "HND",
+  "parent": null,
+  "manager": "HND",
+  "seat": [
+   -87.2,
+   14.07
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "HND"
+  ]
+ },
+ "SLV": {
+  "id": "SLV",
+  "name": "萨尔瓦多共和国",
+  "capital": "圣萨尔瓦多",
+  "status": "主权国家",
+  "sovereign": "SLV",
+  "parent": null,
+  "manager": "SLV",
+  "seat": [
+   -89.19,
+   13.69
+  ],
+  "color": "#d4b6bd",
+  "basis": [
+   "SLV"
+  ]
+ },
+ "NIC": {
+  "id": "NIC",
+  "name": "尼加拉瓜共和国",
+  "capital": "马那瓜",
+  "status": "主权国家",
+  "sovereign": "NIC",
+  "parent": null,
+  "manager": "NIC",
+  "seat": [
+   -86.25,
+   12.11
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "NIC"
+  ]
+ },
+ "CRI": {
+  "id": "CRI",
+  "name": "哥斯达黎加共和国",
+  "capital": "圣何塞",
+  "status": "主权国家",
+  "sovereign": "CRI",
+  "parent": null,
+  "manager": "CRI",
+  "seat": [
+   -84.08,
+   9.93
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "CRI"
+  ]
+ },
+ "PAN": {
+  "id": "PAN",
+  "name": "巴拿马共和国",
+  "capital": "巴拿马城",
+  "status": "主权国家",
+  "sovereign": "PAN",
+  "parent": null,
+  "manager": "PAN",
+  "seat": [
+   -79.52,
+   8.98
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "PAN",
+   "情景定界"
+  ]
+ },
+ "CUB": {
+  "id": "CUB",
+  "name": "古巴共和国",
+  "capital": "哈瓦那",
+  "status": "主权国家",
+  "sovereign": "CUB",
+  "parent": null,
+  "manager": "CUB",
+  "seat": [
+   -82.37,
+   23.13
+  ],
+  "color": "#c6cbab",
+  "basis": [
+   "CUB",
+   "USG"
+  ]
+ },
+ "HTI": {
+  "id": "HTI",
+  "name": "海地共和国",
+  "capital": "太子港",
+  "status": "主权国家",
+  "sovereign": "HTI",
+  "parent": null,
+  "manager": "HTI",
+  "seat": [
+   -72.34,
+   18.54
+  ],
+  "color": "#a3c1cb",
+  "basis": [
+   "HTI"
+  ]
+ },
+ "DOM": {
+  "id": "DOM",
+  "name": "多米尼加共和国",
+  "capital": "圣多明各",
+  "status": "主权国家",
+  "sovereign": "DOM",
+  "parent": null,
+  "manager": "DOM",
+  "seat": [
+   -69.93,
+   18.48
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "DOM"
+  ]
+ },
+ "BRA": {
+  "id": "BRA",
+  "name": "巴西",
+  "capital": "里约热内卢",
+  "status": "主权国家",
+  "sovereign": "BRA",
+  "parent": null,
+  "manager": "BRA",
+  "seat": [
+   -43.18,
+   -22.91
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "BRA",
+   "BRI"
+  ]
+ },
+ "ARG": {
+  "id": "ARG",
+  "name": "阿根廷共和国",
+  "capital": "布宜诺斯艾利斯",
+  "status": "主权国家",
+  "sovereign": "ARG",
+  "parent": null,
+  "manager": "ARG",
+  "seat": [
+   -58.38,
+   -34.6
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "ARG"
+  ]
+ },
+ "CHL": {
+  "id": "CHL",
+  "name": "智利共和国",
+  "capital": "圣地亚哥",
+  "status": "主权国家",
+  "sovereign": "CHL",
+  "parent": null,
+  "manager": "CHL",
+  "seat": [
+   -70.67,
+   -33.45
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "CHL",
+   "SPI"
+  ]
+ },
+ "URY": {
+  "id": "URY",
+  "name": "乌拉圭共和国",
+  "capital": "蒙得维的亚",
+  "status": "主权国家",
+  "sovereign": "URY",
+  "parent": null,
+  "manager": "URY",
+  "seat": [
+   -56.16,
+   -34.9
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "URY"
+  ]
+ },
+ "PRY": {
+  "id": "PRY",
+  "name": "巴拉圭共和国",
+  "capital": "亚松森",
+  "status": "主权国家",
+  "sovereign": "PRY",
+  "parent": null,
+  "manager": "PRY",
+  "seat": [
+   -57.58,
+   -25.28
+  ],
+  "color": "#c89f9d",
+  "basis": [
+   "PRY"
+  ]
+ },
+ "BOL": {
+  "id": "BOL",
+  "name": "玻利维亚共和国",
+  "capital": "苏克雷",
+  "status": "主权国家",
+  "sovereign": "BOL",
+  "parent": null,
+  "manager": "BOL",
+  "seat": [
+   -65.26,
+   -19.04
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "BOL"
+  ]
+ },
+ "PER": {
+  "id": "PER",
+  "name": "秘鲁共和国",
+  "capital": "利马",
+  "status": "主权国家",
+  "sovereign": "PER",
+  "parent": null,
+  "manager": "PER",
+  "seat": [
+   -77.04,
+   -12.05
+  ],
+  "color": "#c89f9d",
+  "basis": [
+   "PER"
+  ]
+ },
+ "ECU": {
+  "id": "ECU",
+  "name": "厄瓜多尔共和国",
+  "capital": "基多",
+  "status": "主权国家",
+  "sovereign": "ECU",
+  "parent": null,
+  "manager": "ECU",
+  "seat": [
+   -78.47,
+   -0.18
+  ],
+  "color": "#a3c1cb",
+  "basis": [
+   "ECU"
+  ]
+ },
+ "COL": {
+  "id": "COL",
+  "name": "哥伦比亚共和国",
+  "capital": "波哥大",
+  "status": "主权国家",
+  "sovereign": "COL",
+  "parent": null,
+  "manager": "COL",
+  "seat": [
+   -74.07,
+   4.71
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "BJN",
+   "COL",
+   "SER"
+  ]
+ },
+ "VEN": {
+  "id": "VEN",
+  "name": "委内瑞拉",
+  "capital": "加拉加斯",
+  "status": "主权国家",
+  "sovereign": "VEN",
+  "parent": null,
+  "manager": "VEN",
+  "seat": [
+   -66.9,
+   10.48
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "VEN"
+  ]
+ },
+ "HUN": {
+  "id": "HUN",
+  "name": "圣斯蒂芬王国",
+  "capital": "布达佩斯",
+  "status": "主权国家",
+  "sovereign": "HUN",
+  "parent": null,
+  "manager": "HUN",
+  "seat": [
+   19.04,
+   47.5
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "AT-1",
+   "HUN"
+  ]
+ },
+ "POL": {
+  "id": "POL",
+  "name": "波兰",
+  "capital": "华沙",
+  "status": "主权国家",
+  "sovereign": "POL",
+  "parent": null,
+  "manager": "POL",
+  "seat": [
+   21.01,
+   52.23
+  ],
+  "color": "#c89f9d",
+  "basis": [
+   "POL"
+  ]
+ },
+ "UKR": {
+  "id": "UKR",
+  "name": "乌克兰共和国",
+  "capital": "基辅",
+  "status": "主权国家",
+  "sovereign": "UKR",
+  "parent": null,
+  "manager": "UKR",
+  "seat": [
+   30.52,
+   50.45
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "UKR",
+   "情景定界"
+  ]
+ },
+ "BLR": {
+  "id": "BLR",
+  "name": "白俄罗斯共和国",
+  "capital": "明斯克",
+  "status": "主权国家",
+  "sovereign": "BLR",
+  "parent": null,
+  "manager": "BLR",
+  "seat": [
+   27.56,
+   53.9
+  ],
+  "note": "《桦树条约》成员。",
+  "color": "#d1c58f",
+  "basis": [
+   "BLR"
+  ]
+ },
+ "EST": {
+  "id": "EST",
+  "name": "爱沙尼亚共和国",
+  "capital": "塔林",
+  "status": "主权国家",
+  "sovereign": "EST",
+  "parent": null,
+  "manager": "EST",
+  "seat": [
+   24.75,
+   59.44
+  ],
+  "color": "#c6cbab",
+  "basis": [
+   "EST",
+   "情景定界"
+  ]
+ },
+ "LVA": {
+  "id": "LVA",
+  "name": "拉脱维亚共和国",
+  "capital": "里加",
+  "status": "主权国家",
+  "sovereign": "LVA",
+  "parent": null,
+  "manager": "LVA",
+  "seat": [
+   24.11,
+   56.95
+  ],
+  "color": "#c89f9d",
+  "basis": [
+   "LVA",
+   "情景定界"
+  ]
+ },
+ "LTU": {
+  "id": "LTU",
+  "name": "立陶宛共和国",
+  "capital": "考纳斯",
+  "status": "主权国家",
+  "sovereign": "LTU",
+  "parent": null,
+  "manager": "LTU",
+  "seat": [
+   23.9,
+   54.9
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "LTU"
+  ]
+ },
+ "FIN": {
+  "id": "FIN",
+  "name": "芬兰王国",
+  "capital": "赫尔辛基",
+  "status": "主权国家",
+  "sovereign": "FIN",
+  "parent": null,
+  "manager": "FIN",
+  "seat": [
+   24.94,
+   60.17
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "ALD",
+   "FIN",
+   "情景定界"
+  ]
+ },
+ "ROU": {
+  "id": "ROU",
+  "name": "罗马尼亚王国",
+  "capital": "布加勒斯特",
+  "status": "主权国家",
+  "sovereign": "ROU",
+  "parent": null,
+  "manager": "ROU",
+  "seat": [
+   26.1,
+   44.43
+  ],
+  "color": "#c89f9d",
+  "basis": [
+   "MDA",
+   "ROU",
+   "情景定界"
+  ]
+ },
+ "HRV": {
+  "id": "HRV",
+  "name": "克罗地亚王国",
+  "capital": "萨格勒布",
+  "status": "主权国家",
+  "sovereign": "HRV",
+  "parent": null,
+  "manager": "HRV",
+  "seat": [
+   15.98,
+   45.81
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "HRV"
+  ]
+ },
+ "SVN": {
+  "id": "SVN",
+  "name": "斯洛文尼亚",
+  "capital": "卢布尔雅那",
+  "status": "主权国家",
+  "sovereign": "SVN",
+  "parent": null,
+  "manager": "SVN",
+  "seat": [
+   14.51,
+   46.06
+  ],
+  "color": "#c89f9d",
+  "basis": [
+   "SVN"
+  ]
+ },
+ "BIH": {
+  "id": "BIH",
+  "name": "波斯尼亚和黑塞哥维那",
+  "capital": "萨拉热窝",
+  "status": "主权国家",
+  "sovereign": "BIH",
+  "parent": null,
+  "manager": "BIH",
+  "seat": [
+   18.41,
+   43.86
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "BHB",
+   "BHF",
+   "BIS"
+  ]
+ },
+ "SRB": {
+  "id": "SRB",
+  "name": "塞尔维亚王国",
+  "capital": "贝尔格莱德",
+  "status": "主权国家",
+  "sovereign": "SRB",
+  "parent": null,
+  "manager": "SRB",
+  "seat": [
+   20.46,
+   44.82
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "KOS",
+   "MKD",
+   "SRS"
+  ]
+ },
+ "MNE": {
+  "id": "MNE",
+  "name": "黑山王国",
+  "capital": "采蒂涅",
+  "status": "主权国家",
+  "sovereign": "MNE",
+  "parent": null,
+  "manager": "MNE",
+  "seat": [
+   18.92,
+   42.39
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "MNE"
+  ]
+ },
+ "ALB": {
+  "id": "ALB",
+  "name": "阿尔巴尼亚",
+  "capital": "地拉那",
+  "status": "主权国家",
+  "sovereign": "ALB",
+  "parent": null,
+  "manager": "ALB",
+  "seat": [
+   19.82,
+   41.33
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "ALB"
+  ]
+ },
+ "GRC": {
+  "id": "GRC",
+  "name": "希腊王国",
+  "capital": "雅典",
+  "status": "主权国家",
+  "sovereign": "GRC",
+  "parent": null,
+  "manager": "GRC",
+  "seat": [
+   23.73,
+   37.98
+  ],
+  "color": "#d4b6bd",
+  "basis": [
+   "GRC"
+  ]
+ },
+ "BGR": {
+  "id": "BGR",
+  "name": "保加利亚王国",
+  "capital": "索非亚",
+  "status": "主权国家",
+  "sovereign": "BGR",
+  "parent": null,
+  "manager": "BGR",
+  "seat": [
+   23.32,
+   42.7
+  ],
+  "color": "#a3c1cb",
+  "basis": [
+   "BGR"
+  ]
+ },
+ "ITA": {
+  "id": "ITA",
+  "name": "意大利王国",
+  "capital": "罗马",
+  "status": "主权国家",
+  "sovereign": "ITA",
+  "parent": null,
+  "manager": "ITA",
+  "seat": [
+   12.5,
+   41.9
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "ITA",
+   "岛链重分",
+   "情景定界"
+  ]
+ },
+ "ESP": {
+  "id": "ESP",
+  "name": "西班牙国",
+  "capital": "马德里",
+  "status": "主权国家",
+  "sovereign": "ESP",
+  "parent": null,
+  "manager": "ESP",
+  "seat": [
+   -3.7,
+   40.42
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "ESP"
+  ]
+ },
+ "PRT": {
+  "id": "PRT",
+  "name": "葡萄牙共和国",
+  "capital": "里斯本",
+  "status": "主权国家",
+  "sovereign": "PRT",
+  "parent": null,
+  "manager": "PRT",
+  "seat": [
+   -9.14,
+   38.72
+  ],
+  "color": "#c6cbab",
+  "basis": [
+   "PRX"
+  ]
+ },
+ "BEL": {
+  "id": "BEL",
+  "name": "比利时王国",
+  "capital": "布鲁塞尔",
+  "status": "主权国家",
+  "sovereign": "BEL",
+  "parent": null,
+  "manager": "BEL",
+  "seat": [
+   4.35,
+   50.85
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "BCR",
+   "BFR",
+   "BWR"
+  ]
+ },
+ "NLD": {
+  "id": "NLD",
+  "name": "荷兰王国",
+  "capital": "海牙",
+  "status": "主权国家",
+  "sovereign": "NLD",
+  "parent": null,
+  "manager": "NLD",
+  "seat": [
+   4.31,
+   52.08
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "NLX"
+  ]
+ },
+ "LUX": {
+  "id": "LUX",
+  "name": "卢森堡大公国",
+  "capital": "卢森堡",
+  "status": "主权国家",
+  "sovereign": "LUX",
+  "parent": null,
+  "manager": "LUX",
+  "seat": [
+   6.13,
+   49.61
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "LUX"
+  ]
+ },
+ "CHE": {
+  "id": "CHE",
+  "name": "瑞士联邦",
+  "capital": "伯尔尼",
+  "status": "主权国家",
+  "sovereign": "CHE",
+  "parent": null,
+  "manager": "CHE",
+  "seat": [
+   7.45,
+   46.95
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "CHE"
+  ]
+ },
+ "DNK": {
+  "id": "DNK",
+  "name": "丹麦王国",
+  "capital": "哥本哈根",
+  "status": "主权国家",
+  "sovereign": "DNK",
+  "parent": null,
+  "manager": "DNK",
+  "seat": [
+   12.57,
+   55.68
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "DNK"
+  ]
+ },
+ "SWE": {
+  "id": "SWE",
+  "name": "瑞典王国",
+  "capital": "斯德哥尔摩",
+  "status": "主权国家",
+  "sovereign": "SWE",
+  "parent": null,
+  "manager": "SWE",
+  "seat": [
+   18.07,
+   59.33
+  ],
+  "color": "#a3c1cb",
+  "basis": [
+   "SWE"
+  ]
+ },
+ "NOR": {
+  "id": "NOR",
+  "name": "挪威王国",
+  "capital": "奥斯陆",
+  "status": "主权国家",
+  "sovereign": "NOR",
+  "parent": null,
+  "manager": "NOR",
+  "seat": [
+   10.75,
+   59.91
+  ],
+  "color": "#d4b6bd",
+  "basis": [
+   "NOW"
+  ]
+ },
+ "ISL": {
+  "id": "ISL",
+  "name": "冰岛王国",
+  "capital": "雷克雅未克",
+  "status": "主权国家",
+  "sovereign": "ISL",
+  "parent": null,
+  "manager": "ISL",
+  "seat": [
+   -21.94,
+   64.15
+  ],
+  "note": "与丹麦共戴君主。",
+  "color": "#c9b9d0",
+  "basis": [
+   "ISL"
+  ]
+ },
+ "AND": {
+  "id": "AND",
+  "name": "安道尔公国",
+  "capital": "安道尔城",
+  "status": "主权国家",
+  "sovereign": "AND",
+  "parent": null,
+  "manager": "AND",
+  "seat": [
+   1.52,
+   42.51
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "AND"
+  ]
+ },
+ "MCO": {
+  "id": "MCO",
+  "name": "摩纳哥公国",
+  "capital": "摩纳哥",
+  "status": "主权国家",
+  "sovereign": "MCO",
+  "parent": null,
+  "manager": "MCO",
+  "seat": [
+   7.42,
+   43.73
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "MCO"
+  ]
+ },
+ "LIE": {
+  "id": "LIE",
+  "name": "列支敦士登公国",
+  "capital": "瓦杜兹",
+  "status": "主权国家",
+  "sovereign": "LIE",
+  "parent": null,
+  "manager": "LIE",
+  "seat": [
+   9.52,
+   47.14
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "LIE"
+  ]
+ },
+ "SMR": {
+  "id": "SMR",
+  "name": "圣马力诺共和国",
+  "capital": "圣马力诺",
+  "status": "主权国家",
+  "sovereign": "SMR",
+  "parent": null,
+  "manager": "SMR",
+  "seat": [
+   12.45,
+   43.94
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "SMR"
+  ]
+ },
+ "VAT": {
+  "id": "VAT",
+  "name": "梵蒂冈城国",
+  "capital": "梵蒂冈",
+  "status": "主权国家",
+  "sovereign": "VAT",
+  "parent": null,
+  "manager": "VAT",
+  "seat": [
+   12.453,
+   41.903
+  ],
+  "color": "#d1c58f",
+  "basis": [
+   "VAT"
+  ]
+ },
+ "GEO": {
+  "id": "GEO",
+  "name": "格鲁吉亚共和国",
+  "capital": "第比利斯",
+  "status": "主权国家",
+  "sovereign": "GEO",
+  "parent": null,
+  "manager": "GEO",
+  "seat": [
+   44.8,
+   41.72
+  ],
+  "color": "#bad0c9",
+  "basis": [
+   "GEG"
+  ]
+ },
+ "ARM": {
+  "id": "ARM",
+  "name": "亚美尼亚共和国",
+  "capital": "埃里温",
+  "status": "主权国家",
+  "sovereign": "ARM",
+  "parent": null,
+  "manager": "ARM",
+  "seat": [
+   44.51,
+   40.18
+  ],
+  "color": "#a8c2ae",
+  "basis": [
+   "ARM"
+  ]
+ },
+ "AZE": {
+  "id": "AZE",
+  "name": "阿塞拜疆共和国",
+  "capital": "巴库",
+  "status": "主权国家",
+  "sovereign": "AZE",
+  "parent": null,
+  "manager": "AZE",
+  "seat": [
+   49.87,
+   40.41
+  ],
+  "color": "#d4b6bd",
+  "basis": [
+   "AZE"
+  ]
+ },
+ "OTT": {
+  "id": "OTT",
+  "name": "奥斯曼帝国联邦",
+  "capital": "君士坦丁堡",
+  "status": "主权国家",
+  "sovereign": "OTT",
+  "parent": null,
+  "manager": "OTT",
+  "seat": [
+   28.98,
+   41.01
+  ],
+  "color": "#c4b48e",
+  "basis": [
+   "TUR"
+  ]
+ },
+ "NEJD": {
+  "id": "NEJD",
+  "name": "内志酋长国",
+  "capital": "利雅得",
+  "status": "主权国家",
+  "sovereign": "NEJD",
+  "parent": null,
+  "manager": "NEJD",
+  "seat": [
+   46.68,
+   24.69
+  ],
+  "color": "#a3c1cb",
+  "basis": [
+   "SAU"
+  ]
+ },
+ "YEM": {
+  "id": "YEM",
+  "name": "也门伊玛目国",
+  "capital": "萨那",
+  "status": "主权国家",
+  "sovereign": "YEM",
+  "parent": null,
+  "manager": "YEM",
+  "seat": [
+   44.21,
+   15.35
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "YEM"
+  ]
+ },
+ "IRN": {
+  "id": "IRN",
+  "name": "波斯帝国",
+  "capital": "德黑兰",
+  "status": "主权国家",
+  "sovereign": "IRN",
+  "parent": null,
+  "manager": "IRN",
+  "seat": [
+   51.39,
+   35.69
+  ],
+  "color": "#bad0c9",
+  "basis": [
+   "IRN"
+  ]
+ },
+ "ETH": {
+  "id": "ETH",
+  "name": "阿比西尼亚帝国",
+  "capital": "亚的斯亚贝巴",
+  "status": "主权国家",
+  "sovereign": "ETH",
+  "parent": null,
+  "manager": "ETH",
+  "seat": [
+   38.75,
+   9.03
+  ],
+  "color": "#c6cbab",
+  "basis": [
+   "ETH"
+  ]
+ },
+ "LBR": {
+  "id": "LBR",
+  "name": "利比里亚共和国",
+  "capital": "蒙罗维亚",
+  "status": "主权国家",
+  "sovereign": "LBR",
+  "parent": null,
+  "manager": "LBR",
+  "seat": [
+   -10.8,
+   6.3
+  ],
+  "color": "#c9b9d0",
+  "basis": [
+   "LBR"
+  ]
+ },
+ "HAW": {
+  "id": "HAW",
+  "name": "夏威夷托管领",
+  "capital": "檀香山",
+  "status": "中立托管领",
+  "sovereign": "HAW",
+  "parent": null,
+  "manager": "USA",
+  "seat": [
+   -157.86,
+   21.31
+  ],
+  "guarantors": [
+   "GBR",
+   "USA",
+   "ROC",
+   "JPN"
+  ],
+  "note": "英、美、中、日四国公约保障中立，美国受委任管理。",
+  "color": "#c5d5da",
+  "basis": [
+   "MQI",
+   "US-HI"
+  ]
+ },
+ "ATA": {
+  "id": "ATA",
+  "name": "南极大陆",
+  "capital": null,
+  "status": "主权未定",
+  "sovereign": "ATA",
+  "parent": null,
+  "manager": "UNALLOC",
+  "note": "主权未定。扇区线与彼得一世岛标注仅表示截至元旦已公布的主张。",
+  "color": "#e8eceb",
+  "basis": [
+   "ATA"
+  ]
+ },
+ "TAI": {
+  "id": "TAI",
+  "name": "台湾省",
+  "capital": "台北",
+  "status": "省",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "TAI",
+  "seat": [
+   121.52,
+   25.05
+  ],
+  "color": "#dfc99c",
+  "basis": [
+   "TWN",
+   "岛链重分"
+  ]
+ },
+ "FJ": {
+  "id": "FJ",
+  "name": "福建省",
+  "capital": "福州",
+  "status": "省",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "FJ",
+  "seat": [
+   119.3,
+   26.08
+  ],
+  "color": "#dfc99c",
+  "basis": [
+   "CN-FJ",
+   "岛链重分"
+  ]
+ },
+ "QH": {
+  "id": "QH",
+  "name": "青海省",
+  "capital": "西宁",
+  "status": "省",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "QH",
+  "seat": [
+   101.78,
+   36.62
+  ],
+  "color": "#e2d0a9",
+  "basis": [
+   "CN-QH"
+  ]
+ },
+ "SEA": {
+  "id": "SEA",
+  "name": "海疆行政辖区",
+  "capital": "海口",
+  "status": "省",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "SEA",
+  "seat": [
+   110.33,
+   20.04
+  ],
+  "color": "#e0cba0",
+  "basis": [
+   "CN-HI",
+   "PFA",
+   "PGA",
+   "SCR"
+  ]
+ },
+ "XJ": {
+  "id": "XJ",
+  "name": "新疆都督府",
+  "capital": "迪化",
+  "status": "边疆军政区",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "XJ",
+  "seat": [
+   87.62,
+   43.82
+  ],
+  "color": "#dfc99c",
+  "basis": [
+   "CN-XJ"
+  ]
+ },
+ "XK": {
+  "id": "XK",
+  "name": "西康都督府",
+  "capital": "康定",
+  "status": "边疆军政区",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "XK",
+  "seat": [
+   101.96,
+   30.05
+  ],
+  "color": "#e0cba0",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ILI": {
+  "id": "ILI",
+  "name": "伊犁军府",
+  "capital": "伊宁",
+  "status": "地方辖区",
+  "sovereign": "ROC",
+  "parent": "XJ",
+  "manager": "ILI",
+  "seat": [
+   81.32,
+   43.92
+  ],
+  "color": "#dfc99c",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "DZU": {
+  "id": "DZU",
+  "name": "准噶尔边务区",
+  "capital": "塔城",
+  "status": "地方辖区",
+  "sovereign": "ROC",
+  "parent": "XJ",
+  "manager": "DZU",
+  "seat": [
+   82.98,
+   46.75
+  ],
+  "color": "#e2d0a9",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TAR": {
+  "id": "TAR",
+  "name": "南疆回部自治辖区",
+  "capital": "喀什",
+  "status": "地方辖区",
+  "sovereign": "ROC",
+  "parent": "XJ",
+  "manager": "TAR",
+  "seat": [
+   75.99,
+   39.47
+  ],
+  "color": "#e2d0a9",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TIB": {
+  "id": "TIB",
+  "name": "乌斯藏都督府",
+  "capital": "拉萨",
+  "status": "羁縻地区",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "TIB",
+  "seat": [
+   91.13,
+   29.65
+  ],
+  "suzerain": "ROC",
+  "color": "#e0cba0",
+  "basis": [
+   "CN-XZ",
+   "IN-AR"
+  ]
+ },
+ "IM": {
+  "id": "IM",
+  "name": "内蒙古王公联盟",
+  "capital": "多伦",
+  "status": "半自治联盟",
+  "sovereign": "QING",
+  "parent": "QING",
+  "manager": "IM",
+  "seat": [
+   116.49,
+   42.2
+  ],
+  "suzerain": "QING",
+  "color": "#c2afbe",
+  "basis": [
+   "CN-NM",
+   "情景定界"
+  ]
+ },
+ "OM": {
+  "id": "OM",
+  "name": "外蒙古王公联盟",
+  "capital": "库伦",
+  "status": "半自治联盟",
+  "sovereign": "QING",
+  "parent": "QING",
+  "manager": "OM",
+  "seat": [
+   106.92,
+   47.92
+  ],
+  "suzerain": "QING",
+  "color": "#c2afbe",
+  "basis": [
+   "MNG"
+  ]
+ },
+ "TUVA": {
+  "id": "TUVA",
+  "name": "唐努乌梁海羁縻区",
+  "capital": "克孜勒",
+  "status": "羁縻地区",
+  "sovereign": "QING",
+  "parent": "QING",
+  "manager": "TUVA",
+  "seat": [
+   94.44,
+   51.72
+  ],
+  "suzerain": "QING",
+  "color": "#c7b6c4",
+  "basis": [
+   "RU-TY"
+  ]
+ },
+ "CHAH": {
+  "id": "CHAH",
+  "name": "察哈尔",
+  "capital": "张北",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "CHAH",
+  "seat": [
+   114.72,
+   41.16
+  ],
+  "color": "#c2afbe",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "JIR": {
+  "id": "JIR",
+  "name": "哲里木盟",
+  "capital": "郑家屯",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "JIR",
+  "seat": [
+   123.5,
+   43.51
+  ],
+  "color": "#c4b3c1",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "JUU": {
+  "id": "JUU",
+  "name": "昭乌达盟",
+  "capital": "赤峰",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "JUU",
+  "seat": [
+   118.96,
+   42.27
+  ],
+  "color": "#ccbeca",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "JOS": {
+  "id": "JOS",
+  "name": "卓索图盟",
+  "capital": "承德",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "JOS",
+  "seat": [
+   117.94,
+   40.97
+  ],
+  "color": "#c7b6c4",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "XIL": {
+  "id": "XIL",
+  "name": "锡林郭勒盟",
+  "capital": "贝子庙",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "XIL",
+  "seat": [
+   116.08,
+   43.95
+  ],
+  "color": "#cabac7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ULA": {
+  "id": "ULA",
+  "name": "乌兰察布盟",
+  "capital": "归绥",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "ULA",
+  "seat": [
+   111.67,
+   40.82
+  ],
+  "color": "#ccbeca",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ORD": {
+  "id": "ORD",
+  "name": "伊克昭盟",
+  "capital": "东胜",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "ORD",
+  "seat": [
+   109.99,
+   39.82
+  ],
+  "color": "#c4b3c1",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ALA": {
+  "id": "ALA",
+  "name": "阿拉善旗",
+  "capital": "定远营",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "ALA",
+  "seat": [
+   105.67,
+   38.84
+  ],
+  "color": "#c7b6c4",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "EJI": {
+  "id": "EJI",
+  "name": "额济纳旗",
+  "capital": "达来呼布",
+  "status": "盟旗",
+  "sovereign": "QING",
+  "parent": "IM",
+  "manager": "EJI",
+  "seat": [
+   101.06,
+   41.95
+  ],
+  "color": "#c2afbe",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KOR": {
+  "id": "KOR",
+  "name": "朝鲜总督府",
+  "capital": "京城",
+  "status": "殖民地",
+  "sovereign": "JPN",
+  "parent": "JPN",
+  "manager": "KOR",
+  "seat": [
+   126.98,
+   37.57
+  ],
+  "color": "#d5bdb2",
+  "basis": [
+   "KNX",
+   "KNZ",
+   "KOR",
+   "PRK"
+  ]
+ },
+ "TONKIN": {
+  "id": "TONKIN",
+  "name": "东京",
+  "capital": "河内",
+  "status": "行政区",
+  "sovereign": "VNM",
+  "parent": "VNM",
+  "manager": "TONKIN",
+  "seat": [
+   105.85,
+   21.03
+  ],
+  "color": "#d9cede",
+  "basis": [
+   "VN-01",
+   "VN-02",
+   "VN-03",
+   "VN-04",
+   "VN-05",
+   "VN-06",
+   "VN-07",
+   "VN-09",
+   "VN-13",
+   "VN-14",
+   "VN-18",
+   "VN-20",
+   "VN-53",
+   "VN-54",
+   "VN-56",
+   "VN-61",
+   "VN-63",
+   "VN-66",
+   "VN-67",
+   "VN-68",
+   "VN-69",
+   "VN-70",
+   "VN-71",
+   "VN-HN",
+   "VN-HP"
+  ]
+ },
+ "ANNAM": {
+  "id": "ANNAM",
+  "name": "安南",
+  "capital": "顺化",
+  "status": "行政区",
+  "sovereign": "VNM",
+  "parent": "VNM",
+  "manager": "ANNAM",
+  "seat": [
+   107.59,
+   16.46
+  ],
+  "color": "#d5c9da",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "COCHIN": {
+  "id": "COCHIN",
+  "name": "交趾支那",
+  "capital": "西贡",
+  "status": "行政区",
+  "sovereign": "VNM",
+  "parent": "VNM",
+  "manager": "COCHIN",
+  "seat": [
+   106.7,
+   10.78
+  ],
+  "color": "#d7ccdc",
+  "basis": [
+   "VN-37",
+   "VN-39",
+   "VN-41",
+   "VN-43",
+   "VN-44",
+   "VN-45",
+   "VN-46",
+   "VN-47",
+   "VN-49",
+   "VN-50",
+   "VN-51",
+   "VN-52",
+   "VN-55",
+   "VN-57",
+   "VN-58",
+   "VN-59",
+   "VN-73",
+   "VN-CT",
+   "VN-SG"
+  ]
+ },
+ "HKG": {
+  "id": "HKG",
+  "name": "英属香港",
+  "capital": "维多利亚城",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "HKG",
+  "seat": [
+   114.16,
+   22.28
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "HKG"
+  ]
+ },
+ "BUR": {
+  "id": "BUR",
+  "name": "英属缅甸",
+  "capital": "仰光",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BUR",
+  "seat": [
+   96.16,
+   16.8
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "MMR"
+  ]
+ },
+ "STRAITS": {
+  "id": "STRAITS",
+  "name": "海峡殖民地",
+  "capital": "新加坡",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "STRAITS",
+  "seat": [
+   103.85,
+   1.29
+  ],
+  "color": "#d4b5b3",
+  "basis": []
+ },
+ "IND": {
+  "id": "IND",
+  "name": "英属印度",
+  "capital": "新德里",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "IND",
+  "seat": [
+   77.21,
+   28.61
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "BGD",
+   "IND",
+   "PAK"
+  ]
+ },
+ "CEY": {
+  "id": "CEY",
+  "name": "锡兰",
+  "capital": "科伦坡",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "CEY",
+  "seat": [
+   79.86,
+   6.93
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "LKA"
+  ]
+ },
+ "BLZ": {
+  "id": "BLZ",
+  "name": "英属洪都拉斯",
+  "capital": "伯利兹城",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BLZ",
+  "seat": [
+   -88.19,
+   17.5
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "BLZ"
+  ]
+ },
+ "BGY": {
+  "id": "BGY",
+  "name": "英属圭亚那",
+  "capital": "乔治敦",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BGY",
+  "seat": [
+   -58.16,
+   6.8
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "GUY"
+  ]
+ },
+ "ADEN": {
+  "id": "ADEN",
+  "name": "亚丁直辖殖民地",
+  "capital": "亚丁",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "ADEN",
+  "seat": [
+   45.04,
+   12.78
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "岛链重分",
+   "情景定界"
+  ]
+ },
+ "GAM": {
+  "id": "GAM",
+  "name": "冈比亚",
+  "capital": "巴瑟斯特",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "GAM",
+  "seat": [
+   -16.58,
+   13.45
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "GMB"
+  ]
+ },
+ "SLE": {
+  "id": "SLE",
+  "name": "塞拉利昂",
+  "capital": "弗里敦",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SLE",
+  "seat": [
+   -13.23,
+   8.48
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "SLE"
+  ]
+ },
+ "GOLD": {
+  "id": "GOLD",
+  "name": "黄金海岸",
+  "capital": "阿克拉",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "GOLD",
+  "seat": [
+   -0.2,
+   5.56
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "GHA"
+  ]
+ },
+ "NGA": {
+  "id": "NGA",
+  "name": "尼日利亚",
+  "capital": "拉各斯",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "NGA",
+  "seat": [
+   3.39,
+   6.45
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "NGA"
+  ]
+ },
+ "KEN": {
+  "id": "KEN",
+  "name": "肯尼亚",
+  "capital": "内罗毕",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "KEN",
+  "seat": [
+   36.82,
+   -1.29
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "KEN"
+  ]
+ },
+ "BSOM": {
+  "id": "BSOM",
+  "name": "英属索马里",
+  "capital": "柏培拉",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BSOM",
+  "seat": [
+   45.01,
+   10.44
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "SOL"
+  ]
+ },
+ "MLT": {
+  "id": "MLT",
+  "name": "马耳他",
+  "capital": "瓦莱塔",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "MLT",
+  "seat": [
+   14.51,
+   35.9
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "MLT"
+  ]
+ },
+ "GIB": {
+  "id": "GIB",
+  "name": "直布罗陀",
+  "capital": "直布罗陀",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "GIB",
+  "seat": [
+   -5.35,
+   36.14
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "GIB"
+  ]
+ },
+ "MUS": {
+  "id": "MUS",
+  "name": "毛里求斯",
+  "capital": "路易港",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "MUS",
+  "seat": [
+   57.5,
+   -20.16
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "IOT",
+   "MUS"
+  ]
+ },
+ "SYC": {
+  "id": "SYC",
+  "name": "塞舌尔",
+  "capital": "维多利亚",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SYC",
+  "seat": [
+   55.45,
+   -4.62
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "SYC"
+  ]
+ },
+ "FIJ": {
+  "id": "FIJ",
+  "name": "斐济",
+  "capital": "苏瓦",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "FIJ",
+  "seat": [
+   178.45,
+   -18.14
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "FJI"
+  ]
+ },
+ "GIL": {
+  "id": "GIL",
+  "name": "吉尔伯特群岛",
+  "capital": "海洋岛",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "GIL",
+  "seat": [
+   169.54,
+   -0.86
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "KIR"
+  ]
+ },
+ "ELL": {
+  "id": "ELL",
+  "name": "埃利斯群岛",
+  "capital": "富纳富提",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "ELL",
+  "seat": [
+   179.2,
+   -8.52
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "TUV"
+  ]
+ },
+ "PHX": {
+  "id": "PHX",
+  "name": "菲尼克斯群岛",
+  "capital": null,
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "PHX",
+  "color": "#d0adac",
+  "basis": [
+   "岛链重分"
+  ]
+ },
+ "PIT": {
+  "id": "PIT",
+  "name": "皮特凯恩及属岛",
+  "capital": "亚当斯敦",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "PIT",
+  "seat": [
+   -130.1,
+   -25.07
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "PCN"
+  ]
+ },
+ "SHN": {
+  "id": "SHN",
+  "name": "圣赫勒拿及属岛",
+  "capital": "詹姆斯敦",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SHN",
+  "seat": [
+   -5.72,
+   -15.93
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "SHN"
+  ]
+ },
+ "FLK": {
+  "id": "FLK",
+  "name": "福克兰群岛",
+  "capital": "斯坦利",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "FLK",
+  "seat": [
+   -57.85,
+   -51.7
+  ],
+  "claims": [
+   "ARG"
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "FLK"
+  ]
+ },
+ "SGS": {
+  "id": "SGS",
+  "name": "南乔治亚及南桑威奇",
+  "capital": "爱德华国王角",
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SGS",
+  "seat": [
+   -36.5,
+   -54.28
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "SGS"
+  ]
+ },
+ "HMD": {
+  "id": "HMD",
+  "name": "赫德与麦克唐纳群岛",
+  "capital": null,
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "HMD",
+  "color": "#d2b1af",
+  "basis": [
+   "HMD"
+  ]
+ },
+ "PEI": {
+  "id": "PEI",
+  "name": "爱德华王子群岛",
+  "capital": null,
+  "status": "殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "PEI",
+  "color": "#d0adac",
+  "basis": [
+   "岛链重分"
+  ]
+ },
+ "BAA": {
+  "id": "BAA",
+  "name": "英属美洲联合领",
+  "capital": "查尔斯顿",
+  "status": "自治领",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BAA",
+  "seat": [
+   -79.93,
+   32.78
+  ],
+  "note": "查尔斯顿与伦敦正推进二元帝国法案。",
+  "color": "#d8bcbb",
+  "basis": []
+ },
+ "AUS": {
+  "id": "AUS",
+  "name": "澳大利亚自治领",
+  "capital": "堪培拉",
+  "status": "自治领",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "AUS",
+  "seat": [
+   149.13,
+   -35.28
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "ATC",
+   "AUS",
+   "CSI",
+   "NFK"
+  ]
+ },
+ "NZL": {
+  "id": "NZL",
+  "name": "新西兰自治领",
+  "capital": "惠灵顿",
+  "status": "自治领",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "NZL",
+  "seat": [
+   174.78,
+   -41.29
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "NZL"
+  ]
+ },
+ "SAF": {
+  "id": "SAF",
+  "name": "南非自治领",
+  "capital": "比勒陀利亚",
+  "status": "自治领",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SAF",
+  "seat": [
+   28.19,
+   -25.75
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "ZAF"
+  ]
+ },
+ "BHUT": {
+  "id": "BHUT",
+  "name": "不丹王国",
+  "capital": "普那卡",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BHUT",
+  "seat": [
+   89.86,
+   27.59
+  ],
+  "suzerain": "GBR",
+  "color": "#d2b1af",
+  "basis": [
+   "BTN"
+  ]
+ },
+ "SIK": {
+  "id": "SIK",
+  "name": "锡金王国",
+  "capital": "甘托克",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SIK",
+  "seat": [
+   88.61,
+   27.33
+  ],
+  "suzerain": "GBR",
+  "color": "#d6b8b7",
+  "basis": [
+   "IN-SK"
+  ]
+ },
+ "MDV": {
+  "id": "MDV",
+  "name": "马尔代夫苏丹国",
+  "capital": "马累",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "MDV",
+  "seat": [
+   73.51,
+   4.18
+  ],
+  "suzerain": "GBR",
+  "color": "#d6b8b7",
+  "basis": [
+   "MDV"
+  ]
+ },
+ "FMS": {
+  "id": "FMS",
+  "name": "马来联邦",
+  "capital": "吉隆坡",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "FMS",
+  "seat": [
+   101.69,
+   3.14
+  ],
+  "suzerain": "GBR",
+  "color": "#d4b5b3",
+  "basis": [
+   "MYS"
+  ]
+ },
+ "JOH": {
+  "id": "JOH",
+  "name": "柔佛",
+  "capital": "新山",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "JOH",
+  "seat": [
+   103.76,
+   1.46
+  ],
+  "suzerain": "GBR",
+  "color": "#d6b8b7",
+  "basis": [
+   "MY-01"
+  ]
+ },
+ "KED": {
+  "id": "KED",
+  "name": "吉打",
+  "capital": "亚罗士打",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "KED",
+  "seat": [
+   100.37,
+   6.12
+  ],
+  "suzerain": "GBR",
+  "color": "#d4b5b3",
+  "basis": [
+   "MY-02"
+  ]
+ },
+ "KEL": {
+  "id": "KEL",
+  "name": "吉兰丹",
+  "capital": "哥打巴鲁",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "KEL",
+  "seat": [
+   102.24,
+   6.13
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "MY-03"
+  ]
+ },
+ "TER": {
+  "id": "TER",
+  "name": "登嘉楼",
+  "capital": "瓜拉登嘉楼",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "TER",
+  "seat": [
+   103.14,
+   5.33
+  ],
+  "suzerain": "GBR",
+  "color": "#d2b1af",
+  "basis": [
+   "MY-11"
+  ]
+ },
+ "PERL": {
+  "id": "PERL",
+  "name": "玻璃市",
+  "capital": "加央",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "PERL",
+  "seat": [
+   100.2,
+   6.44
+  ],
+  "suzerain": "GBR",
+  "color": "#d2b1af",
+  "basis": [
+   "MY-09"
+  ]
+ },
+ "SAR": {
+  "id": "SAR",
+  "name": "砂拉越拉者领",
+  "capital": "古晋",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SAR",
+  "seat": [
+   110.35,
+   1.55
+  ],
+  "suzerain": "GBR",
+  "color": "#d4b5b3",
+  "basis": [
+   "MY-13"
+  ]
+ },
+ "BRN": {
+  "id": "BRN",
+  "name": "文莱苏丹国",
+  "capital": "文莱城",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BRN",
+  "seat": [
+   114.94,
+   4.89
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "BRN"
+  ]
+ },
+ "EGY": {
+  "id": "EGY",
+  "name": "埃及保护国",
+  "capital": "开罗",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "EGY",
+  "seat": [
+   31.24,
+   30.05
+  ],
+  "suzerain": "GBR",
+  "color": "#d2b1af",
+  "basis": [
+   "BRT",
+   "EGY"
+  ]
+ },
+ "UGA": {
+  "id": "UGA",
+  "name": "乌干达保护国",
+  "capital": "恩德培",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "UGA",
+  "seat": [
+   32.46,
+   0.06
+  ],
+  "suzerain": "GBR",
+  "color": "#dac0be",
+  "basis": [
+   "UGA"
+  ]
+ },
+ "ZAN": {
+  "id": "ZAN",
+  "name": "桑给巴尔苏丹国",
+  "capital": "桑给巴尔",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "ZAN",
+  "seat": [
+   39.19,
+   -6.16
+  ],
+  "suzerain": "GBR",
+  "color": "#dac0be",
+  "basis": [
+   "TZZ"
+  ]
+ },
+ "NRHO": {
+  "id": "NRHO",
+  "name": "北罗得西亚",
+  "capital": "卢萨卡",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "NRHO",
+  "seat": [
+   28.29,
+   -15.42
+  ],
+  "suzerain": "GBR",
+  "color": "#dac0be",
+  "basis": [
+   "ZMB"
+  ]
+ },
+ "NYA": {
+  "id": "NYA",
+  "name": "尼亚萨兰",
+  "capital": "松巴",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "NYA",
+  "seat": [
+   35.32,
+   -15.39
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "MWI"
+  ]
+ },
+ "BECH": {
+  "id": "BECH",
+  "name": "贝专纳",
+  "capital": "马弗京",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BECH",
+  "seat": [
+   25.64,
+   -25.86
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "BWA"
+  ]
+ },
+ "BASU": {
+  "id": "BASU",
+  "name": "巴苏陀兰",
+  "capital": "马塞卢",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BASU",
+  "seat": [
+   27.48,
+   -29.31
+  ],
+  "suzerain": "GBR",
+  "color": "#dac0be",
+  "basis": [
+   "LSO"
+  ]
+ },
+ "SWAZ": {
+  "id": "SWAZ",
+  "name": "斯威士兰",
+  "capital": "姆巴巴内",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SWAZ",
+  "seat": [
+   31.13,
+   -26.32
+  ],
+  "suzerain": "GBR",
+  "color": "#d2b1af",
+  "basis": [
+   "SWZ"
+  ]
+ },
+ "KUW": {
+  "id": "KUW",
+  "name": "科威特",
+  "capital": "科威特城",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "KUW",
+  "seat": [
+   47.98,
+   29.38
+  ],
+  "suzerain": "GBR",
+  "color": "#d2b1af",
+  "basis": [
+   "KWT"
+  ]
+ },
+ "BAH": {
+  "id": "BAH",
+  "name": "巴林",
+  "capital": "麦纳麦",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BAH",
+  "seat": [
+   50.59,
+   26.23
+  ],
+  "suzerain": "GBR",
+  "color": "#dac0be",
+  "basis": [
+   "BHR"
+  ]
+ },
+ "QAT": {
+  "id": "QAT",
+  "name": "卡塔尔",
+  "capital": "多哈",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "QAT",
+  "seat": [
+   51.53,
+   25.29
+  ],
+  "suzerain": "GBR",
+  "color": "#d4b5b3",
+  "basis": [
+   "QAT"
+  ]
+ },
+ "TRUC": {
+  "id": "TRUC",
+  "name": "停战诸酋长国",
+  "capital": "沙迦",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "TRUC",
+  "seat": [
+   55.39,
+   25.36
+  ],
+  "suzerain": "GBR",
+  "color": "#d0adac",
+  "basis": [
+   "ARE"
+  ]
+ },
+ "OMAN": {
+  "id": "OMAN",
+  "name": "马斯喀特与阿曼苏丹国",
+  "capital": "马斯喀特",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "OMAN",
+  "seat": [
+   58.59,
+   23.61
+  ],
+  "suzerain": "GBR",
+  "color": "#dac0be",
+  "basis": [
+   "OMN",
+   "情景定界"
+  ]
+ },
+ "WAD": {
+  "id": "WAD",
+  "name": "西亚丁保护地",
+  "capital": "拉赫季",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "WAD",
+  "seat": [
+   44.88,
+   13.06
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "EAD": {
+  "id": "EAD",
+  "name": "东亚丁保护地",
+  "capital": "穆卡拉",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "EAD",
+  "seat": [
+   49.12,
+   14.54
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SOL": {
+  "id": "SOL",
+  "name": "所罗门群岛保护领",
+  "capital": "图拉吉",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SOL",
+  "seat": [
+   160.15,
+   -9.1
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "SLB"
+  ]
+ },
+ "TON": {
+  "id": "TON",
+  "name": "汤加王国",
+  "capital": "努库阿洛法",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "TON",
+  "seat": [
+   -175.2,
+   -21.14
+  ],
+  "suzerain": "GBR",
+  "color": "#d2b1af",
+  "basis": [
+   "TON"
+  ]
+ },
+ "SRHO": {
+  "id": "SRHO",
+  "name": "南罗得西亚",
+  "capital": "索尔兹伯里",
+  "status": "自治殖民地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "SRHO",
+  "seat": [
+   31.05,
+   -17.83
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "ZWE"
+  ]
+ },
+ "NBOR": {
+  "id": "NBOR",
+  "name": "北婆罗洲",
+  "capital": "山打根",
+  "status": "特许公司领",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "BNBC",
+  "seat": [
+   118.12,
+   5.84
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "MY-12"
+  ]
+ },
+ "IMN": {
+  "id": "IMN",
+  "name": "马恩岛",
+  "capital": "道格拉斯",
+  "status": "王室属地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "IMN",
+  "seat": [
+   -4.48,
+   54.15
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "IMN"
+  ]
+ },
+ "JER": {
+  "id": "JER",
+  "name": "泽西",
+  "capital": "圣赫利尔",
+  "status": "王室属地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "JER",
+  "seat": [
+   -2.11,
+   49.18
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "JEY"
+  ]
+ },
+ "GUE": {
+  "id": "GUE",
+  "name": "根西",
+  "capital": "圣彼得港",
+  "status": "王室属地",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "GUE",
+  "seat": [
+   -2.54,
+   49.46
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "GGY"
+  ]
+ },
+ "SHAN": {
+  "id": "SHAN",
+  "name": "掸邦",
+  "capital": "东枝",
+  "status": "地方自治辖区",
+  "sovereign": "GBR",
+  "parent": "BUR",
+  "manager": "SHAN",
+  "seat": [
+   97.04,
+   20.79
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "MM-17"
+  ]
+ },
+ "KACH": {
+  "id": "KACH",
+  "name": "克钦山区",
+  "capital": "密支那",
+  "status": "地方自治辖区",
+  "sovereign": "GBR",
+  "parent": "BUR",
+  "manager": "KACH",
+  "seat": [
+   97.4,
+   25.38
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "MM-11"
+  ]
+ },
+ "CHIN": {
+  "id": "CHIN",
+  "name": "钦山地",
+  "capital": "法兰",
+  "status": "地方自治辖区",
+  "sovereign": "GBR",
+  "parent": "BUR",
+  "manager": "CHIN",
+  "seat": [
+   93.68,
+   22.91
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "MM-14"
+  ]
+ },
+ "SGP": {
+  "id": "SGP",
+  "name": "新加坡",
+  "capital": "新加坡",
+  "status": "直辖辖区",
+  "sovereign": "GBR",
+  "parent": "STRAITS",
+  "manager": "SGP",
+  "seat": [
+   103.85,
+   1.29
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "SGP"
+  ]
+ },
+ "PEN": {
+  "id": "PEN",
+  "name": "槟榔屿及威省",
+  "capital": "乔治市",
+  "status": "直辖辖区",
+  "sovereign": "GBR",
+  "parent": "STRAITS",
+  "manager": "PEN",
+  "seat": [
+   100.33,
+   5.42
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "MY-07"
+  ]
+ },
+ "MAL": {
+  "id": "MAL",
+  "name": "马六甲",
+  "capital": "马六甲",
+  "status": "直辖辖区",
+  "sovereign": "GBR",
+  "parent": "STRAITS",
+  "manager": "MAL",
+  "seat": [
+   102.25,
+   2.19
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "MY-04"
+  ]
+ },
+ "LAB": {
+  "id": "LAB",
+  "name": "纳闽",
+  "capital": "维多利亚",
+  "status": "直辖辖区",
+  "sovereign": "GBR",
+  "parent": "STRAITS",
+  "manager": "LAB",
+  "seat": [
+   115.24,
+   5.28
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "MY-15"
+  ]
+ },
+ "CXR": {
+  "id": "CXR",
+  "name": "圣诞岛",
+  "capital": "飞鱼湾",
+  "status": "直辖辖区",
+  "sovereign": "GBR",
+  "parent": "STRAITS",
+  "manager": "CXR",
+  "seat": [
+   105.68,
+   -10.42
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "CXR"
+  ]
+ },
+ "CCK": {
+  "id": "CCK",
+  "name": "科科斯群岛",
+  "capital": "西岛",
+  "status": "直辖辖区",
+  "sovereign": "GBR",
+  "parent": "STRAITS",
+  "manager": "CCK",
+  "seat": [
+   96.83,
+   -12.19
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "CCK"
+  ]
+ },
+ "PERAK": {
+  "id": "PERAK",
+  "name": "霹雳",
+  "capital": "瓜拉江沙",
+  "status": "联邦保护邦",
+  "sovereign": "GBR",
+  "parent": "FMS",
+  "manager": "PERAK",
+  "seat": [
+   100.94,
+   4.77
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "MY-08"
+  ]
+ },
+ "SELAN": {
+  "id": "SELAN",
+  "name": "雪兰莪",
+  "capital": "巴生",
+  "status": "联邦保护邦",
+  "sovereign": "GBR",
+  "parent": "FMS",
+  "manager": "SELAN",
+  "seat": [
+   101.45,
+   3.04
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "MY-10",
+   "MY-14",
+   "MY-16"
+  ]
+ },
+ "NEGER": {
+  "id": "NEGER",
+  "name": "森美兰",
+  "capital": "芙蓉",
+  "status": "联邦保护邦",
+  "sovereign": "GBR",
+  "parent": "FMS",
+  "manager": "NEGER",
+  "seat": [
+   101.94,
+   2.73
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "MY-05"
+  ]
+ },
+ "PAHAN": {
+  "id": "PAHAN",
+  "name": "彭亨",
+  "capital": "北根",
+  "status": "联邦保护邦",
+  "sovereign": "GBR",
+  "parent": "FMS",
+  "manager": "PAHAN",
+  "seat": [
+   103.39,
+   3.49
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "MY-06"
+  ]
+ },
+ "HYD": {
+  "id": "HYD",
+  "name": "海得拉巴土邦",
+  "capital": "海得拉巴",
+  "status": "土邦",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "HYD",
+  "seat": [
+   78.49,
+   17.39
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "IN-TG",
+   "情景定界"
+  ]
+ },
+ "MYSO": {
+  "id": "MYSO",
+  "name": "迈索尔土邦",
+  "capital": "迈索尔",
+  "status": "土邦",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "MYSO",
+  "seat": [
+   76.64,
+   12.3
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KASH": {
+  "id": "KASH",
+  "name": "克什米尔与拉达克土邦",
+  "capital": "斯利那加",
+  "status": "土邦",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "KASH",
+  "seat": [
+   74.8,
+   34.08
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "IN-JK",
+   "IN-LA",
+   "KAS",
+   "PK-GB",
+   "PK-JK"
+  ]
+ },
+ "RAJP": {
+  "id": "RAJP",
+  "name": "拉杰普塔纳代理署",
+  "capital": "阿布山",
+  "status": "土邦",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "RAJP",
+  "seat": [
+   72.71,
+   24.59
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "IN-RJ"
+  ]
+ },
+ "CIND": {
+  "id": "CIND",
+  "name": "中央印度代理署",
+  "capital": "印多尔",
+  "status": "土邦",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "CIND",
+  "seat": [
+   75.86,
+   22.72
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "PUNJ": {
+  "id": "PUNJ",
+  "name": "旁遮普土邦代理署",
+  "capital": "帕蒂亚拉",
+  "status": "土邦",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "PUNJ",
+  "seat": [
+   76.39,
+   30.34
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "BALU": {
+  "id": "BALU",
+  "name": "俾路支土邦",
+  "capital": "卡拉特",
+  "status": "土邦",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "BALU",
+  "seat": [
+   66.59,
+   29.03
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "LAO": {
+  "id": "LAO",
+  "name": "法属老挝保护国",
+  "capital": "万象",
+  "status": "保护国",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "LAO",
+  "seat": [
+   102.63,
+   17.97
+  ],
+  "suzerain": "FRA",
+  "color": "#b3ccdb",
+  "basis": [
+   "LAO"
+  ]
+ },
+ "CAM": {
+  "id": "CAM",
+  "name": "法属柬埔寨保护国",
+  "capital": "金边",
+  "status": "保护国",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "CAM",
+  "seat": [
+   104.92,
+   11.56
+  ],
+  "suzerain": "FRA",
+  "color": "#b7cedc",
+  "basis": [
+   "KHM"
+  ]
+ },
+ "TUN": {
+  "id": "TUN",
+  "name": "突尼斯保护国",
+  "capital": "突尼斯",
+  "status": "保护国",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "TUN",
+  "seat": [
+   10.18,
+   36.81
+  ],
+  "suzerain": "FRA",
+  "color": "#a6c3d5",
+  "basis": [
+   "TUN"
+  ]
+ },
+ "FMOR": {
+  "id": "FMOR",
+  "name": "摩洛哥法国保护区",
+  "capital": "拉巴特",
+  "status": "保护国",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "FMOR",
+  "seat": [
+   -6.83,
+   34.02
+  ],
+  "suzerain": "FRA",
+  "color": "#aac6d7",
+  "basis": [
+   "MAR"
+  ]
+ },
+ "MAC": {
+  "id": "MAC",
+  "name": "葡属澳门",
+  "capital": "澳门",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "MAC",
+  "seat": [
+   113.54,
+   22.19
+  ],
+  "color": "#d7dac5",
+  "basis": [
+   "MAC"
+  ]
+ },
+ "TIM": {
+  "id": "TIM",
+  "name": "葡属帝汶",
+  "capital": "帝力",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "TIM",
+  "seat": [
+   125.58,
+   -8.56
+  ],
+  "color": "#ccd1b4",
+  "basis": [
+   "TLS"
+  ]
+ },
+ "ANG": {
+  "id": "ANG",
+  "name": "安哥拉",
+  "capital": "罗安达",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "ANG",
+  "seat": [
+   13.23,
+   -8.82
+  ],
+  "color": "#d5d8c2",
+  "basis": [
+   "AGO"
+  ]
+ },
+ "CAB": {
+  "id": "CAB",
+  "name": "卡宾达",
+  "capital": "卡宾达",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "CAB",
+  "seat": [
+   12.19,
+   -5.55
+  ],
+  "color": "#ccd1b4",
+  "basis": [
+   "岛链重分"
+  ]
+ },
+ "MOZ": {
+  "id": "MOZ",
+  "name": "莫桑比克",
+  "capital": "洛伦索马贵斯",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "MOZ",
+  "seat": [
+   32.57,
+   -25.97
+  ],
+  "color": "#ccd1b4",
+  "basis": [
+   "MOZ"
+  ]
+ },
+ "PGN": {
+  "id": "PGN",
+  "name": "葡属几内亚",
+  "capital": "博拉马",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "PGN",
+  "seat": [
+   -15.48,
+   11.58
+  ],
+  "color": "#ced2b8",
+  "basis": [
+   "GNB"
+  ]
+ },
+ "CPV": {
+  "id": "CPV",
+  "name": "佛得角",
+  "capital": "普拉亚",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "CPV",
+  "seat": [
+   -23.51,
+   14.92
+  ],
+  "color": "#d7dac5",
+  "basis": [
+   "CPV"
+  ]
+ },
+ "STP": {
+  "id": "STP",
+  "name": "圣多美和普林西比",
+  "capital": "圣多美",
+  "status": "殖民地",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "STP",
+  "seat": [
+   6.73,
+   0.34
+  ],
+  "color": "#ced2b8",
+  "basis": [
+   "STP"
+  ]
+ },
+ "DEI": {
+  "id": "DEI",
+  "name": "荷属东印度",
+  "capital": "巴达维亚",
+  "status": "殖民地",
+  "sovereign": "NLD",
+  "parent": "NLD",
+  "manager": "DEI",
+  "seat": [
+   106.83,
+   -6.13
+  ],
+  "color": "#d6cb9c",
+  "basis": [
+   "IDN"
+  ]
+ },
+ "SUR": {
+  "id": "SUR",
+  "name": "荷属苏里南",
+  "capital": "帕拉马里博",
+  "status": "殖民地",
+  "sovereign": "NLD",
+  "parent": "NLD",
+  "manager": "SUR",
+  "seat": [
+   -55.17,
+   5.85
+  ],
+  "color": "#ddd4ae",
+  "basis": [
+   "SUR"
+  ]
+ },
+ "DANT": {
+  "id": "DANT",
+  "name": "荷属安的列斯",
+  "capital": "威廉斯塔德",
+  "status": "殖民地",
+  "sovereign": "NLD",
+  "parent": "NLD",
+  "manager": "DANT",
+  "seat": [
+   -68.93,
+   12.11
+  ],
+  "color": "#d8cda0",
+  "basis": [
+   "ABW",
+   "CUW",
+   "NLY",
+   "SXM"
+  ]
+ },
+ "JAVA": {
+  "id": "JAVA",
+  "name": "爪哇及马都拉",
+  "capital": "巴达维亚",
+  "status": "行政区",
+  "sovereign": "NLD",
+  "parent": "DEI",
+  "manager": "JAVA",
+  "seat": [
+   106.83,
+   -6.13
+  ],
+  "color": "#d9d0a5",
+  "basis": [
+   "ID-BT",
+   "ID-JB",
+   "ID-JI",
+   "ID-JK",
+   "ID-JT",
+   "ID-YO"
+  ]
+ },
+ "SUM": {
+  "id": "SUM",
+  "name": "苏门答腊",
+  "capital": "棉兰",
+  "status": "行政区",
+  "sovereign": "NLD",
+  "parent": "DEI",
+  "manager": "SUM",
+  "seat": [
+   98.67,
+   3.59
+  ],
+  "color": "#ded6b3",
+  "basis": [
+   "ID-AC",
+   "ID-BB",
+   "ID-BE",
+   "ID-JA",
+   "ID-KR",
+   "ID-LA",
+   "ID-RI",
+   "ID-SB",
+   "ID-SS",
+   "ID-SU"
+  ]
+ },
+ "DBOR": {
+  "id": "DBOR",
+  "name": "荷属婆罗洲",
+  "capital": "坤甸",
+  "status": "行政区",
+  "sovereign": "NLD",
+  "parent": "DEI",
+  "manager": "DBOR",
+  "seat": [
+   109.34,
+   -0.03
+  ],
+  "color": "#d8cda0",
+  "basis": [
+   "ID-KB",
+   "ID-KI",
+   "ID-KS",
+   "ID-KT"
+  ]
+ },
+ "SUL": {
+  "id": "SUL",
+  "name": "苏拉威西",
+  "capital": "望加锡",
+  "status": "行政区",
+  "sovereign": "NLD",
+  "parent": "DEI",
+  "manager": "SUL",
+  "seat": [
+   119.41,
+   -5.14
+  ],
+  "color": "#ddd4ae",
+  "basis": [
+   "ID-GO",
+   "ID-SA",
+   "ID-SG",
+   "ID-SN",
+   "ID-SR",
+   "ID-ST"
+  ]
+ },
+ "MOL": {
+  "id": "MOL",
+  "name": "摩鹿加",
+  "capital": "安汶",
+  "status": "行政区",
+  "sovereign": "NLD",
+  "parent": "DEI",
+  "manager": "MOL",
+  "seat": [
+   128.18,
+   -3.7
+  ],
+  "color": "#ddd4ae",
+  "basis": [
+   "ID-MA",
+   "ID-MU"
+  ]
+ },
+ "SUN": {
+  "id": "SUN",
+  "name": "小巽他",
+  "capital": "古邦",
+  "status": "行政区",
+  "sovereign": "NLD",
+  "parent": "DEI",
+  "manager": "SUN",
+  "seat": [
+   123.61,
+   -10.16
+  ],
+  "color": "#d6cb9c",
+  "basis": [
+   "ID-NB",
+   "ID-NT"
+  ]
+ },
+ "WNG": {
+  "id": "WNG",
+  "name": "西新几内亚",
+  "capital": "荷兰迪亚",
+  "status": "行政区",
+  "sovereign": "NLD",
+  "parent": "DEI",
+  "manager": "WNG",
+  "seat": [
+   140.7,
+   -2.53
+  ],
+  "color": "#d9d0a5",
+  "basis": [
+   "ID-PA",
+   "ID-PB"
+  ]
+ },
+ "BALI": {
+  "id": "BALI",
+  "name": "巴厘诸王公领",
+  "capital": "新加拉惹",
+  "status": "王公自治辖区",
+  "sovereign": "NLD",
+  "parent": "SUN",
+  "manager": "BALI",
+  "seat": [
+   115.09,
+   -8.11
+  ],
+  "color": "#ddd4ae",
+  "basis": [
+   "ID-BA"
+  ]
+ },
+ "VIRG": {
+  "id": "VIRG",
+  "name": "弗吉尼亚州",
+  "capital": "里士满",
+  "status": "创始州",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "VIRG",
+  "seat": [
+   -77.44,
+   37.54
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "US-KY",
+   "US-VA",
+   "US-WV"
+  ]
+ },
+ "NCAR": {
+  "id": "NCAR",
+  "name": "北卡罗来纳州",
+  "capital": "罗利",
+  "status": "创始州",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "NCAR",
+  "seat": [
+   -78.64,
+   35.78
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "US-NC",
+   "US-TN"
+  ]
+ },
+ "SCAR": {
+  "id": "SCAR",
+  "name": "南卡罗来纳州",
+  "capital": "哥伦比亚",
+  "status": "创始州",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "SCAR",
+  "seat": [
+   -81.03,
+   34
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "US-SC"
+  ]
+ },
+ "GEOR": {
+  "id": "GEOR",
+  "name": "佐治亚州",
+  "capital": "亚特兰大",
+  "status": "创始州",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "GEOR",
+  "seat": [
+   -84.39,
+   33.75
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "US-AL",
+   "US-GA",
+   "US-MS"
+  ]
+ },
+ "EFL": {
+  "id": "EFL",
+  "name": "东佛罗里达",
+  "capital": "圣奥古斯丁",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "EFL",
+  "seat": [
+   -81.31,
+   29.89
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "US-FL"
+  ]
+ },
+ "WFL": {
+  "id": "WFL",
+  "name": "西佛罗里达",
+  "capital": "彭萨科拉",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "WFL",
+  "seat": [
+   -87.22,
+   30.42
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "FPAR": {
+  "id": "FPAR",
+  "name": "佛罗里达诸教区",
+  "capital": "巴吞鲁日",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "FPAR",
+  "seat": [
+   -91.14,
+   30.45
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "BHS": {
+  "id": "BHS",
+  "name": "巴哈马",
+  "capital": "拿骚",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "BHS",
+  "seat": [
+   -77.34,
+   25.08
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "BHS"
+  ]
+ },
+ "JAM": {
+  "id": "JAM",
+  "name": "牙买加及开曼",
+  "capital": "金斯敦",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "JAM",
+  "seat": [
+   -76.79,
+   17.99
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "CYM",
+   "JAM"
+  ]
+ },
+ "TCA": {
+  "id": "TCA",
+  "name": "特克斯和凯科斯",
+  "capital": "科伯恩城",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "TCA",
+  "seat": [
+   -71.14,
+   21.46
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "TCA"
+  ]
+ },
+ "LEE": {
+  "id": "LEE",
+  "name": "背风群岛",
+  "capital": "圣约翰",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "LEE",
+  "seat": [
+   -61.85,
+   17.12
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "ACA",
+   "ACB",
+   "AIA",
+   "KNA",
+   "MSR",
+   "VGB"
+  ]
+ },
+ "WIND": {
+  "id": "WIND",
+  "name": "向风群岛",
+  "capital": "圣乔治",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "WIND",
+  "seat": [
+   -61.75,
+   12.05
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "DMA",
+   "GRD",
+   "LCA",
+   "VCT"
+  ]
+ },
+ "BRB": {
+  "id": "BRB",
+  "name": "巴巴多斯",
+  "capital": "布里奇敦",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "BRB",
+  "seat": [
+   -59.62,
+   13.1
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "BRB"
+  ]
+ },
+ "TTO": {
+  "id": "TTO",
+  "name": "特立尼达和多巴哥",
+  "capital": "西班牙港",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "TTO",
+  "seat": [
+   -61.52,
+   10.66
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "TTO"
+  ]
+ },
+ "BMU": {
+  "id": "BMU",
+  "name": "百慕大",
+  "capital": "汉密尔顿",
+  "status": "辖区",
+  "sovereign": "GBR",
+  "parent": "BAA",
+  "manager": "BMU",
+  "seat": [
+   -64.78,
+   32.29
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "BMU"
+  ]
+ },
+ "ALA-US": {
+  "id": "ALA-US",
+  "name": "阿拉斯加领地",
+  "capital": "朱诺",
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "ALA-US",
+  "seat": [
+   -134.42,
+   58.3
+  ],
+  "color": "#bbcecb",
+  "basis": [
+   "US-AK"
+  ]
+ },
+ "GUAM": {
+  "id": "GUAM",
+  "name": "关岛",
+  "capital": "阿加尼亚",
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "GUAM",
+  "seat": [
+   144.75,
+   13.48
+  ],
+  "color": "#b7ccc8",
+  "basis": [
+   "GUM"
+  ]
+ },
+ "WAKE": {
+  "id": "WAKE",
+  "name": "威克岛",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "WAKE",
+  "color": "#afc6c2",
+  "basis": [
+   "WQI"
+  ]
+ },
+ "JOHN": {
+  "id": "JOHN",
+  "name": "约翰斯顿岛",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "JOHN",
+  "color": "#b3c9c5",
+  "basis": [
+   "JQI"
+  ]
+ },
+ "PALM": {
+  "id": "PALM",
+  "name": "巴尔米拉环礁",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "PALM",
+  "color": "#b7ccc8",
+  "basis": [
+   "LQI"
+  ]
+ },
+ "KING": {
+  "id": "KING",
+  "name": "金曼礁",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "KING",
+  "color": "#b3c9c5",
+  "basis": [
+   "KQI"
+  ]
+ },
+ "HOW": {
+  "id": "HOW",
+  "name": "豪兰岛",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "HOW",
+  "color": "#b7ccc8",
+  "basis": [
+   "HQI"
+  ]
+ },
+ "BAKER": {
+  "id": "BAKER",
+  "name": "贝克岛",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "BAKER",
+  "color": "#b3c9c5",
+  "basis": [
+   "FQI"
+  ]
+ },
+ "JAR": {
+  "id": "JAR",
+  "name": "贾维斯岛",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "JAR",
+  "color": "#bbcecb",
+  "basis": [
+   "DQI"
+  ]
+ },
+ "ASAM": {
+  "id": "ASAM",
+  "name": "东萨摩亚",
+  "capital": "帕果帕果",
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "ASAM",
+  "seat": [
+   -170.7,
+   -14.28
+  ],
+  "color": "#afc6c2",
+  "basis": [
+   "ASM"
+  ]
+ },
+ "NAVA": {
+  "id": "NAVA",
+  "name": "纳瓦萨岛",
+  "capital": null,
+  "status": "直属领地",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "NAVA",
+  "color": "#a7c1bc",
+  "basis": [
+   "BQI"
+  ]
+ },
+ "NWD": {
+  "id": "NWD",
+  "name": "美属西北开发区",
+  "capital": "温尼伯",
+  "status": "特许公司领",
+  "sovereign": "USA",
+  "parent": "USA",
+  "manager": "NWCO",
+  "seat": [
+   -97.14,
+   49.9
+  ],
+  "color": "#bbcecb",
+  "basis": [
+   "CAN"
+  ]
+ },
+ "NWP": {
+  "id": "NWP",
+  "name": "太平洋辖区",
+  "capital": "维多利亚",
+  "status": "辖区",
+  "sovereign": "USA",
+  "parent": "NWD",
+  "manager": "NWCO",
+  "seat": [
+   -123.37,
+   48.43
+  ],
+  "color": "#bbcecb",
+  "basis": [
+   "CA-BC"
+  ]
+ },
+ "NWS": {
+  "id": "NWS",
+  "name": "草原辖区",
+  "capital": "温尼伯",
+  "status": "辖区",
+  "sovereign": "USA",
+  "parent": "NWD",
+  "manager": "NWCO",
+  "seat": [
+   -97.14,
+   49.9
+  ],
+  "color": "#afc6c2",
+  "basis": [
+   "CA-AB",
+   "CA-MB",
+   "CA-SK"
+  ]
+ },
+ "NWY": {
+  "id": "NWY",
+  "name": "育空辖区",
+  "capital": "道森",
+  "status": "辖区",
+  "sovereign": "USA",
+  "parent": "NWD",
+  "manager": "NWCO",
+  "seat": [
+   -139.43,
+   64.06
+  ],
+  "color": "#afc6c2",
+  "basis": [
+   "CA-YT"
+  ]
+ },
+ "NWM": {
+  "id": "NWM",
+  "name": "麦肯齐辖区",
+  "capital": "辛普森堡",
+  "status": "辖区",
+  "sovereign": "USA",
+  "parent": "NWD",
+  "manager": "NWCO",
+  "seat": [
+   -121.35,
+   61.86
+  ],
+  "color": "#afc6c2",
+  "basis": [
+   "CA-NT",
+   "CA-NU"
+  ]
+ },
+ "NWA": {
+  "id": "NWA",
+  "name": "西部北极群岛辖区",
+  "capital": "剑桥湾",
+  "status": "辖区",
+  "sovereign": "USA",
+  "parent": "NWD",
+  "manager": "NWCO",
+  "seat": [
+   -105.05,
+   69.12
+  ],
+  "color": "#afc6c2",
+  "basis": [
+   "岛链重分"
+  ]
+ },
+ "BOH": {
+  "id": "BOH",
+  "name": "波希米亚王国",
+  "capital": "布拉格",
+  "status": "王冠监护属邦",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "BOH",
+  "seat": [
+   14.42,
+   50.08
+  ],
+  "suzerain": "DEU",
+  "note": "波希米亚、摩拉维亚与奥属西里西亚受德意志王冠监护。",
+  "color": "#b5c3b0",
+  "basis": [
+   "CZE"
+  ]
+ },
+ "GAT": {
+  "id": "GAT",
+  "name": "德属奥地利",
+  "capital": "维也纳",
+  "status": "王冠领",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "GAT",
+  "seat": [
+   16.37,
+   48.21
+  ],
+  "color": "#c0cbbb",
+  "basis": [
+   "AUT",
+   "IT-BZ"
+  ]
+ },
+ "SLO": {
+  "id": "SLO",
+  "name": "斯洛伐克",
+  "capital": "布拉迪斯拉发",
+  "status": "自治领",
+  "sovereign": "HUN",
+  "parent": "HUN",
+  "manager": "SLO",
+  "seat": [
+   17.11,
+   48.15
+  ],
+  "color": "#d7ccdc",
+  "basis": [
+   "SVK"
+  ]
+ },
+ "TRANS": {
+  "id": "TRANS",
+  "name": "特兰西瓦尼亚自治公国",
+  "capital": "克卢日",
+  "status": "自治领",
+  "sovereign": "HUN",
+  "parent": "HUN",
+  "manager": "TRANS",
+  "seat": [
+   23.59,
+   46.77
+  ],
+  "color": "#d3c6d8",
+  "basis": [
+   "RO-AB",
+   "RO-AR",
+   "RO-BH",
+   "RO-BN",
+   "RO-BV",
+   "RO-CJ",
+   "RO-CS",
+   "RO-CV",
+   "RO-HD",
+   "RO-HR",
+   "RO-MM",
+   "RO-MS",
+   "RO-SB",
+   "RO-SJ",
+   "RO-SM",
+   "RO-TM"
+  ]
+ },
+ "RUTH": {
+  "id": "RUTH",
+  "name": "喀尔巴阡鲁塞尼亚",
+  "capital": "乌日霍罗德",
+  "status": "自治领",
+  "sovereign": "HUN",
+  "parent": "HUN",
+  "manager": "RUTH",
+  "seat": [
+   22.3,
+   48.62
+  ],
+  "color": "#d9cede",
+  "basis": [
+   "UA-21"
+  ]
+ },
+ "VOJV": {
+  "id": "VOJV",
+  "name": "伏伊伏丁那",
+  "capital": "诺维萨德",
+  "status": "自治领",
+  "sovereign": "HUN",
+  "parent": "HUN",
+  "manager": "VOJV",
+  "seat": [
+   19.84,
+   45.25
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "SRV"
+  ]
+ },
+ "STEP": {
+  "id": "STEP",
+  "name": "草原自治领",
+  "capital": "阿克莫林斯克",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "STEP",
+  "seat": [
+   71.43,
+   51.17
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "KAB",
+   "KAZ"
+  ]
+ },
+ "SEMI": {
+  "id": "SEMI",
+  "name": "七河自治领",
+  "capital": "维尔内",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "SEMI",
+  "seat": [
+   76.94,
+   43.25
+  ],
+  "color": "#bcbdd1",
+  "basis": [
+   "KGZ",
+   "KZ-ALA",
+   "KZ-ZHA"
+  ]
+ },
+ "TURK": {
+  "id": "TURK",
+  "name": "突厥斯坦自治共和国",
+  "capital": "塔什干",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "TURK",
+  "seat": [
+   69.24,
+   41.3
+  ],
+  "color": "#bcbdd1",
+  "basis": [
+   "KZ-KZY",
+   "KZ-YUZ",
+   "UZB"
+  ]
+ },
+ "CASP": {
+  "id": "CASP",
+  "name": "外里海自治领",
+  "capital": "阿什哈巴德",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "CASP",
+  "seat": [
+   58.38,
+   37.96
+  ],
+  "color": "#b9b9ce",
+  "basis": [
+   "KZ-MAN",
+   "TKM"
+  ]
+ },
+ "KUB": {
+  "id": "KUB",
+  "name": "库班及切尔克斯自治领",
+  "capital": "叶卡捷琳诺达尔",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "KUB",
+  "seat": [
+   38.98,
+   45.04
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "RU-AD",
+   "RU-KC",
+   "RU-KDA"
+  ]
+ },
+ "TEREK": {
+  "id": "TEREK",
+  "name": "捷列克自治领",
+  "capital": "弗拉季高加索",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "TEREK",
+  "seat": [
+   44.68,
+   43.04
+  ],
+  "color": "#b9b9ce",
+  "basis": [
+   "RU-STA"
+  ]
+ },
+ "DAG": {
+  "id": "DAG",
+  "name": "达吉斯坦自治共和国",
+  "capital": "彼得罗夫斯克",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "DAG",
+  "seat": [
+   47.5,
+   42.98
+  ],
+  "color": "#b5b6cc",
+  "basis": [
+   "RU-DA"
+  ]
+ },
+ "KAL": {
+  "id": "KAL",
+  "name": "卡尔梅克自治地区",
+  "capital": "埃利斯塔",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "KAL",
+  "seat": [
+   44.27,
+   46.31
+  ],
+  "color": "#b5b6cc",
+  "basis": [
+   "RU-KL"
+  ]
+ },
+ "TAT": {
+  "id": "TAT",
+  "name": "鞑靼自治共和国",
+  "capital": "喀山",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "TAT",
+  "seat": [
+   49.12,
+   55.79
+  ],
+  "color": "#c6c6d7",
+  "basis": [
+   "RU-TA"
+  ]
+ },
+ "BASH": {
+  "id": "BASH",
+  "name": "巴什基尔自治共和国",
+  "capital": "乌法",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "BASH",
+  "seat": [
+   55.97,
+   54.74
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "RU-BA"
+  ]
+ },
+ "CHUV": {
+  "id": "CHUV",
+  "name": "楚瓦什自治地区",
+  "capital": "切博克萨雷",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "CHUV",
+  "seat": [
+   47.25,
+   56.14
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "RU-CU"
+  ]
+ },
+ "KOMI": {
+  "id": "KOMI",
+  "name": "科米自治地区",
+  "capital": "瑟克特夫卡尔",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "KOMI",
+  "seat": [
+   50.84,
+   61.67
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "RU-KO"
+  ]
+ },
+ "BURY": {
+  "id": "BURY",
+  "name": "布里亚特自治地区",
+  "capital": "上乌金斯克",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "BURY",
+  "seat": [
+   107.58,
+   51.83
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "RU-BU"
+  ]
+ },
+ "YAK": {
+  "id": "YAK",
+  "name": "雅库特自治地区",
+  "capital": "雅库茨克",
+  "status": "自治领",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "YAK",
+  "seat": [
+   129.73,
+   62.03
+  ],
+  "color": "#b9b9ce",
+  "basis": [
+   "RU-SA"
+  ]
+ },
+ "BUKH": {
+  "id": "BUKH",
+  "name": "布哈拉酋长国",
+  "capital": "布哈拉",
+  "status": "保护国",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "BUKH",
+  "seat": [
+   64.42,
+   39.77
+  ],
+  "suzerain": "RUS",
+  "color": "#c2c3d5",
+  "basis": [
+   "TJK",
+   "UZ-BU",
+   "UZ-QA",
+   "UZ-SU",
+   "情景定界"
+  ]
+ },
+ "KHIV": {
+  "id": "KHIV",
+  "name": "希瓦汗国",
+  "capital": "希瓦",
+  "status": "保护国",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "KHIV",
+  "seat": [
+   60.36,
+   41.38
+  ],
+  "suzerain": "RUS",
+  "color": "#b5b6cc",
+  "basis": [
+   "TM-D",
+   "UZ-XO",
+   "情景定界"
+  ]
+ },
+ "PAM": {
+  "id": "PAM",
+  "name": "帕米尔边防区",
+  "capital": "霍罗格",
+  "status": "边防区",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "PAM",
+  "seat": [
+   71.55,
+   37.49
+  ],
+  "color": "#b5b6cc",
+  "basis": [
+   "TJ-GB"
+  ]
+ },
+ "CRIM": {
+  "id": "CRIM",
+  "name": "克里米亚",
+  "capital": "辛菲罗波尔",
+  "status": "实际控制区",
+  "sovereign": "RUS",
+  "parent": "RUS",
+  "manager": "RUS",
+  "seat": [
+   34.1,
+   44.95
+  ],
+  "claims": [
+   "UKR"
+  ],
+  "color": "#acadc6",
+  "basis": [
+   "UA-40",
+   "UA-43"
+  ]
+ },
+ "CHECH": {
+  "id": "CHECH",
+  "name": "车臣",
+  "capital": "格罗兹尼",
+  "status": "地方自治辖区",
+  "sovereign": "RUS",
+  "parent": "TEREK",
+  "manager": "CHECH",
+  "seat": [
+   45.69,
+   43.32
+  ],
+  "color": "#c6c6d7",
+  "basis": [
+   "RU-CE"
+  ]
+ },
+ "ING": {
+  "id": "ING",
+  "name": "印古什",
+  "capital": "纳兹兰",
+  "status": "地方自治辖区",
+  "sovereign": "RUS",
+  "parent": "TEREK",
+  "manager": "ING",
+  "seat": [
+   44.77,
+   43.22
+  ],
+  "color": "#b5b6cc",
+  "basis": [
+   "RU-IN"
+  ]
+ },
+ "OSN": {
+  "id": "OSN",
+  "name": "北奥塞梯",
+  "capital": "弗拉季高加索",
+  "status": "地方自治辖区",
+  "sovereign": "RUS",
+  "parent": "TEREK",
+  "manager": "OSN",
+  "seat": [
+   44.68,
+   43.04
+  ],
+  "color": "#b5b6cc",
+  "basis": [
+   "RU-SE"
+  ]
+ },
+ "KABAR": {
+  "id": "KABAR",
+  "name": "卡巴尔达",
+  "capital": "纳尔奇克",
+  "status": "地方自治辖区",
+  "sovereign": "RUS",
+  "parent": "TEREK",
+  "manager": "KABAR",
+  "seat": [
+   43.61,
+   43.48
+  ],
+  "color": "#c6c6d7",
+  "basis": [
+   "RU-KB"
+  ]
+ },
+ "ABK": {
+  "id": "ABK",
+  "name": "阿布哈兹",
+  "capital": "苏呼米",
+  "status": "自治地区",
+  "sovereign": "GEO",
+  "parent": "GEO",
+  "manager": "ABK",
+  "seat": [
+   41.02,
+   43
+  ],
+  "color": "#c7d8d3",
+  "basis": [
+   "GE-AB"
+  ]
+ },
+ "ADJ": {
+  "id": "ADJ",
+  "name": "阿扎尔",
+  "capital": "巴统",
+  "status": "自治地区",
+  "sovereign": "GEO",
+  "parent": "GEO",
+  "manager": "ADJ",
+  "seat": [
+   41.64,
+   41.65
+  ],
+  "color": "#cadad5",
+  "basis": [
+   "GEA"
+  ]
+ },
+ "OSS": {
+  "id": "OSS",
+  "name": "南奥塞梯",
+  "capital": "茨欣瓦利",
+  "status": "自治地区",
+  "sovereign": "GEO",
+  "parent": "GEO",
+  "manager": "OSS",
+  "seat": [
+   43.97,
+   42.23
+  ],
+  "color": "#cfded9",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "NAKH": {
+  "id": "NAKH",
+  "name": "纳希切万自治飞地",
+  "capital": "纳希切万",
+  "status": "自治地区",
+  "sovereign": "AZE",
+  "parent": "AZE",
+  "manager": "NAKH",
+  "seat": [
+   45.41,
+   39.21
+  ],
+  "color": "#dcc4c9",
+  "basis": [
+   "AZ-BAB",
+   "AZ-CUL",
+   "AZ-KAN",
+   "AZ-NX",
+   "AZ-ORD",
+   "AZ-SAD",
+   "AZ-SAH",
+   "AZ-SAR"
+  ]
+ },
+ "KARA": {
+  "id": "KARA",
+  "name": "上卡拉巴赫",
+  "capital": "斯捷潘纳克特",
+  "status": "自治地区",
+  "sovereign": "AZE",
+  "parent": "AZE",
+  "manager": "KARA",
+  "seat": [
+   46.75,
+   39.82
+  ],
+  "color": "#e0ccd1",
+  "basis": [
+   "AZ-SUS",
+   "AZ-X01~",
+   "AZ-XA",
+   "AZ-XCI",
+   "AZ-XVD"
+  ]
+ },
+ "SYR": {
+  "id": "SYR",
+  "name": "叙利亚联邦领",
+  "capital": "大马士革",
+  "status": "联邦自治领",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "SYR",
+  "seat": [
+   36.29,
+   33.51
+  ],
+  "color": "#cfc2a4",
+  "basis": [
+   "SYU",
+   "SYX"
+  ]
+ },
+ "LEB": {
+  "id": "LEB",
+  "name": "黎巴嫩山自治公国",
+  "capital": "贝特丁",
+  "status": "联邦自治领",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "LEB",
+  "seat": [
+   35.58,
+   33.7
+  ],
+  "color": "#cdbf9f",
+  "basis": [
+   "LBN"
+  ]
+ },
+ "PAL": {
+  "id": "PAL",
+  "name": "巴勒斯坦特别行政区",
+  "capital": "耶路撒冷",
+  "status": "联邦自治领",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "PAL",
+  "seat": [
+   35.21,
+   31.78
+  ],
+  "color": "#d6cbb2",
+  "basis": [
+   "GAZ",
+   "ISR",
+   "JOR",
+   "WEB"
+  ]
+ },
+ "IRAQ": {
+  "id": "IRAQ",
+  "name": "伊拉克联邦领",
+  "capital": "巴格达",
+  "status": "联邦自治领",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "IRAQ",
+  "seat": [
+   44.37,
+   33.32
+  ],
+  "color": "#cdbf9f",
+  "basis": [
+   "IRK",
+   "IRR"
+  ]
+ },
+ "KURD": {
+  "id": "KURD",
+  "name": "库尔德自治诸省",
+  "capital": "迪亚巴克尔",
+  "status": "联邦自治领",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "KURD",
+  "seat": [
+   40.23,
+   37.91
+  ],
+  "color": "#d3c8ad",
+  "basis": [
+   "TR-04",
+   "TR-12",
+   "TR-13",
+   "TR-21",
+   "TR-30",
+   "TR-47",
+   "TR-49",
+   "TR-56",
+   "TR-65",
+   "TR-72",
+   "TR-73"
+  ]
+ },
+ "HASA": {
+  "id": "HASA",
+  "name": "哈萨自治省",
+  "capital": "胡富夫",
+  "status": "联邦自治领",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "HASA",
+  "seat": [
+   49.59,
+   25.38
+  ],
+  "color": "#d1c5a9",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TIH": {
+  "id": "TIH",
+  "name": "帖哈麦沿海自治辖区",
+  "capital": "荷台达",
+  "status": "联邦自治领",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "TIH",
+  "seat": [
+   42.95,
+   14.8
+  ],
+  "color": "#cdbf9f",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "HEJ": {
+  "id": "HEJ",
+  "name": "希贾兹谢里夫国",
+  "capital": "麦加",
+  "status": "藩属",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "HEJ",
+  "seat": [
+   39.83,
+   21.42
+  ],
+  "suzerain": "OTT",
+  "color": "#d6cbb2",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SHAM": {
+  "id": "SHAM",
+  "name": "杰贝勒沙马尔",
+  "capital": "哈伊勒",
+  "status": "藩属",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "SHAM",
+  "seat": [
+   41.69,
+   27.52
+  ],
+  "suzerain": "OTT",
+  "color": "#d1c5a9",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ASIR": {
+  "id": "ASIR",
+  "name": "阿西尔藩属",
+  "capital": "艾卜哈",
+  "status": "藩属",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "ASIR",
+  "seat": [
+   42.51,
+   18.22
+  ],
+  "suzerain": "OTT",
+  "color": "#d1c5a9",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "CYP": {
+  "id": "CYP",
+  "name": "塞浦路斯",
+  "capital": "尼科西亚",
+  "status": "租借地",
+  "sovereign": "OTT",
+  "parent": "OTT",
+  "manager": "GBR",
+  "seat": [
+   33.36,
+   35.18
+  ],
+  "color": "#d3b5ac",
+  "basis": [
+   "CNM",
+   "CYN",
+   "CYP",
+   "ESB",
+   "WSB"
+  ]
+ },
+ "BEIR": {
+  "id": "BEIR",
+  "name": "贝鲁特特别港区",
+  "capital": "贝鲁特",
+  "status": "特别港区",
+  "sovereign": "OTT",
+  "parent": "LEB",
+  "manager": "BEIR",
+  "seat": [
+   35.5,
+   33.9
+  ],
+  "color": "#cfc2a4",
+  "basis": [
+   "LB-BA"
+  ]
+ },
+ "IMAM": {
+  "id": "IMAM",
+  "name": "阿曼内陆伊玛目区",
+  "capital": "尼兹瓦",
+  "status": "地方自治辖区",
+  "sovereign": "GBR",
+  "parent": "OMAN",
+  "manager": "IMAM",
+  "seat": [
+   57.53,
+   22.93
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "MAHR": {
+  "id": "MAHR",
+  "name": "迈赫拉保护国",
+  "capital": "基什恩",
+  "status": "保护国",
+  "sovereign": "GBR",
+  "parent": "EAD",
+  "manager": "MAHR",
+  "seat": [
+   51.68,
+   15.42
+  ],
+  "suzerain": "GBR",
+  "color": "#d4b5b3",
+  "basis": [
+   "岛链重分",
+   "情景定界"
+  ]
+ },
+ "SUD": {
+  "id": "SUD",
+  "name": "英埃苏丹",
+  "capital": "喀土穆",
+  "status": "共管领",
+  "sovereign": "GBR",
+  "parent": "GBR",
+  "manager": "ANGLOEG",
+  "seat": [
+   32.53,
+   15.5
+  ],
+  "coSovereigns": [
+   "GBR",
+   "EGY"
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "SDN",
+   "SDS"
+  ]
+ },
+ "DAR": {
+  "id": "DAR",
+  "name": "达尔富尔苏丹国",
+  "capital": "法希尔",
+  "status": "共同保护国",
+  "sovereign": "GBR",
+  "parent": "SUD",
+  "manager": "ANGLOEG",
+  "seat": [
+   25.35,
+   13.63
+  ],
+  "suzerain": "GBR",
+  "coSovereigns": [
+   "GBR",
+   "EGY"
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "NILE": {
+  "id": "NILE",
+  "name": "尼罗河行政区",
+  "capital": "喀土穆",
+  "status": "行政区",
+  "sovereign": "GBR",
+  "parent": "SUD",
+  "manager": "NILE",
+  "seat": [
+   32.53,
+   15.5
+  ],
+  "coSovereigns": [
+   "GBR",
+   "EGY"
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KORD": {
+  "id": "KORD",
+  "name": "科尔多凡及青尼罗河区",
+  "capital": "欧拜伊德",
+  "status": "行政区",
+  "sovereign": "GBR",
+  "parent": "SUD",
+  "manager": "KORD",
+  "seat": [
+   30.22,
+   13.18
+  ],
+  "coSovereigns": [
+   "GBR",
+   "EGY"
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "EQUA": {
+  "id": "EQUA",
+  "name": "赤道及加扎勒河区",
+  "capital": "朱巴",
+  "status": "行政区",
+  "sovereign": "GBR",
+  "parent": "SUD",
+  "manager": "EQUA",
+  "seat": [
+   31.6,
+   4.85
+  ],
+  "coSovereigns": [
+   "GBR",
+   "EGY"
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "CAIRO": {
+  "id": "CAIRO",
+  "name": "开罗都城区",
+  "capital": "开罗",
+  "status": "直属管理区",
+  "sovereign": "GBR",
+  "parent": "EGY",
+  "manager": "COLONIAL",
+  "seat": [
+   31.24,
+   30.05
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SUEZ": {
+  "id": "SUEZ",
+  "name": "苏伊士运河直属区",
+  "capital": "伊斯梅利亚",
+  "status": "直属管理区",
+  "sovereign": "GBR",
+  "parent": "EGY",
+  "manager": "COLONIAL",
+  "seat": [
+   32.27,
+   30.6
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "GCOAST": {
+  "id": "GCOAST",
+  "name": "海岸殖民地",
+  "capital": "阿克拉",
+  "status": "殖民行政区",
+  "sovereign": "GBR",
+  "parent": "GOLD",
+  "manager": "GCOAST",
+  "seat": [
+   -0.2,
+   5.56
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ASH": {
+  "id": "ASH",
+  "name": "阿散蒂",
+  "capital": "库马西",
+  "status": "殖民行政区",
+  "sovereign": "GBR",
+  "parent": "GOLD",
+  "manager": "ASH",
+  "seat": [
+   -1.62,
+   6.69
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "GNORTH": {
+  "id": "GNORTH",
+  "name": "北部保护领",
+  "capital": "塔马利",
+  "status": "殖民行政区",
+  "sovereign": "GBR",
+  "parent": "GOLD",
+  "manager": "GNORTH",
+  "seat": [
+   -0.84,
+   9.4
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "LAG": {
+  "id": "LAG",
+  "name": "拉各斯",
+  "capital": "拉各斯",
+  "status": "殖民行政区",
+  "sovereign": "GBR",
+  "parent": "NGA",
+  "manager": "LAG",
+  "seat": [
+   3.39,
+   6.45
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "NSOUTH": {
+  "id": "NSOUTH",
+  "name": "南方殖民行政区",
+  "capital": "埃努古",
+  "status": "殖民行政区",
+  "sovereign": "GBR",
+  "parent": "NGA",
+  "manager": "NSOUTH",
+  "seat": [
+   7.49,
+   6.45
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "NNORTH": {
+  "id": "NNORTH",
+  "name": "北方诸酋长保护区",
+  "capital": "卡杜纳",
+  "status": "殖民行政区",
+  "sovereign": "GBR",
+  "parent": "NGA",
+  "manager": "NNORTH",
+  "seat": [
+   7.43,
+   10.52
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KCOAST": {
+  "id": "KCOAST",
+  "name": "肯尼亚沿海保护领",
+  "capital": "蒙巴萨",
+  "status": "保护领",
+  "sovereign": "GBR",
+  "parent": "KEN",
+  "manager": "KCOAST",
+  "seat": [
+   39.67,
+   -4.05
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "BUG": {
+  "id": "BUG",
+  "name": "布干达",
+  "capital": "门戈",
+  "status": "地方王国",
+  "sovereign": "GBR",
+  "parent": "UGA",
+  "manager": "BUG",
+  "seat": [
+   32.56,
+   0.3
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "UG-101",
+   "UG-102",
+   "UG-103",
+   "UG-104",
+   "UG-105",
+   "UG-106",
+   "UG-107",
+   "UG-108",
+   "UG-109",
+   "UG-110",
+   "UG-111",
+   "UG-112",
+   "UG-113",
+   "UG-114",
+   "UG-115",
+   "UG-116",
+   "UG-117",
+   "UG-118",
+   "UG-119",
+   "UG-120",
+   "UG-121",
+   "UG-122",
+   "UG-123",
+   "UG-124"
+  ]
+ },
+ "BUN": {
+  "id": "BUN",
+  "name": "布尼奥罗",
+  "capital": "霍伊马",
+  "status": "地方王国",
+  "sovereign": "GBR",
+  "parent": "UGA",
+  "manager": "BUN",
+  "seat": [
+   31.35,
+   1.43
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "UG-403",
+   "UG-407",
+   "UG-409",
+   "UG-419",
+   "UG-420"
+  ]
+ },
+ "TORO": {
+  "id": "TORO",
+  "name": "托罗",
+  "capital": "波特尔堡",
+  "status": "地方王国",
+  "sovereign": "GBR",
+  "parent": "UGA",
+  "manager": "TORO",
+  "seat": [
+   30.28,
+   0.66
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "UG-401",
+   "UG-405",
+   "UG-406",
+   "UG-413",
+   "UG-415",
+   "UG-421",
+   "UG-423"
+  ]
+ },
+ "ANK": {
+  "id": "ANK",
+  "name": "安科莱",
+  "capital": "姆巴拉拉",
+  "status": "地方王国",
+  "sovereign": "GBR",
+  "parent": "UGA",
+  "manager": "ANK",
+  "seat": [
+   30.65,
+   -0.61
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "UG-325",
+   "UG-402",
+   "UG-410",
+   "UG-411",
+   "UG-416",
+   "UG-417",
+   "UG-422",
+   "UG-424",
+   "UG-425"
+  ]
+ },
+ "CAPE": {
+  "id": "CAPE",
+  "name": "开普省",
+  "capital": "开普敦",
+  "status": "省",
+  "sovereign": "GBR",
+  "parent": "SAF",
+  "manager": "CAPE",
+  "seat": [
+   18.42,
+   -33.92
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "ZA-EC",
+   "ZA-NC",
+   "ZA-WC"
+  ]
+ },
+ "NATAL": {
+  "id": "NATAL",
+  "name": "纳塔尔省",
+  "capital": "彼得马里茨堡",
+  "status": "省",
+  "sovereign": "GBR",
+  "parent": "SAF",
+  "manager": "NATAL",
+  "seat": [
+   30.39,
+   -29.6
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "ZA-NL"
+  ]
+ },
+ "TRAAL": {
+  "id": "TRAAL",
+  "name": "德兰士瓦省",
+  "capital": "比勒陀利亚",
+  "status": "省",
+  "sovereign": "GBR",
+  "parent": "SAF",
+  "manager": "TRAAL",
+  "seat": [
+   28.19,
+   -25.75
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "ZA-GT",
+   "ZA-LP",
+   "ZA-MP",
+   "ZA-NW"
+  ]
+ },
+ "ORAN": {
+  "id": "ORAN",
+  "name": "奥兰治省",
+  "capital": "布隆方丹",
+  "status": "省",
+  "sovereign": "GBR",
+  "parent": "SAF",
+  "manager": "ORAN",
+  "seat": [
+   26.22,
+   -29.12
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "ZA-FS"
+  ]
+ },
+ "WALV": {
+  "id": "WALV",
+  "name": "鲸湾港",
+  "capital": "鲸湾港",
+  "status": "沿海飞地",
+  "sovereign": "GBR",
+  "parent": "CAPE",
+  "manager": "WALV",
+  "seat": [
+   14.51,
+   -22.95
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ALG": {
+  "id": "ALG",
+  "name": "阿尔及利亚",
+  "capital": "阿尔及尔",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "ALG",
+  "seat": [
+   3.06,
+   36.75
+  ],
+  "color": "#aac6d7",
+  "basis": [
+   "DZA"
+  ]
+ },
+ "FWA": {
+  "id": "FWA",
+  "name": "法属西非",
+  "capital": "达喀尔",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "FWA",
+  "seat": [
+   -17.45,
+   14.69
+  ],
+  "color": "#a2c1d3",
+  "basis": []
+ },
+ "FEA": {
+  "id": "FEA",
+  "name": "法属赤道非洲",
+  "capital": "布拉柴维尔",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "FEA",
+  "seat": [
+   15.28,
+   -4.27
+  ],
+  "color": "#a2c1d3",
+  "basis": []
+ },
+ "DJI": {
+  "id": "DJI",
+  "name": "法属索马里海岸",
+  "capital": "吉布提",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "DJI",
+  "seat": [
+   43.15,
+   11.59
+  ],
+  "color": "#b7cedc",
+  "basis": [
+   "DJI"
+  ]
+ },
+ "MAD": {
+  "id": "MAD",
+  "name": "马达加斯加",
+  "capital": "塔那那利佛",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "MAD",
+  "seat": [
+   47.52,
+   -18.88
+  ],
+  "color": "#a2c1d3",
+  "basis": [
+   "MDG"
+  ]
+ },
+ "COM": {
+  "id": "COM",
+  "name": "科摩罗四岛",
+  "capital": "藻德济",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "COM",
+  "seat": [
+   45.27,
+   -12.78
+  ],
+  "color": "#a6c3d5",
+  "basis": [
+   "COM",
+   "MYT"
+  ]
+ },
+ "REU": {
+  "id": "REU",
+  "name": "留尼汪",
+  "capital": "圣但尼",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "REU",
+  "seat": [
+   55.45,
+   -20.88
+  ],
+  "color": "#aac6d7",
+  "basis": [
+   "REU"
+  ]
+ },
+ "FGY": {
+  "id": "FGY",
+  "name": "法属圭亚那",
+  "capital": "卡宴",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "FGY",
+  "seat": [
+   -52.33,
+   4.94
+  ],
+  "color": "#aac6d7",
+  "basis": [
+   "GUF"
+  ]
+ },
+ "FANT": {
+  "id": "FANT",
+  "name": "法属安的列斯",
+  "capital": "法兰西堡",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "FANT",
+  "seat": [
+   -61.07,
+   14.6
+  ],
+  "color": "#afc9d9",
+  "basis": [
+   "BLM",
+   "GLP",
+   "MAF",
+   "MTQ"
+  ]
+ },
+ "SPM": {
+  "id": "SPM",
+  "name": "圣皮埃尔和密克隆",
+  "capital": "圣皮埃尔",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "SPM",
+  "seat": [
+   -56.18,
+   46.78
+  ],
+  "color": "#a2c1d3",
+  "basis": [
+   "SPM"
+  ]
+ },
+ "NCAL": {
+  "id": "NCAL",
+  "name": "新喀里多尼亚及洛亚蒂",
+  "capital": "努美阿",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "NCAL",
+  "seat": [
+   166.45,
+   -22.28
+  ],
+  "color": "#b3ccdb",
+  "basis": [
+   "NCL"
+  ]
+ },
+ "WALL": {
+  "id": "WALL",
+  "name": "瓦利斯和富图纳",
+  "capital": "马塔乌图",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "WALL",
+  "seat": [
+   -176.17,
+   -13.28
+  ],
+  "color": "#b3ccdb",
+  "basis": [
+   "WLF"
+  ]
+ },
+ "FPOL": {
+  "id": "FPOL",
+  "name": "法属波利尼西亚",
+  "capital": "帕皮提",
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "FPOL",
+  "seat": [
+   -149.57,
+   -17.54
+  ],
+  "color": "#b7cedc",
+  "basis": [
+   "CLP",
+   "PYF"
+  ]
+ },
+ "FSOU": {
+  "id": "FSOU",
+  "name": "法国南印度洋诸岛",
+  "capital": null,
+  "status": "殖民地",
+  "sovereign": "FRA",
+  "parent": "FRA",
+  "manager": "FSOU",
+  "color": "#b7cedc",
+  "basis": [
+   "ATF"
+  ]
+ },
+ "SEN": {
+  "id": "SEN",
+  "name": "塞内加尔",
+  "capital": "圣路易",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "SEN",
+  "seat": [
+   -16.49,
+   16.02
+  ],
+  "color": "#aac6d7",
+  "basis": [
+   "SEN"
+  ]
+ },
+ "MRT": {
+  "id": "MRT",
+  "name": "毛里塔尼亚",
+  "capital": "圣路易",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "MRT",
+  "seat": [
+   -16.49,
+   16.02
+  ],
+  "color": "#afc9d9",
+  "basis": [
+   "MRT"
+  ]
+ },
+ "FSUD": {
+  "id": "FSUD",
+  "name": "法属苏丹",
+  "capital": "巴马科",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "FSUD",
+  "seat": [
+   -8,
+   12.65
+  ],
+  "color": "#a2c1d3",
+  "basis": [
+   "MLI"
+  ]
+ },
+ "GIN": {
+  "id": "GIN",
+  "name": "法属几内亚",
+  "capital": "科纳克里",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "GIN",
+  "seat": [
+   -13.58,
+   9.64
+  ],
+  "color": "#a2c1d3",
+  "basis": [
+   "GIN"
+  ]
+ },
+ "CIV": {
+  "id": "CIV",
+  "name": "象牙海岸",
+  "capital": "班热维尔",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "CIV",
+  "seat": [
+   -3.89,
+   5.36
+  ],
+  "color": "#b3ccdb",
+  "basis": [
+   "CIV"
+  ]
+ },
+ "DAH": {
+  "id": "DAH",
+  "name": "达荷美",
+  "capital": "波多诺伏",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "DAH",
+  "seat": [
+   2.63,
+   6.5
+  ],
+  "color": "#a6c3d5",
+  "basis": [
+   "BEN"
+  ]
+ },
+ "NER": {
+  "id": "NER",
+  "name": "尼日尔",
+  "capital": "尼亚美",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "NER",
+  "seat": [
+   2.11,
+   13.51
+  ],
+  "color": "#a6c3d5",
+  "basis": [
+   "NER"
+  ]
+ },
+ "VOL": {
+  "id": "VOL",
+  "name": "上沃尔特",
+  "capital": "瓦加杜古",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FWA",
+  "manager": "VOL",
+  "seat": [
+   -1.52,
+   12.37
+  ],
+  "color": "#a6c3d5",
+  "basis": [
+   "BFA"
+  ]
+ },
+ "GAB": {
+  "id": "GAB",
+  "name": "加蓬",
+  "capital": "利伯维尔",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FEA",
+  "manager": "GAB",
+  "seat": [
+   9.45,
+   0.39
+  ],
+  "color": "#b3ccdb",
+  "basis": [
+   "GAB"
+  ]
+ },
+ "MCON": {
+  "id": "MCON",
+  "name": "中刚果",
+  "capital": "布拉柴维尔",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FEA",
+  "manager": "MCON",
+  "seat": [
+   15.28,
+   -4.27
+  ],
+  "color": "#a6c3d5",
+  "basis": [
+   "COG"
+  ]
+ },
+ "UBAN": {
+  "id": "UBAN",
+  "name": "乌班吉沙里",
+  "capital": "班吉",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FEA",
+  "manager": "UBAN",
+  "seat": [
+   18.56,
+   4.37
+  ],
+  "color": "#a2c1d3",
+  "basis": [
+   "CAF"
+  ]
+ },
+ "CHAD": {
+  "id": "CHAD",
+  "name": "乍得",
+  "capital": "拉密堡",
+  "status": "殖民行政区",
+  "sovereign": "FRA",
+  "parent": "FEA",
+  "manager": "CHAD",
+  "seat": [
+   15.05,
+   12.12
+  ],
+  "color": "#aac6d7",
+  "basis": [
+   "TCD"
+  ]
+ },
+ "TOGO": {
+  "id": "TOGO",
+  "name": "多哥兰",
+  "capital": "洛美",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "TOGO",
+  "seat": [
+   1.22,
+   6.13
+  ],
+  "color": "#b5c3b0",
+  "basis": [
+   "TGO",
+   "情景定界"
+  ]
+ },
+ "KAM": {
+  "id": "KAM",
+  "name": "德属喀麦隆",
+  "capital": "布埃亚",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "KAM",
+  "seat": [
+   9.24,
+   4.16
+  ],
+  "color": "#b5c3b0",
+  "basis": [
+   "CMR",
+   "情景定界"
+  ]
+ },
+ "GSWA": {
+  "id": "GSWA",
+  "name": "德属西南非洲",
+  "capital": "温得和克",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "GSWA",
+  "seat": [
+   17.08,
+   -22.57
+  ],
+  "color": "#b2c0ac",
+  "basis": [
+   "NAM"
+  ]
+ },
+ "GEA": {
+  "id": "GEA",
+  "name": "德属东非",
+  "capital": "达累斯萨拉姆",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "GEA",
+  "seat": [
+   39.28,
+   -6.82
+  ],
+  "color": "#b5c3b0",
+  "basis": []
+ },
+ "GNG": {
+  "id": "GNG",
+  "name": "德属新几内亚",
+  "capital": "拉包尔",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "GNG",
+  "seat": [
+   152.17,
+   -4.2
+  ],
+  "color": "#c0cbbb",
+  "basis": [
+   "PNB",
+   "情景定界"
+  ]
+ },
+ "NMAR": {
+  "id": "NMAR",
+  "name": "北马里亚纳",
+  "capital": "塞班",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "NMAR",
+  "seat": [
+   145.75,
+   15.21
+  ],
+  "color": "#b9c5b4",
+  "basis": [
+   "MNP"
+  ]
+ },
+ "PALAU": {
+  "id": "PALAU",
+  "name": "帕劳",
+  "capital": "科罗尔",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "PALAU",
+  "seat": [
+   134.48,
+   7.34
+  ],
+  "color": "#c3cebf",
+  "basis": [
+   "PLW"
+  ]
+ },
+ "CAROL": {
+  "id": "CAROL",
+  "name": "加罗林群岛",
+  "capital": "波纳佩",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "CAROL",
+  "seat": [
+   158.16,
+   6.96
+  ],
+  "color": "#bcc8b8",
+  "basis": [
+   "FSM"
+  ]
+ },
+ "MARSH": {
+  "id": "MARSH",
+  "name": "马绍尔群岛",
+  "capital": "贾卢伊特",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "MARSH",
+  "seat": [
+   169.58,
+   5.92
+  ],
+  "color": "#b5c3b0",
+  "basis": [
+   "MHL"
+  ]
+ },
+ "NAURU": {
+  "id": "NAURU",
+  "name": "瑙鲁",
+  "capital": "亚伦",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "NAURU",
+  "seat": [
+   166.92,
+   -0.55
+  ],
+  "color": "#c3cebf",
+  "basis": [
+   "NRU"
+  ]
+ },
+ "WSAM": {
+  "id": "WSAM",
+  "name": "西萨摩亚",
+  "capital": "阿皮亚",
+  "status": "殖民地",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "WSAM",
+  "seat": [
+   -171.75,
+   -13.83
+  ],
+  "color": "#b2c0ac",
+  "basis": [
+   "WSM"
+  ]
+ },
+ "TANG": {
+  "id": "TANG",
+  "name": "坦噶尼喀",
+  "capital": "达累斯萨拉姆",
+  "status": "殖民行政区",
+  "sovereign": "DEU",
+  "parent": "GEA",
+  "manager": "TANG",
+  "seat": [
+   39.28,
+   -6.82
+  ],
+  "color": "#c0cbbb",
+  "basis": [
+   "TZA",
+   "情景定界"
+  ]
+ },
+ "RWA": {
+  "id": "RWA",
+  "name": "卢旺达王国",
+  "capital": "尼安扎",
+  "status": "保护国",
+  "sovereign": "DEU",
+  "parent": "GEA",
+  "manager": "RWA",
+  "seat": [
+   29.75,
+   -2.35
+  ],
+  "suzerain": "DEU",
+  "color": "#b2c0ac",
+  "basis": [
+   "RWA"
+  ]
+ },
+ "BDI": {
+  "id": "BDI",
+  "name": "布隆迪王国",
+  "capital": "基特加",
+  "status": "保护国",
+  "sovereign": "DEU",
+  "parent": "GEA",
+  "manager": "BDI",
+  "seat": [
+   29.93,
+   -3.43
+  ],
+  "suzerain": "DEU",
+  "color": "#bcc8b8",
+  "basis": [
+   "BDI"
+  ]
+ },
+ "BCON": {
+  "id": "BCON",
+  "name": "比属刚果",
+  "capital": "利奥波德维尔",
+  "status": "殖民地",
+  "sovereign": "BEL",
+  "parent": "BEL",
+  "manager": "BCON",
+  "seat": [
+   15.31,
+   -4.32
+  ],
+  "color": "#d3c6d8",
+  "basis": [
+   "COD"
+  ]
+ },
+ "PRI": {
+  "id": "PRI",
+  "name": "波多黎各",
+  "capital": "圣胡安",
+  "status": "殖民地",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "PRI",
+  "seat": [
+   -66.12,
+   18.47
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "PRI"
+  ]
+ },
+ "IFNI": {
+  "id": "IFNI",
+  "name": "伊夫尼",
+  "capital": "西迪伊夫尼",
+  "status": "殖民地",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "IFNI",
+  "seat": [
+   -10.17,
+   29.38
+  ],
+  "color": "#cfc1d5",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SAG": {
+  "id": "SAG",
+  "name": "萨基亚阿姆拉",
+  "capital": "阿尤恩",
+  "status": "殖民地",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "SAG",
+  "seat": [
+   -13.2,
+   27.15
+  ],
+  "color": "#d5c9da",
+  "basis": [
+   "SAH"
+  ]
+ },
+ "RIO": {
+  "id": "RIO",
+  "name": "里奥德奥罗",
+  "capital": "西斯内罗斯镇",
+  "status": "殖民地",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "RIO",
+  "seat": [
+   -15.96,
+   23.72
+  ],
+  "color": "#cfc1d5",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "MUNI": {
+  "id": "MUNI",
+  "name": "里奥穆尼",
+  "capital": "巴塔",
+  "status": "殖民地",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "MUNI",
+  "seat": [
+   9.77,
+   1.86
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "GNQ"
+  ]
+ },
+ "FERN": {
+  "id": "FERN",
+  "name": "费尔南多波及属岛",
+  "capital": "圣伊莎贝尔",
+  "status": "殖民地",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "FERN",
+  "seat": [
+   8.78,
+   3.75
+  ],
+  "color": "#d9cede",
+  "basis": [
+   "岛链重分"
+  ]
+ },
+ "SMOR": {
+  "id": "SMOR",
+  "name": "西班牙北摩洛哥保护区",
+  "capital": "得土安",
+  "status": "保护国",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "SMOR",
+  "seat": [
+   -5.37,
+   35.57
+  ],
+  "suzerain": "ESP",
+  "color": "#d5c9da",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TARF": {
+  "id": "TARF",
+  "name": "塔尔法亚保护区",
+  "capital": "朱比角",
+  "status": "保护国",
+  "sovereign": "ESP",
+  "parent": "ESP",
+  "manager": "TARF",
+  "seat": [
+   -12.93,
+   27.94
+  ],
+  "suzerain": "ESP",
+  "color": "#d1c3d7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "LIB": {
+  "id": "LIB",
+  "name": "意属利比亚",
+  "capital": "的黎波里",
+  "status": "殖民地",
+  "sovereign": "ITA",
+  "parent": "ITA",
+  "manager": "LIB",
+  "seat": [
+   13.19,
+   32.89
+  ],
+  "color": "#d9cede",
+  "basis": [
+   "LBY"
+  ]
+ },
+ "IEA": {
+  "id": "IEA",
+  "name": "意属东非",
+  "capital": "阿斯马拉",
+  "status": "殖民地",
+  "sovereign": "ITA",
+  "parent": "ITA",
+  "manager": "IEA",
+  "seat": [
+   38.93,
+   15.33
+  ],
+  "color": "#d5c9da",
+  "basis": []
+ },
+ "ERI": {
+  "id": "ERI",
+  "name": "厄立特里亚",
+  "capital": "阿斯马拉",
+  "status": "殖民地",
+  "sovereign": "ITA",
+  "parent": "IEA",
+  "manager": "ERI",
+  "seat": [
+   38.93,
+   15.33
+  ],
+  "color": "#d3c6d8",
+  "basis": [
+   "ERI"
+  ]
+ },
+ "ISOM": {
+  "id": "ISOM",
+  "name": "意属索马里",
+  "capital": "摩加迪沙",
+  "status": "殖民地",
+  "sovereign": "ITA",
+  "parent": "IEA",
+  "manager": "ISOM",
+  "seat": [
+   45.34,
+   2.04
+  ],
+  "color": "#cfc1d5",
+  "basis": [
+   "SOP",
+   "SOX"
+  ]
+ },
+ "PAP": {
+  "id": "PAP",
+  "name": "东南巴布亚",
+  "capital": "莫尔兹比港",
+  "status": "代管领",
+  "sovereign": "GBR",
+  "parent": "AUS",
+  "manager": "PAP",
+  "seat": [
+   147.18,
+   -9.48
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "PNX"
+  ]
+ },
+ "COOK": {
+  "id": "COOK",
+  "name": "库克群岛",
+  "capital": "阿瓦鲁阿",
+  "status": "代管领",
+  "sovereign": "GBR",
+  "parent": "NZL",
+  "manager": "COOK",
+  "seat": [
+   -159.77,
+   -21.21
+  ],
+  "color": "#d0adac",
+  "basis": [
+   "COK"
+  ]
+ },
+ "NIUE": {
+  "id": "NIUE",
+  "name": "纽埃",
+  "capital": "阿洛菲",
+  "status": "代管领",
+  "sovereign": "GBR",
+  "parent": "NZL",
+  "manager": "NIUE",
+  "seat": [
+   -169.92,
+   -19.05
+  ],
+  "color": "#dac0be",
+  "basis": [
+   "NIU"
+  ]
+ },
+ "TOK": {
+  "id": "TOK",
+  "name": "托克劳",
+  "capital": "法考福",
+  "status": "代管领",
+  "sovereign": "GBR",
+  "parent": "NZL",
+  "manager": "TOK",
+  "seat": [
+   -171.22,
+   -9.38
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "TKL"
+  ]
+ },
+ "GRL": {
+  "id": "GRL",
+  "name": "格陵兰",
+  "capital": "戈特霍布",
+  "status": "属地",
+  "sovereign": "DNK",
+  "parent": "DNK",
+  "manager": "GRL",
+  "seat": [
+   -51.72,
+   64.18
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "GRL"
+  ]
+ },
+ "FAR": {
+  "id": "FAR",
+  "name": "法罗群岛",
+  "capital": "托尔斯港",
+  "status": "属地",
+  "sovereign": "DNK",
+  "parent": "DNK",
+  "manager": "FAR",
+  "seat": [
+   -6.77,
+   62.01
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "FRO"
+  ]
+ },
+ "DWI": {
+  "id": "DWI",
+  "name": "丹麦西印度群岛",
+  "capital": "夏洛特阿马利亚",
+  "status": "属地",
+  "sovereign": "DNK",
+  "parent": "DNK",
+  "manager": "DWI",
+  "seat": [
+   -64.93,
+   18.34
+  ],
+  "color": "#cfc1d5",
+  "basis": [
+   "VIR"
+  ]
+ },
+ "SVAL": {
+  "id": "SVAL",
+  "name": "斯瓦尔巴及熊岛",
+  "capital": "朗伊尔城",
+  "status": "属地",
+  "sovereign": "NOR",
+  "parent": "NOR",
+  "manager": "SVAL",
+  "seat": [
+   15.63,
+   78.22
+  ],
+  "color": "#dfcacf",
+  "basis": [
+   "NSV"
+  ]
+ },
+ "JAN": {
+  "id": "JAN",
+  "name": "扬马延",
+  "capital": null,
+  "status": "属地",
+  "sovereign": "NOR",
+  "parent": "NOR",
+  "manager": "JAN",
+  "color": "#dac1c7",
+  "basis": [
+   "NJM"
+  ]
+ },
+ "BOUV": {
+  "id": "BOUV",
+  "name": "布韦岛",
+  "capital": null,
+  "status": "属地",
+  "sovereign": "NOR",
+  "parent": "NOR",
+  "manager": "BOUV",
+  "color": "#dfcacf",
+  "basis": [
+   "BVT"
+  ]
+ },
+ "AZOR": {
+  "id": "AZOR",
+  "name": "亚速尔群岛",
+  "capital": "蓬塔德尔加达",
+  "status": "岛屿行政区",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "AZOR",
+  "seat": [
+   -25.67,
+   37.74
+  ],
+  "color": "#d5d8c2",
+  "basis": [
+   "PAZ"
+  ]
+ },
+ "MADE": {
+  "id": "MADE",
+  "name": "马德拉",
+  "capital": "丰沙尔",
+  "status": "岛屿行政区",
+  "sovereign": "PRT",
+  "parent": "PRT",
+  "manager": "MADE",
+  "seat": [
+   -16.91,
+   32.65
+  ],
+  "color": "#d3d6be",
+  "basis": [
+   "PMD"
+  ]
+ },
+ "VAN": {
+  "id": "VAN",
+  "name": "新赫布里底共管地",
+  "capital": "维拉港",
+  "status": "共管领",
+  "sovereign": "VAN",
+  "parent": null,
+  "manager": "ANGLOFR",
+  "seat": [
+   168.32,
+   -17.74
+  ],
+  "coSovereigns": [
+   "GBR",
+   "FRA"
+  ],
+  "color": "#b2c8cb",
+  "basis": [
+   "VUT"
+  ]
+ },
+ "KANT": {
+  "id": "KANT",
+  "name": "坎顿与恩德伯里共同驻管区",
+  "capital": "坎顿岛",
+  "status": "共管领",
+  "sovereign": "KANT",
+  "parent": null,
+  "manager": "ANGLOUS",
+  "seat": [
+   -171.68,
+   -2.81
+  ],
+  "coSovereigns": [
+   "GBR",
+   "USA"
+  ],
+  "claims": [
+   "GBR",
+   "USA"
+  ],
+  "color": "#c2cfd3",
+  "basis": [
+   "岛链重分"
+  ]
+ },
+ "TANGI": {
+  "id": "TANGI",
+  "name": "丹吉尔国际区",
+  "capital": "丹吉尔",
+  "status": "国际区",
+  "sovereign": "FRA",
+  "parent": "FMOR",
+  "manager": "TANGCOM",
+  "seat": [
+   -5.81,
+   35.77
+  ],
+  "color": "#b7cedc",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "CANAL": {
+  "id": "CANAL",
+  "name": "巴拿马运河区",
+  "capital": "巴尔博亚",
+  "status": "租借地",
+  "sovereign": "PAN",
+  "parent": "PAN",
+  "manager": "USA",
+  "seat": [
+   -79.56,
+   8.96
+  ],
+  "color": "#bcd0c1",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "BIN": {
+  "id": "BIN",
+  "name": "比农多中国租界",
+  "capital": "比农多",
+  "status": "租界",
+  "sovereign": "PHL",
+  "parent": "PHL",
+  "manager": "ROC",
+  "seat": [
+   120.975,
+   14.6
+  ],
+  "color": "#d5bc8f",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "MNLPORT": {
+  "id": "MNLPORT",
+  "name": "马尼拉国际自由港",
+  "capital": "马尼拉港",
+  "status": "国际自由港",
+  "sovereign": "PHL",
+  "parent": "PHL",
+  "manager": "PORTBOARD",
+  "seat": [
+   120.959,
+   14.596
+  ],
+  "color": "#adc9ce",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "INTRA": {
+  "id": "INTRA",
+  "name": "西班牙王城区国际战车道赛场",
+  "capital": "王城区",
+  "status": "非军事区",
+  "sovereign": "PHL",
+  "parent": "PHL",
+  "manager": "SPORT",
+  "seat": [
+   120.974,
+   14.59
+  ],
+  "note": "吕宋保有主权，城墙内为非军事化国际赛场。",
+  "color": "#c3b5ca",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KIAO": {
+  "id": "KIAO",
+  "name": "胶州湾德租借地",
+  "capital": "青岛",
+  "status": "租借地",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "DEU",
+  "seat": [
+   120.32,
+   36.07
+  ],
+  "color": "#b9c8b2",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KWAN": {
+  "id": "KWAN",
+  "name": "广州湾法租借地",
+  "capital": "西营",
+  "status": "租借地",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "FRA",
+  "seat": [
+   110.4,
+   21.2
+  ],
+  "color": "#a9c4d1",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SHINT": {
+  "id": "SHINT",
+  "name": "上海公共租界",
+  "capital": "上海",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "SMC",
+  "seat": [
+   121.477,
+   31.239
+  ],
+  "color": "#b7c5c1",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SHFR": {
+  "id": "SHFR",
+  "name": "上海法租界",
+  "capital": "上海",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "FRA",
+  "seat": [
+   121.463,
+   31.215
+  ],
+  "color": "#a9c4d1",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJGB": {
+  "id": "TJGB",
+  "name": "天津英租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "GBR",
+  "seat": [
+   117.216,
+   39.112
+  ],
+  "color": "#e0cba0",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJFR": {
+  "id": "TJFR",
+  "name": "天津法租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "FRA",
+  "seat": [
+   117.208,
+   39.121
+  ],
+  "color": "#e4d2ae",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJJP": {
+  "id": "TJJP",
+  "name": "天津日租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "JPN",
+  "seat": [
+   117.194,
+   39.127
+  ],
+  "color": "#dfc99c",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJIT": {
+  "id": "TJIT",
+  "name": "天津意租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "ITA",
+  "seat": [
+   117.203,
+   39.137
+  ],
+  "color": "#e2d0a9",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJDE": {
+  "id": "TJDE",
+  "name": "天津德租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "DEU",
+  "seat": [
+   117.229,
+   39.101
+  ],
+  "color": "#e0cba0",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJAU": {
+  "id": "TJAU",
+  "name": "天津奥地利租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "GAT",
+  "seat": [
+   117.201,
+   39.147
+  ],
+  "color": "#e1cda5",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJRU": {
+  "id": "TJRU",
+  "name": "天津俄租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "RUS",
+  "seat": [
+   117.228,
+   39.127
+  ],
+  "color": "#e0cba0",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJBE": {
+  "id": "TJBE",
+  "name": "天津比租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "BEL",
+  "seat": [
+   117.25,
+   39.112
+  ],
+  "color": "#e5d4b3",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "TJUS": {
+  "id": "TJUS",
+  "name": "天津美租界",
+  "capital": "天津",
+  "status": "租界",
+  "sovereign": "ROC",
+  "parent": "ROC",
+  "manager": "USA",
+  "seat": [
+   117.225,
+   39.104
+  ],
+  "color": "#e1cda5",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "HKI": {
+  "id": "HKI",
+  "name": "香港岛",
+  "capital": "维多利亚城",
+  "status": "割让区",
+  "sovereign": "GBR",
+  "parent": "HKG",
+  "manager": "HKI",
+  "seat": [
+   114.16,
+   22.28
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "岛链重分"
+  ]
+ },
+ "HKOW": {
+  "id": "HKOW",
+  "name": "九龙割让区",
+  "capital": "尖沙咀",
+  "status": "割让区",
+  "sovereign": "GBR",
+  "parent": "HKG",
+  "manager": "HKOW",
+  "seat": [
+   114.17,
+   22.3
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "HNT": {
+  "id": "HNT",
+  "name": "新界租借区",
+  "capital": "大埔",
+  "status": "租借地",
+  "sovereign": "ROC",
+  "parent": "HKG",
+  "manager": "HKG",
+  "seat": [
+   114.16,
+   22.45
+  ],
+  "color": "#dfc99c",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "DANZ": {
+  "id": "DANZ",
+  "name": "但泽自由通商港",
+  "capital": "但泽",
+  "status": "港口",
+  "sovereign": "DEU",
+  "parent": "DEU",
+  "manager": "DANZ",
+  "seat": [
+   18.65,
+   54.35
+  ],
+  "note": "德国港口，波兰享有铁路过境及通商权。",
+  "color": "#b5c3b0",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ESS": {
+  "id": "ESS",
+  "name": "埃塞奎博地区",
+  "capital": "巴蒂卡",
+  "status": "争议地区",
+  "sovereign": "GBR",
+  "parent": "BGY",
+  "manager": "GBR",
+  "seat": [
+   -58.62,
+   6.41
+  ],
+  "claims": [
+   "VEN"
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "AMZ": {
+  "id": "AMZ",
+  "name": "厄秘亚马孙争议区",
+  "capital": "伊基托斯",
+  "status": "争议地区",
+  "sovereign": "PER",
+  "parent": "PER",
+  "manager": "PER",
+  "seat": [
+   -73.25,
+   -3.75
+  ],
+  "claims": [
+   "ECU"
+  ],
+  "color": "#d6b9b8",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ALG-N": {
+  "id": "ALG-N",
+  "name": "阿尔及利亚北部省区",
+  "capital": "阿尔及尔",
+  "status": "行政区",
+  "sovereign": "FRA",
+  "parent": "ALG",
+  "manager": "ALG-N",
+  "seat": [
+   3.06,
+   36.75
+  ],
+  "color": "#b7cedc",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ALG-S": {
+  "id": "ALG-S",
+  "name": "撒哈拉南部领地",
+  "capital": "盖尔达耶",
+  "status": "行政区",
+  "sovereign": "FRA",
+  "parent": "ALG",
+  "manager": "ALG-S",
+  "seat": [
+   3.67,
+   32.49
+  ],
+  "color": "#b3ccdb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "LOWC": {
+  "id": "LOWC",
+  "name": "下刚果",
+  "capital": "马塔迪",
+  "status": "行政区",
+  "sovereign": "BEL",
+  "parent": "BCON",
+  "manager": "LOWC",
+  "seat": [
+   13.45,
+   -5.81
+  ],
+  "color": "#d5c9da",
+  "basis": [
+   "CD-BC",
+   "CD-BN",
+   "CD-KN"
+  ]
+ },
+ "EQC": {
+  "id": "EQC",
+  "name": "赤道省",
+  "capital": "科基亚维尔",
+  "status": "行政区",
+  "sovereign": "BEL",
+  "parent": "BCON",
+  "manager": "EQC",
+  "seat": [
+   18.26,
+   0.04
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "CD-EQ"
+  ]
+ },
+ "ORIC": {
+  "id": "ORIC",
+  "name": "东方省",
+  "capital": "斯坦利维尔",
+  "status": "行政区",
+  "sovereign": "BEL",
+  "parent": "BCON",
+  "manager": "ORIC",
+  "seat": [
+   25.2,
+   0.52
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "CD-MA",
+   "CD-NK",
+   "CD-OR",
+   "CD-SK"
+  ]
+ },
+ "KASAI": {
+  "id": "KASAI",
+  "name": "开赛",
+  "capital": "卢卢阿堡",
+  "status": "行政区",
+  "sovereign": "BEL",
+  "parent": "BCON",
+  "manager": "KASAI",
+  "seat": [
+   22.42,
+   -5.89
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "CD-KE",
+   "CD-KW"
+  ]
+ },
+ "KAT": {
+  "id": "KAT",
+  "name": "加丹加",
+  "capital": "伊丽莎白维尔",
+  "status": "行政区",
+  "sovereign": "BEL",
+  "parent": "BCON",
+  "manager": "KAT",
+  "seat": [
+   27.48,
+   -11.67
+  ],
+  "color": "#d3c6d8",
+  "basis": [
+   "CD-KA"
+  ]
+ },
+ "MANIC": {
+  "id": "MANIC",
+  "name": "马尼卡及索法拉公司领",
+  "capital": "贝拉",
+  "status": "特许公司领",
+  "sovereign": "PRT",
+  "parent": "MOZ",
+  "manager": "MANIC",
+  "seat": [
+   34.84,
+   -19.84
+  ],
+  "color": "#ccd1b4",
+  "basis": [
+   "MZ-B",
+   "MZ-S"
+  ]
+ },
+ "TRIP": {
+  "id": "TRIP",
+  "name": "的黎波里塔尼亚",
+  "capital": "的黎波里",
+  "status": "殖民行政区",
+  "sovereign": "ITA",
+  "parent": "LIB",
+  "manager": "TRIP",
+  "seat": [
+   13.19,
+   32.89
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "CYRE": {
+  "id": "CYRE",
+  "name": "昔兰尼加",
+  "capital": "班加西",
+  "status": "殖民行政区",
+  "sovereign": "ITA",
+  "parent": "LIB",
+  "manager": "CYRE",
+  "seat": [
+   20.07,
+   32.12
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "FEZ": {
+  "id": "FEZ",
+  "name": "费赞及塞努西部族区",
+  "capital": "穆尔祖格",
+  "status": "地方保护辖区",
+  "sovereign": "ITA",
+  "parent": "LIB",
+  "manager": "FEZ",
+  "seat": [
+   13.92,
+   25.92
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SHA": {
+  "id": "SHA",
+  "name": "沙迦酋长国",
+  "capital": "沙迦",
+  "status": "保护酋长国",
+  "sovereign": "GBR",
+  "parent": "TRUC",
+  "manager": "SHA",
+  "seat": [
+   55.39,
+   25.36
+  ],
+  "suzerain": "GBR",
+  "color": "#d8bcbb",
+  "basis": [
+   "AE-FU",
+   "AE-SH",
+   "岛链重分"
+  ]
+ },
+ "RAK": {
+  "id": "RAK",
+  "name": "哈伊马角酋长国",
+  "capital": "哈伊马角",
+  "status": "保护酋长国",
+  "sovereign": "GBR",
+  "parent": "TRUC",
+  "manager": "RAK",
+  "seat": [
+   55.94,
+   25.79
+  ],
+  "suzerain": "GBR",
+  "color": "#d0adac",
+  "basis": [
+   "AE-RK"
+  ]
+ },
+ "ABUD": {
+  "id": "ABUD",
+  "name": "阿布扎比酋长国",
+  "capital": "阿布扎比",
+  "status": "保护酋长国",
+  "sovereign": "GBR",
+  "parent": "TRUC",
+  "manager": "ABUD",
+  "seat": [
+   54.37,
+   24.47
+  ],
+  "suzerain": "GBR",
+  "color": "#d4b5b3",
+  "basis": [
+   "AE-AZ"
+  ]
+ },
+ "DUBA": {
+  "id": "DUBA",
+  "name": "迪拜酋长国",
+  "capital": "迪拜",
+  "status": "保护酋长国",
+  "sovereign": "GBR",
+  "parent": "TRUC",
+  "manager": "DUBA",
+  "seat": [
+   55.3,
+   25.26
+  ],
+  "suzerain": "GBR",
+  "color": "#d4b5b3",
+  "basis": [
+   "AE-DU"
+  ]
+ },
+ "AJM": {
+  "id": "AJM",
+  "name": "阿治曼酋长国",
+  "capital": "阿治曼",
+  "status": "保护酋长国",
+  "sovereign": "GBR",
+  "parent": "TRUC",
+  "manager": "AJM",
+  "seat": [
+   55.44,
+   25.4
+  ],
+  "suzerain": "GBR",
+  "color": "#d0adac",
+  "basis": [
+   "AE-AJ"
+  ]
+ },
+ "UMQ": {
+  "id": "UMQ",
+  "name": "乌姆盖万酋长国",
+  "capital": "乌姆盖万",
+  "status": "保护酋长国",
+  "sovereign": "GBR",
+  "parent": "TRUC",
+  "manager": "UMQ",
+  "seat": [
+   55.55,
+   25.57
+  ],
+  "suzerain": "GBR",
+  "color": "#d6b8b7",
+  "basis": [
+   "AE-UQ"
+  ]
+ },
+ "MOSUL": {
+  "id": "MOSUL",
+  "name": "摩苏尔省",
+  "capital": "摩苏尔",
+  "status": "联邦省",
+  "sovereign": "OTT",
+  "parent": "IRAQ",
+  "manager": "MOSUL",
+  "seat": [
+   43.13,
+   36.34
+  ],
+  "color": "#d3c8ad",
+  "basis": [
+   "IQ-AR",
+   "IQ-DA",
+   "IQ-NI",
+   "IQ-SU",
+   "IQ-TS"
+  ]
+ },
+ "BAGH": {
+  "id": "BAGH",
+  "name": "巴格达省",
+  "capital": "巴格达",
+  "status": "联邦省",
+  "sovereign": "OTT",
+  "parent": "IRAQ",
+  "manager": "BAGH",
+  "seat": [
+   44.37,
+   33.32
+  ],
+  "color": "#d3c8ad",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "BASR": {
+  "id": "BASR",
+  "name": "巴士拉省",
+  "capital": "巴士拉",
+  "status": "联邦省",
+  "sovereign": "OTT",
+  "parent": "IRAQ",
+  "manager": "BASR",
+  "seat": [
+   47.78,
+   30.51
+  ],
+  "color": "#cfc2a4",
+  "basis": [
+   "IQ-BA",
+   "IQ-DQ",
+   "IQ-MA",
+   "IQ-MU"
+  ]
+ },
+ "FENG": {
+  "id": "FENG",
+  "name": "奉天省",
+  "capital": "盛京",
+  "status": "本土省",
+  "sovereign": "QING",
+  "parent": "QING",
+  "manager": "FENG",
+  "seat": [
+   123.43,
+   41.8
+  ],
+  "color": "#c2afbe",
+  "basis": [
+   "CN-LN",
+   "情景定界"
+  ]
+ },
+ "JIL": {
+  "id": "JIL",
+  "name": "吉林省",
+  "capital": "吉林",
+  "status": "本土省",
+  "sovereign": "QING",
+  "parent": "QING",
+  "manager": "JIL",
+  "seat": [
+   126.55,
+   43.84
+  ],
+  "color": "#c4b3c1",
+  "basis": [
+   "CN-JL"
+  ]
+ },
+ "HEIL": {
+  "id": "HEIL",
+  "name": "黑龙江省",
+  "capital": "齐齐哈尔",
+  "status": "本土省",
+  "sovereign": "QING",
+  "parent": "QING",
+  "manager": "HEIL",
+  "seat": [
+   123.92,
+   47.35
+  ],
+  "color": "#c7b6c4",
+  "basis": [
+   "CN-HL",
+   "情景定界"
+  ]
+ },
+ "FERG": {
+  "id": "FERG",
+  "name": "费尔干纳盆地",
+  "capital": "浩罕",
+  "status": "自治辖区",
+  "sovereign": "RUS",
+  "parent": "TURK",
+  "manager": "FERG",
+  "seat": [
+   70.94,
+   40.53
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "KG-B",
+   "KG-J",
+   "KG-O",
+   "TJ-SU",
+   "UZ-AN",
+   "UZ-FA",
+   "UZ-NG"
+  ]
+ },
+ "WESTIND": {
+  "id": "WESTIND",
+  "name": "西印度诸邦代理署",
+  "capital": "拉杰果德",
+  "status": "政治代理署",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "WESTIND",
+  "seat": [
+   70.8,
+   22.3
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SINDST": {
+  "id": "SINDST",
+  "name": "东部诸邦代理署",
+  "capital": "桑巴尔普尔",
+  "status": "政治代理署",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "SINDST",
+  "seat": [
+   83.98,
+   21.47
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "LIBCO": {
+  "id": "LIBCO",
+  "name": "利比里亚海岸行政区",
+  "capital": "蒙罗维亚",
+  "status": "行政区",
+  "sovereign": "LBR",
+  "parent": "LBR",
+  "manager": "LIBCO",
+  "seat": [
+   -10.8,
+   6.3
+  ],
+  "color": "#d1c3d7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "LIBIN": {
+  "id": "LIBIN",
+  "name": "利比里亚内陆行政区",
+  "capital": "邦加",
+  "status": "行政区",
+  "sovereign": "LBR",
+  "parent": "LBR",
+  "manager": "LIBIN",
+  "seat": [
+   -9.47,
+   7
+  ],
+  "color": "#cfc1d5",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KOB": {
+  "id": "KOB",
+  "name": "科布多",
+  "capital": "科布多",
+  "status": "盟部",
+  "sovereign": "QING",
+  "parent": "OM",
+  "manager": "KOB",
+  "seat": [
+   91.64,
+   48.01
+  ],
+  "color": "#ccbeca",
+  "basis": [
+   "MN-043",
+   "MN-046",
+   "MN-071"
+  ]
+ },
+ "ZASA": {
+  "id": "ZASA",
+  "name": "札萨克图汗部",
+  "capital": "乌里雅苏台",
+  "status": "盟部",
+  "sovereign": "QING",
+  "parent": "OM",
+  "manager": "ZASA",
+  "seat": [
+   96.84,
+   47.74
+  ],
+  "color": "#cabac7",
+  "basis": [
+   "MN-057",
+   "MN-065"
+  ]
+ },
+ "SAIN": {
+  "id": "SAIN",
+  "name": "赛音诺颜部",
+  "capital": "车车尔勒格",
+  "status": "盟部",
+  "sovereign": "QING",
+  "parent": "OM",
+  "manager": "SAIN",
+  "seat": [
+   101.46,
+   47.48
+  ],
+  "color": "#cfc1cc",
+  "basis": [
+   "MN-055",
+   "MN-069",
+   "MN-073"
+  ]
+ },
+ "TUSH": {
+  "id": "TUSH",
+  "name": "土谢图汗部",
+  "capital": "库伦",
+  "status": "盟部",
+  "sovereign": "QING",
+  "parent": "OM",
+  "manager": "TUSH",
+  "seat": [
+   106.92,
+   47.92
+  ],
+  "color": "#c2afbe",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SETS": {
+  "id": "SETS",
+  "name": "车臣汗部",
+  "capital": "温都尔汗",
+  "status": "盟部",
+  "sovereign": "QING",
+  "parent": "OM",
+  "manager": "SETS",
+  "seat": [
+   110.66,
+   47.32
+  ],
+  "color": "#c4b3c1",
+  "basis": [
+   "MN-039",
+   "MN-051",
+   "MN-061"
+  ]
+ },
+ "IBEN": {
+  "id": "IBEN",
+  "name": "孟加拉省",
+  "capital": "加尔各答",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IBEN",
+  "seat": [
+   88.36,
+   22.57
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "IN-WB",
+   "情景定界"
+  ]
+ },
+ "IMAD": {
+  "id": "IMAD",
+  "name": "马德拉斯省",
+  "capital": "马德拉斯",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IMAD",
+  "seat": [
+   80.27,
+   13.08
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "IN-AP",
+   "IN-KA",
+   "IN-KL",
+   "IN-TN",
+   "情景定界"
+  ]
+ },
+ "IBOM": {
+  "id": "IBOM",
+  "name": "孟买省",
+  "capital": "孟买",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IBOM",
+  "seat": [
+   72.83,
+   18.94
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "IN-GJ",
+   "IN-MH",
+   "情景定界"
+  ]
+ },
+ "IUNI": {
+  "id": "IUNI",
+  "name": "联合省",
+  "capital": "勒克瑙",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IUNI",
+  "seat": [
+   80.95,
+   26.85
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "IN-UP",
+   "IN-UT",
+   "情景定界"
+  ]
+ },
+ "IBIH": {
+  "id": "IBIH",
+  "name": "比哈尔省",
+  "capital": "巴特那",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IBIH",
+  "seat": [
+   85.14,
+   25.6
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "IN-BR",
+   "IN-JH",
+   "情景定界"
+  ]
+ },
+ "IORI": {
+  "id": "IORI",
+  "name": "奥里萨省",
+  "capital": "克塔克",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IORI",
+  "seat": [
+   85.88,
+   20.46
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "IN-OR",
+   "情景定界"
+  ]
+ },
+ "IASM": {
+  "id": "IASM",
+  "name": "阿萨姆省",
+  "capital": "西隆",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IASM",
+  "seat": [
+   91.88,
+   25.58
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "IN-AS",
+   "IN-ML",
+   "IN-MZ",
+   "IN-NL",
+   "情景定界"
+  ]
+ },
+ "ICP": {
+  "id": "ICP",
+  "name": "中央省及贝拉尔",
+  "capital": "那格浦尔",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "ICP",
+  "seat": [
+   79.08,
+   21.15
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "IN-CT",
+   "IN-MP",
+   "情景定界"
+  ]
+ },
+ "IPUN": {
+  "id": "IPUN",
+  "name": "旁遮普省",
+  "capital": "拉合尔",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IPUN",
+  "seat": [
+   74.35,
+   31.55
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "IN-CH",
+   "IN-HP",
+   "IN-HR",
+   "IN-PB",
+   "PK-IS",
+   "PK-PB",
+   "情景定界"
+  ]
+ },
+ "ISIN": {
+  "id": "ISIN",
+  "name": "信德省",
+  "capital": "卡拉奇",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "ISIN",
+  "seat": [
+   67.01,
+   24.86
+  ],
+  "color": "#d2b1af",
+  "basis": [
+   "PK-SD",
+   "情景定界"
+  ]
+ },
+ "INWF": {
+  "id": "INWF",
+  "name": "西北边境省",
+  "capital": "白沙瓦",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "INWF",
+  "seat": [
+   71.57,
+   34.01
+  ],
+  "color": "#d4b5b3",
+  "basis": [
+   "PK-KP",
+   "PK-TA",
+   "情景定界"
+  ]
+ },
+ "IBAL": {
+  "id": "IBAL",
+  "name": "英属俾路支斯坦",
+  "capital": "奎达",
+  "status": "直辖省",
+  "sovereign": "GBR",
+  "parent": "IND",
+  "manager": "IBAL",
+  "seat": [
+   66.99,
+   30.18
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "PK-BA",
+   "情景定界"
+  ]
+ },
+ "PSAID": {
+  "id": "PSAID",
+  "name": "塞得港直属区",
+  "capital": "塞得港",
+  "status": "直属管理区",
+  "sovereign": "GBR",
+  "parent": "EGY",
+  "manager": "COLONIAL",
+  "seat": [
+   32.3,
+   31.25
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ISMAIL": {
+  "id": "ISMAIL",
+  "name": "伊斯梅利亚直属区",
+  "capital": "伊斯梅利亚",
+  "status": "直属管理区",
+  "sovereign": "GBR",
+  "parent": "EGY",
+  "manager": "COLONIAL",
+  "seat": [
+   32.27,
+   30.6
+  ],
+  "color": "#d6b8b7",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "SUEZCITY": {
+  "id": "SUEZCITY",
+  "name": "苏伊士直属区",
+  "capital": "苏伊士",
+  "status": "直属管理区",
+  "sovereign": "GBR",
+  "parent": "EGY",
+  "manager": "COLONIAL",
+  "seat": [
+   32.54,
+   29.97
+  ],
+  "color": "#d8bcbb",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "ALEP": {
+  "id": "ALEP",
+  "name": "阿勒颇省",
+  "capital": "阿勒颇",
+  "status": "联邦省",
+  "sovereign": "OTT",
+  "parent": "SYR",
+  "manager": "ALEP",
+  "seat": [
+   37.16,
+   36.2
+  ],
+  "color": "#cfc2a4",
+  "basis": [
+   "SY-DY",
+   "SY-HA",
+   "SY-HL",
+   "SY-ID",
+   "SY-RA"
+  ]
+ },
+ "DAMA": {
+  "id": "DAMA",
+  "name": "大马士革省",
+  "capital": "大马士革",
+  "status": "联邦省",
+  "sovereign": "OTT",
+  "parent": "SYR",
+  "manager": "DAMA",
+  "seat": [
+   36.29,
+   33.51
+  ],
+  "color": "#d6cbb2",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "VANP": {
+  "id": "VANP",
+  "name": "凡省",
+  "capital": "凡",
+  "status": "自治省",
+  "sovereign": "OTT",
+  "parent": "KURD",
+  "manager": "VANP",
+  "seat": [
+   43.38,
+   38.5
+  ],
+  "color": "#d1c5a9",
+  "basis": [
+   "TR-04",
+   "TR-30",
+   "TR-65"
+  ]
+ },
+ "BITL": {
+  "id": "BITL",
+  "name": "比特利斯省",
+  "capital": "比特利斯",
+  "status": "自治省",
+  "sovereign": "OTT",
+  "parent": "KURD",
+  "manager": "BITL",
+  "seat": [
+   42.11,
+   38.4
+  ],
+  "color": "#d6cbb2",
+  "basis": [
+   "TR-13",
+   "TR-49",
+   "TR-56"
+  ]
+ },
+ "DIYA": {
+  "id": "DIYA",
+  "name": "迪亚巴克尔省",
+  "capital": "迪亚巴克尔",
+  "status": "自治省",
+  "sovereign": "OTT",
+  "parent": "KURD",
+  "manager": "DIYA",
+  "seat": [
+   40.23,
+   37.91
+  ],
+  "color": "#cdbf9f",
+  "basis": [
+   "情景定界"
+  ]
+ },
+ "KOK": {
+  "id": "KOK",
+  "name": "浩罕绿洲辖区",
+  "capital": "浩罕",
+  "status": "地方辖区",
+  "sovereign": "RUS",
+  "parent": "FERG",
+  "manager": "KOK",
+  "seat": [
+   70.94,
+   40.53
+  ],
+  "color": "#b9b9ce",
+  "basis": [
+   "UZ-FA",
+   "UZ-NG"
+  ]
+ },
+ "ANDIJ": {
+  "id": "ANDIJ",
+  "name": "安集延绿洲辖区",
+  "capital": "安集延",
+  "status": "地方辖区",
+  "sovereign": "RUS",
+  "parent": "FERG",
+  "manager": "ANDIJ",
+  "seat": [
+   72.35,
+   40.78
+  ],
+  "color": "#c2c3d5",
+  "basis": [
+   "UZ-AN"
+  ]
+ },
+ "OSH": {
+  "id": "OSH",
+  "name": "奥什山口辖区",
+  "capital": "奥什",
+  "status": "地方辖区",
+  "sovereign": "RUS",
+  "parent": "FERG",
+  "manager": "OSH",
+  "seat": [
+   72.8,
+   40.53
+  ],
+  "color": "#b5b6cc",
+  "basis": [
+   "KG-O"
+  ]
+ }
+}

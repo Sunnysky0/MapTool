@@ -36,7 +36,7 @@ export default function MapCanvas({ config, data, mode, onView, onCommit, onSize
     if (!el) return;
     const ro = new ResizeObserver(() => {
       const r = el.getBoundingClientRect();
-      const pad = 40;
+      const pad = r.width < 520 ? 12 : 40;
       const aw = Math.max(50, r.width - pad * 2);
       const ah = Math.max(50, r.height - pad * 2);
       const ratio = config.width / config.height;

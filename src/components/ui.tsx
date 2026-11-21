@@ -49,11 +49,21 @@ export function Slider({
   onCommit?: () => void;
   format?: (v: number) => string;
 }) {
+  const precision = Math.max(0, (String(step).split('.')[1] ?? '').length);
+  const normalize = (v: number) => {
+    const snapped = min + Math.round((v - min) / step) * step;
+    return Number(Math.min(max, Math.max(min, snapped)).toFixed(precision));
+  };
+  const setNormalized = (v: number) => onChange(normalize(v));
+
   return (
     <div>
       <div className="mb-1 flex items-center justify-between text-xs">
         <span className="text-zinc-300">{label}</span>
-        <span className="tabular-nums text-zinc-500">{format ? format(value) : value}</span>
+        <div className="flex items-center gap-2">
+          <span className="tabular-nums text-zinc-500">{format ? format(value) : value}</span>
+          <NumberField value={value} min={min} max={max} step={step} onChange={setNormalized} onCommit={onCommit} className="w-20" />
+        </div>
       </div>
       <input
         type="range"
@@ -61,7 +71,7 @@ export function Slider({
         max={max}
         step={step}
         value={value}
-        onChange={(e) => onChange(parseFloat(e.target.value))}
+        onChange={(e) => setNormalized(parseFloat(e.target.value))}
         onPointerUp={onCommit}
         onKeyUp={onCommit}
         className="slider w-full"
@@ -70,16 +80,17 @@ export function Slider({
   );
 }
 
-export function ColorField({ value, onChange, label }: { value: string; onChange: (v: string) => void; label?: string }) {
+export function ColorField({ value, onChange, label, ariaLabel }: { value: string; onChange: (v: string) => void; label?: string; ariaLabel?:string }) {
   const [text, setText] = useState(value);
   useEffect(() => setText(value), [value]);
   return (
     <div className="flex items-center gap-2">
       {label && <span className="text-xs text-zinc-300">{label}</span>}
       <label className="relative h-6 w-6 shrink-0 cursor-pointer overflow-hidden rounded-md border border-white/15 shadow-inner" style={{ background: value }}>
-        <input type="color" value={/^#[0-9a-f]{6}$/i.test(value) ? value : '#ffffff'} onChange={(e) => onChange(e.target.value)} className="absolute inset-0 h-full w-full cursor-pointer opacity-0" />
+        <input type="color" aria-label={ariaLabel&&ariaLabel+'色盘'} value={/^#[0-9a-f]{6}$/i.test(value) ? value : '#ffffff'} onChange={(e) => onChange(e.target.value)} className="absolute inset-0 h-full w-full cursor-pointer opacity-0" />
       </label>
       <input
+        aria-label={ariaLabel}
         value={text}
         onChange={(e) => {
           setText(e.target.value);
@@ -181,9 +192,18 @@ export function Button({ children, onClick, variant = 'default', className, titl
   );
 }
 
-export function NumberField({ value, onChange, step = 1, min, max, className, suffix }: { value: number; onChange: (v: number) => void; step?: number; min?: number; max?: number; className?: string; suffix?: string }) {
+export function NumberField({ value, onChange, onCommit, step = 1, min, max, className, suffix }: { value: number; onChange: (v: number) => void; onCommit?: () => void; step?: number; min?: number; max?: number; className?: string; suffix?: string }) {
   const [text, setText] = useState(String(value));
-  useEffect(() => setText(String(Math.round(value * 1000) / 1000)), [value]);
+  const [focused, setFocused] = useState(false);
+  useEffect(() => {
+    if (!focused) setText(String(Math.round(value * 1000) / 1000));
+  }, [focused, value]);
+  const displayValue = () => String(Math.round(value * 1000) / 1000);
+  const commitInput = () => {
+    setFocused(false);
+    setText(displayValue());
+    onCommit?.();
+  };
   return (
     <div className={cn('flex items-center rounded-md border border-white/10 bg-white/5 focus-within:border-amber-400/60', className)}>
       <input
@@ -192,11 +212,14 @@ export function NumberField({ value, onChange, step = 1, min, max, className, su
         min={min}
         max={max}
         value={text}
+        onFocus={() => setFocused(true)}
         onChange={(e) => {
           setText(e.target.value);
           const n = parseFloat(e.target.value);
           if (isFinite(n)) onChange(n);
         }}
+        onBlur={commitInput}
+        onKeyDown={(e) => e.key === 'Enter' && commitInput()}
         className="w-full bg-transparent px-2 py-1 text-xs tabular-nums text-zinc-200 outline-none"
       />
       {suffix && <span className="pr-2 text-[10px] text-zinc-500">{suffix}</span>}

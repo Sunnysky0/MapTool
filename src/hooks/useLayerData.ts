@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { LayerData, MapConfig } from '../types';
-import { LAYER_DEFS, layerDataKey, loadLayerData } from '../lib/data';
+import { LAYER_DEFS, layerDataKey, loadLayerData, scenarioKey } from '../lib/data';
 
 export interface DataStore {
   data: Record<string, LayerData | undefined>;
@@ -13,11 +13,11 @@ export function useLayerData(config: MapConfig) {
   const inflight = useRef(new Set<string>());
 
   // Keys required by currently visible layers
-  const needed: string[] = [];
+  const needed: string[] = config.scenario ? [scenarioKey(config.scenario)] : [];
   for (const def of LAYER_DEFS) {
     const style = config.layers[def.id];
     if (!style.visible) continue;
-    const key = layerDataKey(def.id, style, config.detail);
+    const key = layerDataKey(def.id, style, config.coastDetail, config.waterDetail, config.scenario);
     if (key && !needed.includes(key)) needed.push(key);
   }
   const neededKey = needed.join('|');
@@ -47,5 +47,6 @@ export function useLayerData(config: MapConfig) {
       return { ...s, errors };
     });
 
-  return { ...store, retry };
+  return { data: store.data, loading: needed.filter((key) => !store.data[key] && !store.errors[key]),
+    errors: Object.fromEntries(Object.entries(store.errors).filter(([key]) => needed.includes(key))), retry };
 }

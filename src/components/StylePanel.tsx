@@ -1,5 +1,5 @@
-import type { MapConfig, TitlePosition } from '../types';
-import { applyTheme, FONTS, THEMES } from '../lib/presets';
+import type { AtlasTheme, MapConfig, TitlePosition } from '../types';
+import { applyTheme, atlasTheme, ATLAS_STYLES, FONTS, THEMES } from '../lib/presets';
 import { LAYER_DEFS } from '../lib/data';
 import { cn } from '../utils/cn';
 import { ColorField, Row, Section, Segmented, Select, Slider, Toggle } from './ui';
@@ -32,6 +32,14 @@ export default function StylePanel({ config, update, commit }: Props) {
   return (
     <div>
       <Section title="Themes">
+        {config.scenario?.revision===2 ? <div className="grid grid-cols-2 gap-2">
+          {(Object.keys(ATLAS_STYLES) as AtlasTheme[]).map(id=>{
+            const swatch=ATLAS_STYLES[id];
+            return <button key={id} aria-pressed={(config.atlasTheme??'reference')===id} onClick={()=>update(c=>atlasTheme(c,id))}
+              className="rounded-md border border-white/15 p-2 text-left text-xs text-zinc-100 aria-pressed:border-amber-400">
+              <span className="mb-2 flex h-6 overflow-hidden rounded-sm">{[swatch.ocean,swatch.line,swatch.river,id==='reference'?'#60775e':'#c3cdbb'].map((c,i)=><i key={i} className="flex-1" style={{background:c}}/>)}</span>{swatch.name}
+            </button>;
+          })}</div> :
         <div className="grid grid-cols-3 gap-2">
           {THEMES.map((t) => (
             <button
@@ -50,7 +58,7 @@ export default function StylePanel({ config, update, commit }: Props) {
               <div className="px-2 py-1 text-[10px] text-zinc-300">{t.name}</div>
             </button>
           ))}
-        </div>
+        </div>}
       </Section>
 
       <Section title="Background">

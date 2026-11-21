@@ -9,6 +9,7 @@ import {
   geoAzimuthalEqualArea,
   geoGnomonic,
   geoConicEqualArea,
+  geoConicConformal,
   type GeoProjection,
 } from 'd3-geo';
 import { geoRobinson, geoWinkel3, geoMollweide, geoBertin1953 } from 'd3-geo-projection';
@@ -26,6 +27,7 @@ export interface ProjectionDef {
 }
 
 export const PROJECTIONS: ProjectionDef[] = [
+  { id:'lambertEurope',name:'Lambert Conformal Conic · Europe',group:'Regional',factory:()=>geoConicConformal().parallels([40,62]),globe:false,maxLat:84,hint:'European atlas, standard parallels 40° and 62°' },
   { id: 'mercator', name: 'Mercator', group: 'Regional', factory: () => geoMercator(), globe: false, maxLat: 84, hint: 'Classic web-map look, straight coastlines' },
   { id: 'transverseMercator', name: 'Transverse Mercator', group: 'Regional', factory: () => geoTransverseMercator(), globe: false, maxLat: 89, hint: 'Great for north–south regions' },
   { id: 'albers', name: 'Albers Conic', group: 'Regional', factory: () => geoConicEqualArea().parallels([20, 50]), globe: false, maxLat: 89, hint: 'Gently curved, ideal for continents' },
@@ -51,6 +53,7 @@ const baseScaleCache = new Map<string, number>();
 
 /** Scale at which the whole world fits inside a w×h box (zoom = 1). */
 export function baseScale(def: ProjectionDef, w: number, h: number): number {
+  if (def.id==='lambertEurope') return Math.min(w,h)/Math.PI;
   const key = `${def.id}:${Math.round(w)}x${Math.round(h)}`;
   const cached = baseScaleCache.get(key);
   if (cached) return cached;
@@ -71,7 +74,9 @@ export function buildProjection(view: ViewState, w: number, h: number): GeoProje
   const def = getProjectionDef(view.projection);
   const p = def.factory();
   p.translate([w / 2, h / 2]);
-  if (def.globe) {
+  if (def.id==='lambertEurope') {
+    p.rotate([-10,0,0]).center([view.lon-10,view.lat]);
+  } else if (def.globe) {
     p.rotate([-view.lon, -view.lat, 0]);
   } else {
     p.rotate([-view.lon, 0, 0]);

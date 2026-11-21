@@ -1,0 +1,210 @@
+{
+  "version": 6,
+  "scenario": {
+    "id": "peace-senshado-1939",
+    "revision": 2
+  },
+  "territoryColors": {},
+  "labelEdits": {},
+  "view": {
+    "projection": "lambertEurope",
+    "lon": 18.5202,
+    "lat": 52.3892,
+    "zoom": 3.8677,
+    "angle": 0
+  },
+  "coastDetail": "10m",
+  "waterDetail": "10m",
+  "width": 4096,
+  "height": 3612,
+  "background": "#0d0e12",
+  "transparentBackground": false,
+  "bgGradient": false,
+  "bgGradientColor": "#101418",
+  "vignette": 0,
+  "grain": 0,
+  "lineCap": "round",
+  "layers": {
+    "territories": {
+      "visible": true,
+      "color": "#ffffff",
+      "width": 1,
+      "opacity": 1,
+      "dash": "solid",
+      "fill": true,
+      "fillColor": "#ffffff",
+      "fillOpacity": 1
+    },
+    "sovereignBorders": {
+      "visible": true,
+      "color": "#ff8cea",
+      "width": 1.32,
+      "opacity": 1,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08
+    },
+    "adminBorders": {
+      "visible": true,
+      "color": "#e77ace",
+      "width": 0.88,
+      "opacity": 0.91,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08
+    },
+    "historicalLabels": {
+      "visible": true,
+      "color": "#fff8ee",
+      "width": 1,
+      "opacity": 1,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08,
+      "labelSize": 13
+    },
+    "coast": {
+      "visible": false,
+      "color": "#ffffff",
+      "width": 1.1,
+      "opacity": 1,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08
+    },
+    "outline": {
+      "visible": false,
+      "color": "#ffffff",
+      "width": 1,
+      "opacity": 0.6,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#000000",
+      "fillOpacity": 1
+    },
+    "graticule": {
+      "visible": false,
+      "color": "#ffffff",
+      "width": 0.5,
+      "opacity": 0.35,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08,
+      "step": 10
+    },
+    "countries": {
+      "visible": false,
+      "color": "#ffffff",
+      "width": 0.8,
+      "opacity": 0.7,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08
+    },
+    "provinces": {
+      "visible": false,
+      "color": "#ffffff",
+      "width": 0.5,
+      "opacity": 0.45,
+      "dash": "dotted",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08
+    },
+    "histA": {
+      "visible": false,
+      "color": "#f5b642",
+      "width": 0.9,
+      "opacity": 0.85,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08,
+      "year": 1914
+    },
+    "histB": {
+      "visible": false,
+      "color": "#5ad1e6",
+      "width": 0.9,
+      "opacity": 0.85,
+      "dash": "dashed",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08,
+      "year": 1938
+    },
+    "lakes": {
+      "visible": true,
+      "color": "#ff8cea",
+      "width": 0.4,
+      "opacity": 0.9,
+      "dash": "solid",
+      "fill": true,
+      "fillColor": "#0d0e12",
+      "fillOpacity": 1
+    },
+    "rivers": {
+      "visible": true,
+      "color": "#46617a",
+      "width": 1,
+      "opacity": 1,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08
+    },
+    "roads": {
+      "visible": false,
+      "color": "#ffffff",
+      "width": 0.5,
+      "opacity": 0.55,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08,
+      "roadClass": "major"
+    },
+    "railways": {
+      "visible": true,
+      "color": "#aeb4c0",
+      "width": 0.5,
+      "opacity": 0.2,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08
+    },
+    "cities": {
+      "visible": true,
+      "color": "#aeb4c0",
+      "width": 1,
+      "opacity": 0.9,
+      "dash": "solid",
+      "fill": false,
+      "fillColor": "#ffffff",
+      "fillOpacity": 0.08,
+      "minRank": 5,
+      "labels": false,
+      "labelSize": 11,
+      "dotSize": 2.1
+    }
+  },
+  "title": {
+    "text": "",
+    "subtitle": "",
+    "font": "FZBeiWeiKaiShu-S19",
+    "size": 34,
+    "color": "#fff8ee",
+    "position": "bottom-left",
+    "letterSpacing": 0.04,
+    "uppercase": false
+  },
+  "atlasSheet": "europe",
+  "atlasTheme": "reference"
+}

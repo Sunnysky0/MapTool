@@ -23,15 +23,26 @@ export default function LayersPanel({ config, update, commit, loading, errors, r
   const setLayer = (id: LayerId, patch: Partial<LayerStyle>, transient = false) =>
     update((c) => ({ ...c, layers: { ...c.layers, [id]: { ...c.layers[id], ...patch } } }), transient);
 
-  const groups = Array.from(new Set(LAYER_DEFS.map((d) => d.group)));
+  const groups = Array.from(new Set(LAYER_DEFS.filter((d) => d.group !== 'Scenario' || config.scenario).map((d) => d.group)));
 
   return (
     <div>
-      <div className="border-b border-white/5 px-4 py-3">
-        <Row label="Coastline detail" hint="Higher detail = more islands, slower">
+      <div className="space-y-2 border-b border-white/5 px-4 py-3">
+        <Row label="Coastline detail" hint="Coastlines and borders">
           <Segmented<Detail>
-            value={config.detail}
-            onChange={(v) => update((c) => ({ ...c, detail: v }))}
+            value={config.coastDetail}
+            onChange={(v) => update((c) => ({ ...c, coastDetail: v }))}
+            options={[
+              { value: '110m', label: 'Low' },
+              { value: '50m', label: 'Med' },
+              { value: '10m', label: 'High' },
+            ]}
+          />
+        </Row>
+        <Row label="Water detail" hint="Lakes and rivers">
+          <Segmented<Detail>
+            value={config.waterDetail}
+            onChange={(v) => update((c) => ({ ...c, waterDetail: v }))}
             options={[
               { value: '110m', label: 'Low' },
               { value: '50m', label: 'Med' },
@@ -46,7 +57,7 @@ export default function LayersPanel({ config, update, commit, loading, errors, r
           <div className="px-4 pb-1 pt-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">{group}</div>
           {LAYER_DEFS.filter((d) => d.group === group).map((def) => {
             const style = config.layers[def.id];
-            const key = layerDataKey(def.id, style, config.detail);
+            const key = layerDataKey(def.id, style, config.coastDetail, config.waterDetail, config.scenario);
             const isLoading = !!key && loading.includes(key);
             const error = key ? errors[key] : undefined;
             const expanded = open === def.id;
@@ -128,10 +139,11 @@ export default function LayersPanel({ config, update, commit, loading, errors, r
                       </>
                     )}
 
-                    <Row label="Line color">
+                    {def.id==='historicalLabels' && <Slider label="字号" value={style.labelSize??13} min={6} max={32} onChange={v=>setLayer(def.id,{labelSize:v},true)} onCommit={commit}/>}
+                    {def.id!=='territories' && <Row label={def.id==='historicalLabels'?'文字颜色':'Line color'}>
                       <ColorField value={style.color} onChange={(v) => setLayer(def.id, { color: v })} />
-                    </Row>
-                    {def.kind !== 'point' && (
+                    </Row>}
+                    {def.kind !== 'point' && def.id!=='territories' && (
                       <>
                         <Slider label="Line width" value={style.width} min={0} max={6} step={0.05} onChange={(v) => setLayer(def.id, { width: v }, true)} onCommit={commit} format={(v) => `${v.toFixed(2)} px`} />
                         <Row label="Line style">
@@ -182,4 +194,3 @@ export default function LayersPanel({ config, update, commit, loading, errors, r
     </div>
   );
 }
-

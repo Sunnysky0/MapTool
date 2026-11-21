@@ -1,4 +1,4 @@
-import type { GeoJSON } from 'geojson';
+import type { Feature, GeoJSON, MultiLineString, MultiPolygon, Polygon } from 'geojson';
 
 export type ProjectionId =
   | 'mercator'
@@ -14,6 +14,7 @@ export type ProjectionId =
   | 'stereographic'
   | 'azimuthalEqualArea'
   | 'gnomonic'
+  | 'lambertEurope'
   | 'albers';
 
 export interface ViewState {
@@ -25,8 +26,43 @@ export interface ViewState {
 }
 
 export type Detail = '110m' | '50m' | '10m';
+export type ScenarioLayer = 'territories' | 'sovereignBorders' | 'adminBorders' | 'historicalLabels';
+export type AtlasLayer = ScenarioLayer | 'rivers' | 'lakes' | 'railways' | 'cities';
+export type AtlasSheet = 'world' | 'europe' | 'africa';
+export type AtlasTheme = 'reference' | 'paper';
+export interface ScenarioRef { id: string; revision: number }
+export interface LabelEdit { text?: string; dx?: number; dy?: number; hidden?: boolean }
+export interface PoliticalUnit {
+  id: string; name: string; status: string; parent: string | null; sovereign: string; manager: string;
+  capital: string | null; seat?: [number, number]; suzerain?: string; coSovereigns?:string[]; claims?: string[]; guarantors?: string[]; note?: string;
+  color: string; basis: string[];
+}
+export interface HistoricalLabel {
+  id: string; unit: string; text: string; at: [number, number]; zoom: number;
+  kind: 'name' | 'capital' | 'island' | 'site' | 'claim'; priority: number;
+}
+export interface ReferenceLabel {
+  text:string; at:[number,number]; size:number; angle:number; turn:number; tracking:number; leader?:[number,number][];
+}
+export interface AtlasGeography {
+  rivers: MultiLineString[]; lakes:MultiPolygon[]; rails:MultiLineString;
+  towns:[number,number,number,string,number][];
+  africanIslands:[number,number,string][];
+}
+export interface ScenarioData {
+  units: Record<string, PoliticalUnit>;
+  faces: Feature<Polygon | MultiPolygon, {unit:string; manager:string; groups:string[]}>[];
+  islandGroups: {id:string; unit:string; name:string; at?:[number,number]}[];
+  sovereignBorders: MultiLineString; adminBorders: MultiLineString;
+  claims: GeoJSON; cityRivers: MultiLineString; labels: HistoricalLabel[];
+  managers: Record<string,string>;
+  geography?:AtlasGeography;
+  europeanNames?:Record<string,ReferenceLabel>;
+  coastline?:MultiLineString;
+}
 
 export type LayerId =
+  | ScenarioLayer
   | 'coast'
   | 'countries'
   | 'provinces'
@@ -86,8 +122,14 @@ export interface TitleStyle {
 
 export interface MapConfig {
   version: number;
+  scenario: ScenarioRef | null;
+  atlasTheme?: AtlasTheme;
+  atlasSheet?: AtlasSheet;
+  territoryColors: Record<string,string>;
+  labelEdits: Record<string,LabelEdit>;
   view: ViewState;
-  detail: Detail;
+  coastDetail: Detail;
+  waterDetail: Detail;
   width: number;
   height: number;
   background: string;
@@ -102,6 +144,7 @@ export interface MapConfig {
 }
 
 export interface LayerData {
+  scenario?: ScenarioData;
   /** Geometry used for stroking */
   geo?: GeoJSON;
   /** Geometry used for filling (polygons) */

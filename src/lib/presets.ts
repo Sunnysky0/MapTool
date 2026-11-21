@@ -1,6 +1,11 @@
-import type { LayerId, LayerStyle, MapConfig, ViewState } from '../types';
+import type { AtlasSheet, AtlasTheme, Detail, LayerId, LayerStyle, MapConfig, ScenarioRef, ViewState } from '../types';
 
-export const CONFIG_VERSION = 4;
+export const CONFIG_VERSION = 6;
+export const SCENARIO_1939 = { id: 'peace-senshado-1939', revision: 2 } as const;
+export function knownScenario(ref:ScenarioRef) {
+  return ref.id===SCENARIO_1939.id && [1,SCENARIO_1939.revision].includes(ref.revision);
+}
+export const SCENARIO_VIEW: ViewState = { projection: 'winkel3', lon: 10, lat: 0, zoom: 1, angle: 0 };
 
 const base = (over: Partial<LayerStyle> = {}): LayerStyle => ({
   visible: false,
@@ -16,6 +21,10 @@ const base = (over: Partial<LayerStyle> = {}): LayerStyle => ({
 
 export function defaultLayers(): Record<LayerId, LayerStyle> {
   return {
+    territories: base({ fill: true, fillOpacity: 1 }),
+    sovereignBorders: base({ color: '#58646b', width: 0.84, opacity: .91 }),
+    adminBorders: base({ color: '#697376', width: .48, opacity: .78, dash: 'dashed' }),
+    historicalLabels: base({ color: '#30383d', labelSize: 13 }),
     coast: base({ visible: true, width: 1.1 }),
     outline: base({ width: 1, opacity: 0.6, fillColor: '#000000', fillOpacity: 1 }),
     graticule: base({ width: 0.5, opacity: 0.35, step: 10, dash: 'solid' }),
@@ -36,8 +45,12 @@ export const DEFAULT_VIEW: ViewState = { lon: -22, lat: 24, zoom: 3.4, angle: 0,
 export function defaultConfig(): MapConfig {
   return {
     version: CONFIG_VERSION,
+    scenario: null,
+    territoryColors: {},
+    labelEdits: {},
     view: { ...DEFAULT_VIEW },
-    detail: '50m',
+    coastDetail: '50m',
+    waterDetail: '50m',
     width: 3840,
     height: 2160,
     background: '#000000',
@@ -59,6 +72,84 @@ export function defaultConfig(): MapConfig {
       uppercase: true,
     },
   };
+}
+
+/** Merge saved styles while migrating the former shared detail setting. */
+export function hydrateConfig(parsed: Partial<MapConfig> & { detail?: Detail }): MapConfig {
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('Invalid map document');
+  if (parsed.version !== undefined && ![4, 5, CONFIG_VERSION].includes(parsed.version)) throw new Error('Unsupported map version');
+  if (parsed.scenario && !knownScenario(parsed.scenario)) throw new Error('Unknown scenario revision');
+  const base = defaultConfig();
+  const { detail: legacyDetail, ...config } = parsed;
+  const layers = { ...base.layers };
+  for (const key of Object.keys(layers) as LayerId[]) layers[key] = { ...layers[key], ...config.layers?.[key] };
+  return {
+    ...base,
+    ...config,
+    ...(config.scenario?.revision===2 ? {
+      atlasSheet:config.atlasSheet==='europe'||config.atlasSheet==='africa'?config.atlasSheet:'world',
+      atlasTheme:config.atlasTheme==='paper'?'paper':'reference'
+    } : {}),
+    version: CONFIG_VERSION,
+    coastDetail: config.coastDetail ?? legacyDetail ?? base.coastDetail,
+    waterDetail: config.waterDetail ?? legacyDetail ?? base.waterDetail,
+    layers,
+    territoryColors: Object.fromEntries(Object.entries(config.territoryColors ?? {}).filter(([,c]) => /^#[\da-f]{6}$/i.test(c))),
+    labelEdits: Object.fromEntries(Object.entries(config.labelEdits ?? {}).filter(([,v]) => v && typeof v === 'object').map(([id,v]) => [id,{
+      ...(typeof v.text === 'string' ? { text: v.text } : {}), ...(typeof v.hidden === 'boolean' ? { hidden: v.hidden } : {}),
+      ...(Number.isFinite(v.dx) ? {dx:v.dx} : {}), ...(Number.isFinite(v.dy) ? {dy:v.dy} : {}),
+    }])),
+    title: { ...base.title, ...(config.title ?? {}) },
+    view: { ...base.view, ...(config.view ?? {}) },
+  };
+}
+
+export function historicalConfig(): MapConfig {
+  const cfg = defaultConfig();
+  cfg.scenario = SCENARIO_1939;
+  cfg.view = { ...SCENARIO_VIEW };
+  cfg.width = 6000; cfg.height = 3400;
+  cfg.coastDetail = cfg.waterDetail = '10m';
+  cfg.layers.coast.visible = false;
+  for (const key of ['territories','sovereignBorders','adminBorders','historicalLabels'] as const) cfg.layers[key].visible = true;
+  cfg.title = { ...cfg.title, text: '世界政治地图', subtitle: '一九三九年一月一日', size: 28, font: 'Microsoft YaHei', color: '#343e43', uppercase: false, letterSpacing: 0.04 };
+  cfg.atlasSheet='world';
+  cfg.title={...cfg.title,font:'FZBeiWeiKaiShu-S19',size:34,letterSpacing:0.04};
+  for(const key of ['rivers','lakes','cities','railways'] as const) cfg.layers[key].visible=true;
+  cfg.layers.rivers={...cfg.layers.rivers,width:1,opacity:1};
+  cfg.layers.lakes={...cfg.layers.lakes,fill:true,fillOpacity:1,width:.4};
+  cfg.layers.cities={...cfg.layers.cities,dotSize:2.1,minRank:5,labels:false};
+  cfg.layers.railways={...cfg.layers.railways,width:.50,opacity:.20,dash:'solid'};
+  cfg.layers.sovereignBorders={...cfg.layers.sovereignBorders,width:1.32,opacity:1};
+  cfg.layers.adminBorders={...cfg.layers.adminBorders,width:.88,opacity:.91,dash:'solid'};
+  return atlasTheme(cfg,'reference');
+}
+
+export const ATLAS_STYLES={
+  reference:{name:'1938 原图',ocean:'#0d0e12',line:'#ff8cea',internal:'#e77ace',ink:'#fff8ee',river:'#46617a',water:'#0d0e12',city:'#aeb4c0',halo:'#201b25',glow:'#f653c6'},
+  paper:{name:'浅色印刷',ocean:'#e1ecec',line:'#535553',internal:'#85827b',ink:'#283438',river:'#64899c',water:'#cfdfdf',city:'#707772',halo:'#f3f0e5',glow:'#b5a9a5'}
+} as const;
+export function atlasTheme(config:MapConfig,id:AtlasTheme):MapConfig {
+  const t=ATLAS_STYLES[id],layers={...config.layers};
+  for(const [layer,color] of Object.entries({sovereignBorders:t.line,adminBorders:t.internal,historicalLabels:t.ink,rivers:t.river,
+    lakes:t.line,cities:t.city,railways:t.city}) as [LayerId,string][]) layers[layer]={...layers[layer],color};
+  layers.lakes={...layers.lakes,fillColor:t.water};
+  return {...config,atlasTheme:id,background:t.ocean,bgGradient:false,vignette:0,grain:0,layers,title:{...config.title,color:t.ink}};
+}
+export const ATLAS_SHEETS={
+  world:{name:'全球',width:6000,height:3400,view:SCENARIO_VIEW},
+  europe:{name:'欧洲与近东',width:4096,height:3612,view:{projection:'lambertEurope',lon:18.5202,lat:52.3892,zoom:3.86770,angle:0}},
+  africa:{name:'非洲',width:4131,height:3841,view:{projection:'azimuthalEqualArea',lon:19.1008,lat:-1.1482,zoom:2.65282,angle:0}}
+} as const;
+export function atlasSheet(config:MapConfig,id:AtlasSheet):MapConfig {
+  const sheet=ATLAS_SHEETS[id];
+  const standard=config.title.text==='世界政治地图' && config.title.subtitle==='一九三九年一月一日';
+  const empty=!config.title.text && !config.title.subtitle;
+  let title=config.title;
+  if(id!=='world' && standard) title={...title,text:'',subtitle:''};
+  if(id==='world' && config.atlasSheet!=='world' && empty) title={...title,text:'世界政治地图',subtitle:'一九三九年一月一日'};
+  return {...config,atlasSheet:id,view:{...sheet.view},width:sheet.width,height:sheet.height,
+    title,layers:{...config.layers,historicalLabels:{...config.layers.historicalLabels,visible:id!=='africa'}}};
 }
 
 export interface Theme {

@@ -2,7 +2,8 @@ import { geoPath, geoGraticule, geoDistance, type GeoProjection } from 'd3-geo';
 import type { GeoJSON } from 'geojson';
 import type { LayerData, LayerId, LayerStyle, MapConfig } from '../types';
 import { buildProjection, getProjectionDef } from './projections';
-import { layerDataKey } from './data';
+import { atlasLayerFor, layerDataKey } from './data';
+import { paintScenario, scenarioSVG } from '../scenarios/render';
 
 export interface RenderInput {
   config: MapConfig;
@@ -17,6 +18,7 @@ const SPHERE = { type: 'Sphere' } as unknown as GeoJSON;
 const PAINT_ORDER: LayerId[] = [
   'outline',
   'coast',
+  'territories',
   'lakes',
   'graticule',
   'rivers',
@@ -24,9 +26,12 @@ const PAINT_ORDER: LayerId[] = [
   'countries',
   'histA',
   'histB',
+  'sovereignBorders',
+  'adminBorders',
   'roads',
   'railways',
   'cities',
+  'historicalLabels',
 ];
 
 function dashArray(dash: LayerStyle['dash'], w: number): number[] {
@@ -127,8 +132,13 @@ export function drawMap(ctx: CanvasRenderingContext2D, input: RenderInput): void
   for (const id of PAINT_ORDER) {
     const style = config.layers[id];
     if (!style.visible) continue;
-    const key = layerDataKey(id, style, config.detail);
+    const key = layerDataKey(id, style, config.coastDetail, config.waterDetail, config.scenario);
     const d = key ? data[key] : undefined;
+    const atlasLayer=atlasLayerFor(id,config.scenario);
+    if (atlasLayer) {
+      if (d?.scenario) paintScenario(ctx,atlasLayer,config,d.scenario,w);
+      continue;
+    }
     const lw = Math.max(0.05, style.width * k);
 
     if (id === 'outline') {
@@ -305,6 +315,7 @@ export function renderSVG(input: RenderInput): string {
   const center: [number, number] = [config.view.lon, config.view.lat];
   const out: string[] = [];
   out.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`);
+  if(config.scenario?.revision===2) out.push('<metadata>PeaceSenshado political atlas, 1939-01-01, revision 2. Natural Earth (public domain). Historical Basemaps, A. Ourednik (GPL-3.0). African boundaries adapted from CShapes 2.0, Schvitz et al. (2022), https://icr.ethz.ch/data/cshapes/ (CC BY-NC-SA 4.0, https://creativecommons.org/licenses/by-nc-sa/4.0/).</metadata>');
   out.push('<defs>');
   if (!config.transparentBackground && config.bgGradient) {
     out.push(`<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${config.background}"/><stop offset="1" stop-color="${config.bgGradientColor}"/></linearGradient>`);
@@ -326,8 +337,13 @@ export function renderSVG(input: RenderInput): string {
   for (const id of PAINT_ORDER) {
     const style = config.layers[id];
     if (!style.visible) continue;
-    const key = layerDataKey(id, style, config.detail);
+    const key = layerDataKey(id, style, config.coastDetail, config.waterDetail, config.scenario);
     const d = key ? data[key] : undefined;
+    const atlasLayer=atlasLayerFor(id,config.scenario);
+    if (atlasLayer) {
+      if (d?.scenario) out.push(scenarioSVG(atlasLayer,config,d.scenario,w));
+      continue;
+    }
     const lw = Math.max(0.05, style.width * k);
 
     if (id === 'outline') {

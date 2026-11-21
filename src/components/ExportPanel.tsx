@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { Download, FileCode2, FileJson, Layers, Loader2, Upload } from 'lucide-react';
 import type { LayerData, LayerId, MapConfig } from '../types';
-import { SIZE_PRESETS, defaultConfig } from '../lib/presets';
-import { LAYER_DEFS } from '../lib/data';
+import { SIZE_PRESETS, defaultConfig, hydrateConfig } from '../lib/presets';
+import { LAYER_DEFS, scenarioKey } from '../lib/data';
 import { drawMap, renderSVG } from '../lib/render';
 import { Button, NumberField, Row, Section, Select, Toggle } from './ui';
 
@@ -32,10 +32,11 @@ const layerFilename = (s: string) => filename(s, 'layer').replace(/\s+/g, '-');
 export default function ExportPanel({ config, data, update, replace, loadingCount }: Props) {
   const [busy, setBusy] = useState<string | null>(null);
   const [scale, setScale] = useState(1);
-  const [fileName, setFileName] = useState(() => slug(config.title.text || 'map-art'));
+  const [fileName, setFileName] = useState(() => config.scenario ? '世界政治地图-1939-01-01' : slug(config.title.text || 'map-art'));
   const [perLayer, setPerLayer] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const presetIdx = SIZE_PRESETS.findIndex((p) => p.width === config.width && p.height === config.height);
+  const unavailable = busy !== null || !!(config.scenario && !data[scenarioKey(config.scenario)]?.scenario);
 
   const layerConfig = (id: LayerId): MapConfig => ({
     ...config,
@@ -98,8 +99,7 @@ export default function ExportPanel({ config, data, update, replace, loadingCoun
     reader.onload = () => {
       try {
         const parsed = JSON.parse(String(reader.result)) as Partial<MapConfig>;
-        const base = defaultConfig();
-        replace({ ...base, ...parsed, layers: { ...base.layers, ...(parsed.layers ?? {}) }, title: { ...base.title, ...(parsed.title ?? {}) }, view: { ...base.view, ...(parsed.view ?? {}) } });
+        replace(hydrateConfig(parsed));
       } catch {
         alert('Could not read that file.');
       }
@@ -163,10 +163,10 @@ export default function ExportPanel({ config, data, update, replace, loadingCoun
           <Toggle checked={perLayer} onChange={setPerLayer} />
         </Row>
         {loadingCount > 0 && <div className="rounded-md border border-amber-400/30 bg-amber-400/10 px-2 py-1.5 text-[11px] text-amber-200">Still loading {loadingCount} layer{loadingCount > 1 ? 's' : ''} — wait for a complete export.</div>}
-        <Button variant="primary" onClick={exportPNG} disabled={busy !== null} className="w-full py-2">
+        <Button variant="primary" onClick={exportPNG} disabled={unavailable} className="w-full py-2">
           {busy === 'png' ? <Loader2 className="h-4 w-4 animate-spin" /> : perLayer ? <Layers className="h-4 w-4" /> : <Download className="h-4 w-4" />} {perLayer ? 'Export PNG layers' : 'Download PNG'}
         </Button>
-        <Button onClick={exportSVG} disabled={busy !== null} className="w-full py-2">
+        <Button onClick={exportSVG} disabled={unavailable} className="w-full py-2">
           {busy === 'svg' ? <Loader2 className="h-4 w-4 animate-spin" /> : perLayer ? <Layers className="h-4 w-4" /> : <FileCode2 className="h-4 w-4" />} {perLayer ? 'Export SVG layers' : 'Download SVG (vector)'}
         </Button>
       </Section>
@@ -179,7 +179,7 @@ export default function ExportPanel({ config, data, update, replace, loadingCoun
           <Button onClick={() => fileRef.current?.click()} className="flex-1">
             <Upload className="h-3.5 w-3.5" /> Load JSON
           </Button>
-          <input ref={fileRef} type="file" accept="application/json" className="hidden" onChange={(e) => e.target.files?.[0] && importJSON(e.target.files[0])} />
+          <input ref={fileRef} type="file" accept="application/json" className="hidden" onChange={(e) => {const file=e.target.files?.[0];if(file) importJSON(file);e.target.value='';}} />
         </div>
         <Button variant="ghost" onClick={() => confirm('Reset everything to defaults?') && replace(defaultConfig())} className="w-full text-red-300 hover:bg-red-500/10">
           Reset to defaults

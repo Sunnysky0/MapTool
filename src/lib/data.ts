@@ -4,19 +4,24 @@ import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { FeatureCollection, Feature, Geometry, Point } from 'geojson';
 import land50 from 'world-atlas/land-50m.json';
 import countries50 from 'world-atlas/countries-50m.json';
-import type { Detail, LayerData, LayerId, LayerStyle } from '../types';
+import type { AtlasLayer, Detail, LayerData, LayerId, LayerStyle, ScenarioLayer, ScenarioRef } from '../types';
+import { SCENARIO_1939 } from './presets';
 
 export interface LayerDef {
   id: LayerId;
   name: string;
   description: string;
-  group: 'Base' | 'Boundaries' | 'Water' | 'Transport' | 'Historical' | 'Extras';
+  group: 'Base' | 'Boundaries' | 'Water' | 'Transport' | 'Historical' | 'Extras' | 'Scenario';
   kind: 'line' | 'polygon' | 'point' | 'graticule' | 'outline';
   canFill: boolean;
   sizeHint?: string;
 }
 
 export const LAYER_DEFS: LayerDef[] = [
+  { id: 'territories', name: '政区底色与争议纹理', description: '实际管理及领土主张', group: 'Scenario', kind: 'polygon', canFill: false },
+  { id: 'sovereignBorders', name: '主权国界', description: '主权体系与海岸轮廓', group: 'Scenario', kind: 'line', canFill: false },
+  { id: 'adminBorders', name: '属地与自治边界', description: '同一主权体系内的政区', group: 'Scenario', kind: 'line', canFill: false },
+  { id: 'historicalLabels', name: '政区名称与地名', description: '政区、首府、租界与岛群', group: 'Scenario', kind: 'point', canFill: false },
   { id: 'coast', name: 'Coastlines', description: 'Land outlines (Natural Earth)', group: 'Base', kind: 'polygon', canFill: true },
   { id: 'outline', name: 'Map outline', description: 'Edge of the projected globe', group: 'Base', kind: 'outline', canFill: true },
   { id: 'graticule', name: 'Graticule', description: 'Latitude / longitude grid', group: 'Base', kind: 'graticule', canFill: false },
@@ -60,15 +65,27 @@ const HIST_BASES = [
 const ATLAS_BASES = ['https://cdn.jsdelivr.net/npm/world-atlas@2/', 'https://unpkg.com/world-atlas@2/'];
 
 /** Return a cache key describing what data a layer needs, or null when no remote data is required. */
-export function layerDataKey(id: LayerId, style: LayerStyle, detail: Detail): string | null {
+export function isScenarioLayer(id: LayerId): id is ScenarioLayer {
+  return LAYER_DEF_MAP[id].group === 'Scenario';
+}
+export function scenarioKey(ref: ScenarioRef) { return `scenario:${ref.id}@${ref.revision}`; }
+export function atlasLayerFor(id:LayerId,ref:ScenarioRef|null|undefined):AtlasLayer|null {
+  if (isScenarioLayer(id)) return id;
+  if (ref?.revision===2 && (id==='rivers'||id==='lakes'||id==='cities'||id==='railways')) return id;
+  return null;
+}
+
+export function layerDataKey(id: LayerId, style: LayerStyle, coastDetail: Detail, waterDetail: Detail, scenario?: ScenarioRef | null): string | null {
+  if (atlasLayerFor(id,scenario)) return scenario ? scenarioKey(scenario) : null;
   switch (id) {
     case 'coast':
     case 'countries':
+      return `${id}:${coastDetail}`;
     case 'lakes':
     case 'rivers':
-      return `${id}:${detail}`;
+      return `${id}:${waterDetail}`;
     case 'provinces':
-      return `provinces:${detail === '10m' ? '10m' : '50m'}`;
+      return `provinces:${coastDetail === '10m' ? '10m' : '50m'}`;
     case 'roads':
       return 'roads';
     case 'railways':
@@ -95,6 +112,7 @@ export function describeKey(key: string): string {
     railways: 'railways',
     hist: 'historical borders',
     cities: 'cities',
+    scenario: '1939 年政区',
   };
   return `${names[kind] ?? kind}${arg ? ` (${arg})` : ''}`;
 }
@@ -138,6 +156,12 @@ export function loadLayerData(key: string): Promise<LayerData> {
 async function loadUncached(key: string): Promise<LayerData> {
   const [kind, arg] = key.split(':');
   switch (kind) {
+    case 'scenario': {
+      const revision=[1,SCENARIO_1939.revision].find(rev=>key===scenarioKey({...SCENARIO_1939,revision:rev}));
+      if (!revision) throw new Error('Unknown scenario revision');
+      const { loadScenario } = await import('../scenarios/load');
+      return { scenario: await loadScenario(revision) };
+    }
     case 'coast': {
       const topo = await loadAtlas('land', arg as Detail);
       return { geo: mesh(topo, topo.objects.land), fillGeo: feature(topo, topo.objects.land) as FeatureCollection };

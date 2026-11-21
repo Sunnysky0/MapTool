@@ -2,7 +2,7 @@ import type { ViewState } from '../types';
 import { buildProjection, getProjectionDef } from './projections';
 
 export const MIN_ZOOM = 0.25;
-export const MAX_ZOOM = 600;
+export const MAX_ZOOM = 12000;
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 

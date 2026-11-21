@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Download, Layers, Loader2, Palette, Redo2, Share2, SlidersHorizontal, Undo2, Map as MapIcon } from 'lucide-react';
 import type { MapConfig, ViewState } from './types';
-import { CONFIG_VERSION, DEFAULT_VIEW, defaultConfig } from './lib/presets';
+import { ATLAS_SHEETS, DEFAULT_VIEW, SCENARIO_VIEW, defaultConfig, hydrateConfig } from './lib/presets';
+import ScenarioPanel from './components/ScenarioPanel';
 import { describeKey } from './lib/data';
 import { clampView, panView, rotateViewTo, zoomViewAt } from './lib/view';
 import { useHistory } from './hooks/useHistory';
@@ -23,8 +24,7 @@ function loadInitial(): MapConfig {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return base;
     const parsed = JSON.parse(raw) as Partial<MapConfig>;
-    if (parsed.version !== CONFIG_VERSION) return base;
-    return { ...base, ...parsed, layers: { ...base.layers, ...(parsed.layers ?? {}) }, title: { ...base.title, ...(parsed.title ?? {}) }, view: { ...base.view, ...(parsed.view ?? {}) } };
+    return hydrateConfig(parsed);
   } catch {
     return base;
   }
@@ -52,14 +52,16 @@ export default function App() {
 
   // Persist
   useEffect(() => {
-    const t = window.setTimeout(() => {
+    const persist = () => {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
       } catch {
         /* ignore quota */
       }
-    }, 400);
-    return () => window.clearTimeout(t);
+    };
+    const t = window.setTimeout(persist,400);
+    window.addEventListener('pagehide',persist);
+    return () => { window.clearTimeout(t);window.removeEventListener('pagehide',persist); };
   }, [config]);
 
   const onView = useCallback((next: ViewState, transient: boolean) => history.set((c) => ({ ...c, view: next }), transient), [history.set]);
@@ -70,7 +72,7 @@ export default function App() {
   const zoomBy = useCallback((f: number) => history.set((c) => ({ ...c, view: zoomViewAt(c.view, sizeRef.current.w, sizeRef.current.h, f) })), [history.set]);
   const rotateBy = useCallback((d: number) => history.set((c) => ({ ...c, view: rotateViewTo(c.view, sizeRef.current.w, sizeRef.current.h, c.view.angle + d) })), [history.set]);
   const straighten = useCallback(() => history.set((c) => ({ ...c, view: clampView({ ...c.view, angle: 0 }) })), [history.set]);
-  const resetView = useCallback(() => history.set((c) => ({ ...c, view: { ...DEFAULT_VIEW, projection: c.view.projection } })), [history.set]);
+  const resetView = useCallback(() => history.set((c) => ({ ...c, view: c.scenario ? { ...(c.atlasSheet?ATLAS_SHEETS[c.atlasSheet].view:SCENARIO_VIEW) } : { ...DEFAULT_VIEW, projection: c.view.projection } })), [history.set]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -179,7 +181,7 @@ export default function App() {
           </button>
           <span className="mx-1 h-5 w-px bg-white/10" />
           <button onClick={share} title="Copy style JSON" className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs text-zinc-300 hover:bg-white/10">
-            <Share2 className="h-3.5 w-3.5" /> Copy style
+            <Share2 className="h-3.5 w-3.5" /> <span className="hidden sm:inline">Copy style</span>
           </button>
           <button onClick={() => setTab('export')} className="inline-flex items-center gap-1.5 rounded-md bg-amber-400 px-3 py-1.5 text-xs font-semibold text-zinc-900 hover:bg-amber-300">
             <Download className="h-3.5 w-3.5" /> Export
@@ -187,9 +189,9 @@ export default function App() {
         </div>
       </header>
 
-      <div className="flex min-h-0 flex-1">
+      <div className="flex min-h-0 flex-1 flex-col-reverse md:flex-row">
         {/* Sidebar */}
-        <aside className="flex w-[340px] shrink-0 flex-col border-r border-white/5 bg-zinc-950">
+        <aside className="flex h-[43%] w-full shrink-0 flex-col border-r border-white/5 bg-zinc-950 md:h-auto md:w-[340px]">
           <nav className="grid grid-cols-4 border-b border-white/5">
             {TABS.map((t) => (
               <button
@@ -203,7 +205,7 @@ export default function App() {
             ))}
           </nav>
           <div className="min-h-0 flex-1 overflow-y-auto">
-            {tab === 'layers' && <LayersPanel config={config} update={update} commit={commit} loading={loading} errors={errors} retry={retry} />}
+            {tab === 'layers' && <><ScenarioPanel config={config} update={update} replace={replace} data={data} commit={commit} /><LayersPanel config={config} update={update} commit={commit} loading={loading} errors={errors} retry={retry} /></>}
             {tab === 'style' && <StylePanel config={config} update={update} commit={commit} />}
             {tab === 'view' && <ViewPanel config={config} update={update} />}
             {tab === 'export' && <ExportPanel config={config} data={data} update={update} replace={replace} loadingCount={loading.length} />}
