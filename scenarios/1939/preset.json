@@ -57,7 +57,7 @@
     },
     "historicalLabels": {
       "visible": true,
-      "color": "#fff8ee",
+      "color": "#f2eadc",
       "width": 1,
       "opacity": 1,
       "dash": "solid",
@@ -198,11 +198,11 @@
   "title": {
     "text": "世界政治地图",
     "subtitle": "一九三九年一月一日",
-    "font": "FZBeiWeiKaiShu-S19",
-    "size": 34,
-    "color": "#fff8ee",
+    "font": "Noto Serif SC",
+    "size": 32,
+    "color": "#f2eadc",
     "position": "bottom-left",
-    "letterSpacing": 0.04,
+    "letterSpacing": 0.12,
     "uppercase": false
   },
   "atlasSheet": "world",

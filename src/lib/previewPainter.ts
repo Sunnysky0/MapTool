@@ -131,7 +131,7 @@ export function previewPainter() {
         drawMap(ctx, input, 'decoration');
       } else {
         reproject(ctx, input, buildProjection(config.view, input.width, input.height), world, region);
-        drawMap(ctx, input, 'overlay');
+        drawMap(ctx, {...input, preview: true}, 'overlay');
       }
     },
     dispose() { worker?.terminate(); },

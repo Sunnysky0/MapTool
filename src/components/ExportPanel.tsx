@@ -56,7 +56,12 @@ export default function ExportPanel({ config, data, update, replace, loadingCoun
       const w = Math.round(config.width * scale);
       const h = Math.round(config.height * scale);
       try {
-        await document.fonts.load(`500 40px "${config.title.font}"`);
+        await Promise.all([
+          document.fonts.load(`500 40px "${config.title.font}"`),
+          document.fonts.load('400 40px "Noto Serif"'),
+          document.fonts.load('400 40px "Noto Serif SC"'),
+          document.fonts.load('500 40px "Noto Serif SC"'),
+        ]);
       } catch {
         /* ignore */
       }

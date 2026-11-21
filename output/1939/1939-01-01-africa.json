@@ -57,7 +57,7 @@
     },
     "historicalLabels": {
       "visible": false,
-      "color": "#fff8ee",
+      "color": "#f2eadc",
       "width": 1,
       "opacity": 1,
       "dash": "solid",
@@ -198,11 +198,11 @@
   "title": {
     "text": "",
     "subtitle": "",
-    "font": "FZBeiWeiKaiShu-S19",
-    "size": 34,
-    "color": "#fff8ee",
+    "font": "Noto Serif SC",
+    "size": 32,
+    "color": "#f2eadc",
     "position": "bottom-left",
-    "letterSpacing": 0.04,
+    "letterSpacing": 0.12,
     "uppercase": false
   },
   "atlasSheet": "africa",

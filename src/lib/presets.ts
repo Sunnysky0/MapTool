@@ -112,9 +112,8 @@ export function historicalConfig(): MapConfig {
   cfg.coastDetail = cfg.waterDetail = '10m';
   cfg.layers.coast.visible = false;
   for (const key of ['territories','sovereignBorders','adminBorders','historicalLabels'] as const) cfg.layers[key].visible = true;
-  cfg.title = { ...cfg.title, text: '世界政治地图', subtitle: '一九三九年一月一日', size: 28, font: 'Microsoft YaHei', color: '#343e43', uppercase: false, letterSpacing: 0.04 };
   cfg.atlasSheet='world';
-  cfg.title={...cfg.title,font:'FZBeiWeiKaiShu-S19',size:34,letterSpacing:0.04};
+  cfg.title = { ...cfg.title, text: '世界政治地图', subtitle: '一九三九年一月一日', size: 32, font: 'Noto Serif SC', color: '#343e43', uppercase: false, letterSpacing: 0.12 };
   for(const key of ['rivers','lakes','cities','railways'] as const) cfg.layers[key].visible=true;
   cfg.layers.rivers={...cfg.layers.rivers,width:1,opacity:1};
   cfg.layers.lakes={...cfg.layers.lakes,fill:true,fillOpacity:1,width:.4};
@@ -126,8 +125,8 @@ export function historicalConfig(): MapConfig {
 }
 
 export const ATLAS_STYLES={
-  reference:{name:'1938 原图',ocean:'#0d0e12',line:'#ff8cea',internal:'#e77ace',ink:'#fff8ee',river:'#46617a',water:'#0d0e12',city:'#aeb4c0',halo:'#201b25',glow:'#f653c6'},
-  paper:{name:'浅色印刷',ocean:'#e1ecec',line:'#535553',internal:'#85827b',ink:'#283438',river:'#64899c',water:'#cfdfdf',city:'#707772',halo:'#f3f0e5',glow:'#b5a9a5'}
+  reference:{name:'1938 原图',ocean:'#0d0e12',line:'#ff8cea',internal:'#e77ace',ink:'#f2eadc',river:'#46617a',water:'#0d0e12',city:'#aeb4c0',halo:'#141118',glow:'#f653c6'},
+  paper:{name:'浅色印刷',ocean:'#e1ecec',line:'#535553',internal:'#85827b',ink:'#262421',river:'#64899c',water:'#cfdfdf',city:'#707772',halo:'#f4f0e6',glow:'#b5a9a5'}
 } as const;
 export function atlasTheme(config:MapConfig,id:AtlasTheme):MapConfig {
   const t=ATLAS_STYLES[id],layers={...config.layers};
@@ -255,4 +254,4 @@ export const SIZE_PRESETS: { name: string; width: number; height: number }[] = [
   { name: 'Phone wallpaper · 1290×2796', width: 1290, height: 2796 },
 ];
 
-export const FONTS = ['Cormorant Garamond', 'Playfair Display', 'Montserrat', 'Space Mono', 'Georgia', 'Helvetica Neue', 'Courier New'];
+export const FONTS = ['Cormorant Garamond', 'Playfair Display', 'Montserrat', 'Space Mono', 'Georgia', 'Helvetica Neue', 'Courier New', 'Noto Serif SC'];
